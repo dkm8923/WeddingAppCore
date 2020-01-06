@@ -389,6 +389,194 @@
           }
         ]
       }
+    },
+    "/api/WeddingDescription": {
+      "get": {
+        "tags": [
+          "WeddingDescription"
+        ],
+        "operationId": "WeddingDescription_GetAll",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeddingDescriptionDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "WeddingDescription"
+        ],
+        "operationId": "WeddingDescription_Create",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWeddingDescriptionCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/WeddingDescription/{id}": {
+      "get": {
+        "tags": [
+          "WeddingDescription"
+        ],
+        "operationId": "WeddingDescription_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeddingDescriptionDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "WeddingDescription"
+        ],
+        "operationId": "WeddingDescription_Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWeddingDescriptionCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "WeddingDescription"
+        ],
+        "operationId": "WeddingDescription_Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -586,6 +774,108 @@
             "format": "int32"
           },
           "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "WeddingDescriptionDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "groomDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "brideDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "ceremonyDateTimeLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "ceremonyDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "receptionDateTimeLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "receptionDescription": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateWeddingDescriptionCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "groomDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "brideDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "ceremonyDateTimeLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "ceremonyDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "receptionDateTimeLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "receptionDescription": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateWeddingDescriptionCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "groomDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "brideDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "ceremonyDateTimeLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "ceremonyDescription": {
+            "type": "string",
+            "nullable": true
+          },
+          "receptionDateTimeLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "receptionDescription": {
             "type": "string",
             "nullable": true
           }

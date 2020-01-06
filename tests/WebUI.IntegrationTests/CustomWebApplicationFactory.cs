@@ -121,6 +121,37 @@ namespace CleanArchitecture.WebUI.IntegrationTests
                 new TodoItem { Id = 4, Title = "This thing is done!", Done = true }
             );
 
+            context.WeddingDescriptions.AddRange(
+                new WeddingDescription
+                {
+                    Id = 1,
+                    BrideDescription = "Test Bride Desc 1",
+                    GroomDescription = "Test Groom Desc 1",
+                    CeremonyDateTimeLocation = "Test CeremonyDateTimeLocation 1",
+                    CeremonyDescription = "Test CeremonyDescription 1",
+                    ReceptionDateTimeLocation = "Test ReceptionDateTimeLocation 1",
+                    ReceptionDescription = "Test ReceptionDescription 1",
+                    Created = new DateTime(),
+                    CreatedBy = "UnitTest",
+                    LastModified = new DateTime(),
+                    LastModifiedBy = "UnitTest"
+                },
+                new WeddingDescription
+                {
+                    Id = 2,
+                    BrideDescription = "Test Bride Desc 2",
+                    GroomDescription = "Test Groom Desc 2",
+                    CeremonyDateTimeLocation = "Test CeremonyDateTimeLocation 2",
+                    CeremonyDescription = "Test CeremonyDescription 2",
+                    ReceptionDateTimeLocation = "Test ReceptionDateTimeLocation 2",
+                    ReceptionDescription = "Test ReceptionDescription 2",
+                    Created = new DateTime(),
+                    CreatedBy = "UnitTest",
+                    LastModified = new DateTime(),
+                    LastModifiedBy = "UnitTest"
+                }
+            );
+
             context.SaveChanges();
         }
     }

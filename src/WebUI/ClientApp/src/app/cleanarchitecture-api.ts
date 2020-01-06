@@ -586,6 +586,289 @@ export class WeatherForecastClient implements IWeatherForecastClient {
     }
 }
 
+export interface IWeddingDescriptionClient {
+    getAll(): Observable<WeddingDescriptionDto[]>;
+    create(command: CreateWeddingDescriptionCommand): Observable<number>;
+    get(id: number): Observable<WeddingDescriptionDto[]>;
+    update(id: number, command: UpdateWeddingDescriptionCommand): Observable<FileResponse>;
+    delete(id: number): Observable<FileResponse>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class WeddingDescriptionClient implements IWeddingDescriptionClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    getAll(): Observable<WeddingDescriptionDto[]> {
+        let url_ = this.baseUrl + "/api/WeddingDescription";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(<any>response_);
+                } catch (e) {
+                    return <Observable<WeddingDescriptionDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<WeddingDescriptionDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<WeddingDescriptionDto[]> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(WeddingDescriptionDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<WeddingDescriptionDto[]>(<any>null);
+    }
+
+    create(command: CreateWeddingDescriptionCommand): Observable<number> {
+        let url_ = this.baseUrl + "/api/WeddingDescription";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(<any>response_);
+                } catch (e) {
+                    return <Observable<number>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<number>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<number>(<any>null);
+    }
+
+    get(id: number): Observable<WeddingDescriptionDto[]> {
+        let url_ = this.baseUrl + "/api/WeddingDescription/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGet(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGet(<any>response_);
+                } catch (e) {
+                    return <Observable<WeddingDescriptionDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<WeddingDescriptionDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGet(response: HttpResponseBase): Observable<WeddingDescriptionDto[]> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(WeddingDescriptionDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<WeddingDescriptionDto[]>(<any>null);
+    }
+
+    update(id: number, command: UpdateWeddingDescriptionCommand): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/WeddingDescription/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+
+    delete(id: number): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/WeddingDescription/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+}
+
 export class CreateTodoItemCommand implements ICreateTodoItemCommand {
     listId?: number;
     title?: string | undefined;
@@ -1051,6 +1334,186 @@ export interface IWeatherForecast {
     temperatureC?: number;
     temperatureF?: number;
     summary?: string | undefined;
+}
+
+export class WeddingDescriptionDto implements IWeddingDescriptionDto {
+    id?: number;
+    groomDescription?: string | undefined;
+    brideDescription?: string | undefined;
+    ceremonyDateTimeLocation?: string | undefined;
+    ceremonyDescription?: string | undefined;
+    receptionDateTimeLocation?: string | undefined;
+    receptionDescription?: string | undefined;
+
+    constructor(data?: IWeddingDescriptionDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.groomDescription = _data["groomDescription"];
+            this.brideDescription = _data["brideDescription"];
+            this.ceremonyDateTimeLocation = _data["ceremonyDateTimeLocation"];
+            this.ceremonyDescription = _data["ceremonyDescription"];
+            this.receptionDateTimeLocation = _data["receptionDateTimeLocation"];
+            this.receptionDescription = _data["receptionDescription"];
+        }
+    }
+
+    static fromJS(data: any): WeddingDescriptionDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new WeddingDescriptionDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["groomDescription"] = this.groomDescription;
+        data["brideDescription"] = this.brideDescription;
+        data["ceremonyDateTimeLocation"] = this.ceremonyDateTimeLocation;
+        data["ceremonyDescription"] = this.ceremonyDescription;
+        data["receptionDateTimeLocation"] = this.receptionDateTimeLocation;
+        data["receptionDescription"] = this.receptionDescription;
+        return data; 
+    }
+}
+
+export interface IWeddingDescriptionDto {
+    id?: number;
+    groomDescription?: string | undefined;
+    brideDescription?: string | undefined;
+    ceremonyDateTimeLocation?: string | undefined;
+    ceremonyDescription?: string | undefined;
+    receptionDateTimeLocation?: string | undefined;
+    receptionDescription?: string | undefined;
+}
+
+export class CreateWeddingDescriptionCommand implements ICreateWeddingDescriptionCommand {
+    id?: number;
+    groomDescription?: string | undefined;
+    brideDescription?: string | undefined;
+    ceremonyDateTimeLocation?: string | undefined;
+    ceremonyDescription?: string | undefined;
+    receptionDateTimeLocation?: string | undefined;
+    receptionDescription?: string | undefined;
+
+    constructor(data?: ICreateWeddingDescriptionCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.groomDescription = _data["groomDescription"];
+            this.brideDescription = _data["brideDescription"];
+            this.ceremonyDateTimeLocation = _data["ceremonyDateTimeLocation"];
+            this.ceremonyDescription = _data["ceremonyDescription"];
+            this.receptionDateTimeLocation = _data["receptionDateTimeLocation"];
+            this.receptionDescription = _data["receptionDescription"];
+        }
+    }
+
+    static fromJS(data: any): CreateWeddingDescriptionCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateWeddingDescriptionCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["groomDescription"] = this.groomDescription;
+        data["brideDescription"] = this.brideDescription;
+        data["ceremonyDateTimeLocation"] = this.ceremonyDateTimeLocation;
+        data["ceremonyDescription"] = this.ceremonyDescription;
+        data["receptionDateTimeLocation"] = this.receptionDateTimeLocation;
+        data["receptionDescription"] = this.receptionDescription;
+        return data; 
+    }
+}
+
+export interface ICreateWeddingDescriptionCommand {
+    id?: number;
+    groomDescription?: string | undefined;
+    brideDescription?: string | undefined;
+    ceremonyDateTimeLocation?: string | undefined;
+    ceremonyDescription?: string | undefined;
+    receptionDateTimeLocation?: string | undefined;
+    receptionDescription?: string | undefined;
+}
+
+export class UpdateWeddingDescriptionCommand implements IUpdateWeddingDescriptionCommand {
+    id?: number;
+    groomDescription?: string | undefined;
+    brideDescription?: string | undefined;
+    ceremonyDateTimeLocation?: string | undefined;
+    ceremonyDescription?: string | undefined;
+    receptionDateTimeLocation?: string | undefined;
+    receptionDescription?: string | undefined;
+
+    constructor(data?: IUpdateWeddingDescriptionCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.groomDescription = _data["groomDescription"];
+            this.brideDescription = _data["brideDescription"];
+            this.ceremonyDateTimeLocation = _data["ceremonyDateTimeLocation"];
+            this.ceremonyDescription = _data["ceremonyDescription"];
+            this.receptionDateTimeLocation = _data["receptionDateTimeLocation"];
+            this.receptionDescription = _data["receptionDescription"];
+        }
+    }
+
+    static fromJS(data: any): UpdateWeddingDescriptionCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateWeddingDescriptionCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["groomDescription"] = this.groomDescription;
+        data["brideDescription"] = this.brideDescription;
+        data["ceremonyDateTimeLocation"] = this.ceremonyDateTimeLocation;
+        data["ceremonyDescription"] = this.ceremonyDescription;
+        data["receptionDateTimeLocation"] = this.receptionDateTimeLocation;
+        data["receptionDescription"] = this.receptionDescription;
+        return data; 
+    }
+}
+
+export interface IUpdateWeddingDescriptionCommand {
+    id?: number;
+    groomDescription?: string | undefined;
+    brideDescription?: string | undefined;
+    ceremonyDateTimeLocation?: string | undefined;
+    ceremonyDescription?: string | undefined;
+    receptionDateTimeLocation?: string | undefined;
+    receptionDescription?: string | undefined;
 }
 
 export interface FileResponse {

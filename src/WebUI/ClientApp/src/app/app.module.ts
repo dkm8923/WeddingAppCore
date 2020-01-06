@@ -11,6 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { TodoComponent } from './todo/todo.component';
+
+//import { WeddingDescriptionComponent } from './WeddingDescription/wedding-description/wedding-description.component';
+//import { WeddingDescriptionCreateEditComponent } from './WeddingDescription/wedding-description-create-edit/wedding-description-create-edit.component';
+
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
@@ -24,7 +28,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    TodoComponent
+    TodoComponent//,
+    //WeddingDescriptionComponent,
+    //WeddingDescriptionCreateEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,7 +42,14 @@ import { ModalModule } from 'ngx-bootstrap/modal';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'todo', component: TodoComponent, canActivate: [AuthorizeGuard] },
+      { path: 'todo', component: TodoComponent, canActivate: [AuthorizeGuard] }//,
+      //{ path: 'wedding-desc', component: WeddingDescriptionComponent, canActivate: [AuthorizeGuard] }
+      //{ path: 'wedding-desc', component: WeddingDescriptionComponent, canActivate: [AuthorizeGuard],
+      //    children: [
+      //      { path: '', redirectTo: 'wedding-desc', pathMatch: 'full' },
+      //      { path: 'create', component: WeddingDescriptionCreateEditComponent}
+      //    ]
+      //}
     ]),
     BrowserAnimationsModule,
     ModalModule.forRoot()

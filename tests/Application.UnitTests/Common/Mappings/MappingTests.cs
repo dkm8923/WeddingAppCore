@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
+using CleanArchitecture.Application.WeddingDescriptions.Queries;
 using CleanArchitecture.Domain.Entities;
 using System;
 using Xunit;
@@ -26,6 +27,7 @@ namespace CleanArchitecture.Application.UnitTests.Common.Mappings
         [Theory]
         [InlineData(typeof(TodoList), typeof(TodoListDto))]
         [InlineData(typeof(TodoItem), typeof(TodoItemDto))]
+        [InlineData(typeof(WeddingDescription), typeof(WeddingDescriptionDto))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {
             var instance = Activator.CreateInstance(source);

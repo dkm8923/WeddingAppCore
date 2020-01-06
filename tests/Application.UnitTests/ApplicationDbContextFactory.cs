@@ -57,6 +57,22 @@ namespace CleanArchitecture.Application.UnitTests.Common
                 new TodoItem { Id = 5, ListId = 1, Title = "Coffee" }
             );
 
+            context.WeddingDescriptions.AddRange(
+                new WeddingDescription { 
+                    Id = 1, 
+                    BrideDescription = "Test", 
+                    GroomDescription = "Test",
+                    CeremonyDateTimeLocation = "Test",
+                    CeremonyDescription = "Test",
+                    ReceptionDateTimeLocation = "Test",
+                    ReceptionDescription = "Test",
+                    Created = new DateTime(),
+                    CreatedBy = "UnitTest",
+                    LastModified = new DateTime(),
+                    LastModifiedBy = "UnitTest"
+                }
+            );
+
             context.SaveChanges();
         }
 

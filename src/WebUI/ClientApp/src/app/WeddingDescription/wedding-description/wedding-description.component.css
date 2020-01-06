@@ -1,0 +1,107 @@
+.divFormContainer
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.divFormContainer .ulFormElements
+{
+    list-style: none;
+}
+
+.divFormContainer .ulFormElements li
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.divFormContainer .ulFormElements label
+{
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.divFormContainer .ulFormElements .liButtons
+{
+    margin-top: 20px;
+}
+
+.divFormContainer .ulFormElements .liButtons .divButonLeft
+{
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+}
+
+.divFormContainer .ulFormElements .liButtons .divButonRight
+{
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+}
+
+.btn-icon fa-icon
+{
+    margin-right: 5px;
+}
+
+.divGridBtnContainer
+{
+    width: 160px;
+}
+
+.divGridBtnContainer button
+{
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.divGridBtnContainer .btn-primary:hover
+{
+    background-color: #fff;
+    color: #1b6ec2
+}
+
+.divGridBtnContainer .btn-warning
+{
+    color: #fff
+}
+
+.divGridBtnContainer .btn-warning:hover
+{
+    background-color: #fff;
+    color: #ffc107
+}
+
+.divGridBtnContainer .btn-danger:hover
+{
+    background-color: #fff;
+    color: #dc3545
+}
+
+.divReportHdrContainer ul
+{
+    list-style: none;
+    padding: 0;
+}
+
+.divReportHdrContainer .ulReportHdr li
+{
+    display: inline-block;
+}
+
+.divReportHdrContainer .li2 li
+{
+    width: 50%;
+}
+
+.divReportHdrContainer .li2 li:first-child
+{
+    text-align: left;
+}
+
+.divReportHdrContainer .li2 li:last-child
+{
+    text-align: right;
+}
