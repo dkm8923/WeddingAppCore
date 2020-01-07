@@ -5,8 +5,6 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-
-
 namespace CleanArchitecture.Application.Email.Commands.UpdateEmail
 {
     public class UpdateEmailCommand : IRequest

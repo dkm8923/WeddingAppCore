@@ -1,8 +1,11 @@
-﻿using CleanArchitecture.Domain.Common;
+﻿using CleanArchitecture.Application.Common.Mappings;
+using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Domain.Entities;
+using System;
 
-namespace CleanArchitecture.Domain.Entities
+namespace CleanArchitecture.Application.Families.Queries
 {
-    public class Family : AuditableEntity
+    public class FamilyDto : AuditableEntity, IMapFrom<Family>
     {
         public long Id { get; set; }
         public long GuestId { get; set; }

@@ -20,11 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Mappings\" />
-    <Folder Include="Emails\Queries\" />
-    <Folder Include="Families\Commands\CreateFamily\" />
-    <Folder Include="Families\Commands\DeleteFamily\" />
-    <Folder Include="Families\Commands\UpdateFamily\" />
-    <Folder Include="Families\Queries\" />
     <Folder Include="GuestBookEntries\Commands\CreateGuestBookEntry\" />
     <Folder Include="GuestBookEntries\Commands\DeleteGuestBookEntry\" />
     <Folder Include="GuestBookEntries\Commands\UpdateGuestBookEntry\" />
