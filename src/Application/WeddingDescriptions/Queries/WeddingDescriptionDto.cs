@@ -1,10 +1,9 @@
-﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Domain.Entities;
+﻿using CleanArchitecture.Application.Common.Mappings;
+using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Application.WeddingDescriptions.Queries
 {
-    public class WeddingDescriptionDto : IMapFrom<WeddingDescription>
+    public class WeddingDescriptionDto : AuditableEntity, IMapFrom<Domain.Entities.WeddingDescription>
     {
         public long Id { get; set; }
         public string GroomDescription { get; set; }

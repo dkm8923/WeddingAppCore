@@ -1,7 +1,8 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Application.WeddingDescriptions.Commands.CreateWeddingDescription;
 using FluentValidation;
 
-namespace CleanArchitecture.Application.WeddingDescriptions.Commands.CreateWeddingDescription
+namespace CleanArchitecture.Application.WeddingDescription.Commands.CreateWeddingDescription
 {
     public class CreateWeddingDescriptionCommandValidator : AbstractValidator<CreateWeddingDescriptionCommand>
     {

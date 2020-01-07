@@ -1336,16 +1336,13 @@ export interface IWeatherForecast {
     summary?: string | undefined;
 }
 
-export class WeddingDescriptionDto implements IWeddingDescriptionDto {
-    id?: number;
-    groomDescription?: string | undefined;
-    brideDescription?: string | undefined;
-    ceremonyDateTimeLocation?: string | undefined;
-    ceremonyDescription?: string | undefined;
-    receptionDateTimeLocation?: string | undefined;
-    receptionDescription?: string | undefined;
+export class AuditableEntity implements IAuditableEntity {
+    createdBy?: string | undefined;
+    created?: Date;
+    lastModifiedBy?: string | undefined;
+    lastModified?: Date | undefined;
 
-    constructor(data?: IWeddingDescriptionDto) {
+    constructor(data?: IAuditableEntity) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -1355,6 +1352,53 @@ export class WeddingDescriptionDto implements IWeddingDescriptionDto {
     }
 
     init(_data?: any) {
+        if (_data) {
+            this.createdBy = _data["createdBy"];
+            this.created = _data["created"] ? new Date(_data["created"].toString()) : <any>undefined;
+            this.lastModifiedBy = _data["lastModifiedBy"];
+            this.lastModified = _data["lastModified"] ? new Date(_data["lastModified"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): AuditableEntity {
+        data = typeof data === 'object' ? data : {};
+        let result = new AuditableEntity();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["createdBy"] = this.createdBy;
+        data["created"] = this.created ? this.created.toISOString() : <any>undefined;
+        data["lastModifiedBy"] = this.lastModifiedBy;
+        data["lastModified"] = this.lastModified ? this.lastModified.toISOString() : <any>undefined;
+        return data; 
+    }
+}
+
+export interface IAuditableEntity {
+    createdBy?: string | undefined;
+    created?: Date;
+    lastModifiedBy?: string | undefined;
+    lastModified?: Date | undefined;
+}
+
+export class WeddingDescriptionDto extends AuditableEntity implements IWeddingDescriptionDto {
+    id?: number;
+    groomDescription?: string | undefined;
+    brideDescription?: string | undefined;
+    ceremonyDateTimeLocation?: string | undefined;
+    ceremonyDescription?: string | undefined;
+    receptionDateTimeLocation?: string | undefined;
+    receptionDescription?: string | undefined;
+
+    constructor(data?: IWeddingDescriptionDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
         if (_data) {
             this.id = _data["id"];
             this.groomDescription = _data["groomDescription"];
@@ -1382,11 +1426,12 @@ export class WeddingDescriptionDto implements IWeddingDescriptionDto {
         data["ceremonyDescription"] = this.ceremonyDescription;
         data["receptionDateTimeLocation"] = this.receptionDateTimeLocation;
         data["receptionDescription"] = this.receptionDescription;
+        super.toJSON(data);
         return data; 
     }
 }
 
-export interface IWeddingDescriptionDto {
+export interface IWeddingDescriptionDto extends IAuditableEntity {
     id?: number;
     groomDescription?: string | undefined;
     brideDescription?: string | undefined;

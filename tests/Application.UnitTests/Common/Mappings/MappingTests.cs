@@ -27,7 +27,7 @@ namespace CleanArchitecture.Application.UnitTests.Common.Mappings
         [Theory]
         [InlineData(typeof(TodoList), typeof(TodoListDto))]
         [InlineData(typeof(TodoItem), typeof(TodoItemDto))]
-        [InlineData(typeof(WeddingDescription), typeof(WeddingDescriptionDto))]
+        [InlineData(typeof(Domain.Entities.WeddingDescription), typeof(WeddingDescriptionDto))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {
             var instance = Activator.CreateInstance(source);

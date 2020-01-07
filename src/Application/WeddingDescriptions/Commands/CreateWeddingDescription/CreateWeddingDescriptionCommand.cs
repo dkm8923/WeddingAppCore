@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.WeddingDescriptions.Commands.CreateWeddingDescription
 {
-    public partial class CreateWeddingDescriptionCommand : IRequest<long>
+    public class CreateWeddingDescriptionCommand : IRequest<long>
     {
-        public long Id { get; set; }
         public string GroomDescription { get; set; }
         public string BrideDescription { get; set; }
         public string CeremonyDateTimeLocation { get; set; }
@@ -27,7 +26,7 @@ namespace CleanArchitecture.Application.WeddingDescriptions.Commands.CreateWeddi
 
             public async Task<long> Handle(CreateWeddingDescriptionCommand request, CancellationToken cancellationToken)
             {
-                var entity = new WeddingDescription 
+                var entity = new Domain.Entities.WeddingDescription
                 { 
                     GroomDescription = request.GroomDescription,
                     BrideDescription = request.BrideDescription,

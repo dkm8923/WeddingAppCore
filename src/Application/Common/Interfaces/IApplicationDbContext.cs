@@ -11,7 +11,13 @@ namespace CleanArchitecture.Application.Common.Interfaces
 
         DbSet<TodoItem> TodoItems { get; set; }
         
-        DbSet<WeddingDescription> WeddingDescriptions { get; set; }
+        DbSet<Domain.Entities.WeddingDescription> WeddingDescriptions { get; set; }
+        DbSet<Guest> Guests { get; set; }
+        DbSet<Family> Families { get; set; }
+        DbSet<Domain.Entities.Email> Emails { get; set; }
+        DbSet<EmailLog> EmailLogs { get; set; }
+        DbSet<GuestBookEntry> GuestBookEntries { get; set; }
+        DbSet<UsaState> UsaStates { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

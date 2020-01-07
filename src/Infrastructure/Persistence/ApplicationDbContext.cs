@@ -32,6 +32,12 @@ namespace CleanArchitecture.Infrastructure.Persistence
         public DbSet<TodoItem> TodoItems { get; set; }
 
         public DbSet<WeddingDescription> WeddingDescriptions { get; set; }
+        public DbSet<Guest> Guests { get; set; }
+        public DbSet<Family> Families { get; set; }
+        public DbSet<Email> Emails { get; set; }
+        public DbSet<EmailLog> EmailLogs { get; set; }
+        public DbSet<GuestBookEntry> GuestBookEntries { get; set; }
+        public DbSet<UsaState> UsaStates { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

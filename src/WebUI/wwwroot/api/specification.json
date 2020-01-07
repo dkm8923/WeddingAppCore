@@ -780,35 +780,65 @@
         }
       },
       "WeddingDescriptionDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "groomDescription": {
+                "type": "string",
+                "nullable": true
+              },
+              "brideDescription": {
+                "type": "string",
+                "nullable": true
+              },
+              "ceremonyDateTimeLocation": {
+                "type": "string",
+                "nullable": true
+              },
+              "ceremonyDescription": {
+                "type": "string",
+                "nullable": true
+              },
+              "receptionDateTimeLocation": {
+                "type": "string",
+                "nullable": true
+              },
+              "receptionDescription": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "AuditableEntity": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "groomDescription": {
+          "createdBy": {
             "type": "string",
             "nullable": true
           },
-          "brideDescription": {
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedBy": {
             "type": "string",
             "nullable": true
           },
-          "ceremonyDateTimeLocation": {
+          "lastModified": {
             "type": "string",
-            "nullable": true
-          },
-          "ceremonyDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "receptionDateTimeLocation": {
-            "type": "string",
-            "nullable": true
-          },
-          "receptionDescription": {
-            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         }

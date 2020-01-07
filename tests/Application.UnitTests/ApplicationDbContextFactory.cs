@@ -58,7 +58,7 @@ namespace CleanArchitecture.Application.UnitTests.Common
             );
 
             context.WeddingDescriptions.AddRange(
-                new WeddingDescription { 
+                new Domain.Entities.WeddingDescription { 
                     Id = 1, 
                     BrideDescription = "Test", 
                     GroomDescription = "Test",
