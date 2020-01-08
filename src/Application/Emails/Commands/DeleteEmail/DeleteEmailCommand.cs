@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace CleanArchitecture.Application.Email.Commands.DeleteEmail
+namespace CleanArchitecture.Application.Emails.Commands.DeleteEmail
 {
     public class DeleteEmailCommand : IRequest
     {

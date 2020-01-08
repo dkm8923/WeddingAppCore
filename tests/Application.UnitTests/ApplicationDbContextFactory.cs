@@ -73,6 +73,8 @@ namespace CleanArchitecture.Application.UnitTests.Common
                 }
             );
 
+            context.Emails.Add(new Email { Id = 1, Description = "Test Description", Subject = "Test Subject", Body = "Test Body" });
+
             context.SaveChanges();
         }
 

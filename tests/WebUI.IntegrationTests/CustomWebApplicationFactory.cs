@@ -152,6 +152,8 @@ namespace CleanArchitecture.WebUI.IntegrationTests
                 }
             );
 
+            context.Emails.Add(new Email { Id = 1, Description = "test", Subject = "test", Body = "test" });
+
             context.SaveChanges();
         }
     }

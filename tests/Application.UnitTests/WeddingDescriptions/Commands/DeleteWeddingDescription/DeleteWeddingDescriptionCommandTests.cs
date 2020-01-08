@@ -22,7 +22,7 @@ namespace CleanArchitecture.Application.UnitTests.WeddingDescriptions.Commands.D
 
             await handler.Handle(command, CancellationToken.None);
 
-            var entity = Context.TodoItems.Find(command.Id);
+            var entity = Context.WeddingDescriptions.Find(command.Id);
 
             entity.ShouldBeNull();
         }

@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Email.Commands.UpdateEmail;
 using FluentValidation;
 
 namespace CleanArchitecture.Application.Emails.Commands.UpdateEmail

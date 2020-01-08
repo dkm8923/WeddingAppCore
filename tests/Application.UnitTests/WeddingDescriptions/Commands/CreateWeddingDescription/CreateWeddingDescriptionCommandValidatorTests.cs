@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.UnitTests.Common;
-using CleanArchitecture.Application.WeddingDescription.Commands.CreateWeddingDescription;
 using CleanArchitecture.Application.WeddingDescriptions.Commands.CreateWeddingDescription;
 using Shouldly;
 using Xunit;

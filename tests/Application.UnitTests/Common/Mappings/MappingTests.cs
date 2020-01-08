@@ -1,4 +1,9 @@
 ﻿using AutoMapper;
+using CleanArchitecture.Application.EmailLogs.Queries;
+using CleanArchitecture.Application.Emails.Queries;
+using CleanArchitecture.Application.Families.Queries;
+using CleanArchitecture.Application.GuestBookEntries.Queries;
+using CleanArchitecture.Application.Guests.Queries;
 using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
 using CleanArchitecture.Application.WeddingDescriptions.Queries;
 using CleanArchitecture.Domain.Entities;
@@ -27,7 +32,13 @@ namespace CleanArchitecture.Application.UnitTests.Common.Mappings
         [Theory]
         [InlineData(typeof(TodoList), typeof(TodoListDto))]
         [InlineData(typeof(TodoItem), typeof(TodoItemDto))]
-        [InlineData(typeof(Domain.Entities.WeddingDescription), typeof(WeddingDescriptionDto))]
+        [InlineData(typeof(WeddingDescription), typeof(WeddingDescriptionDto))]
+        [InlineData(typeof(Email), typeof(EmailDto))]
+        [InlineData(typeof(EmailLog), typeof(EmailLogDto))]
+        [InlineData(typeof(Family), typeof(FamilyDto))]
+        [InlineData(typeof(Guest), typeof(GuestDto))]
+        [InlineData(typeof(GuestBookEntry), typeof(GuestBookEntryDto))]
+        [InlineData(typeof(UsaState), typeof(UsaStateDto))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {
             var instance = Activator.CreateInstance(source);

@@ -14,6 +14,289 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
+export interface IEmailClient {
+    getAll(): Observable<EmailDto[]>;
+    create(command: CreateEmailCommand): Observable<number>;
+    get(id: number): Observable<EmailDto[]>;
+    update(id: number, command: UpdateEmailCommand): Observable<FileResponse>;
+    delete(id: number): Observable<FileResponse>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class EmailClient implements IEmailClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    getAll(): Observable<EmailDto[]> {
+        let url_ = this.baseUrl + "/api/Email";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(<any>response_);
+                } catch (e) {
+                    return <Observable<EmailDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<EmailDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<EmailDto[]> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(EmailDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<EmailDto[]>(<any>null);
+    }
+
+    create(command: CreateEmailCommand): Observable<number> {
+        let url_ = this.baseUrl + "/api/Email";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(<any>response_);
+                } catch (e) {
+                    return <Observable<number>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<number>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<number>(<any>null);
+    }
+
+    get(id: number): Observable<EmailDto[]> {
+        let url_ = this.baseUrl + "/api/Email/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGet(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGet(<any>response_);
+                } catch (e) {
+                    return <Observable<EmailDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<EmailDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGet(response: HttpResponseBase): Observable<EmailDto[]> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(EmailDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<EmailDto[]>(<any>null);
+    }
+
+    update(id: number, command: UpdateEmailCommand): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/Email/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+
+    delete(id: number): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/Email/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+}
+
 export interface ITodoItemsClient {
     create(command: CreateTodoItemCommand): Observable<number>;
     update(id: number, command: UpdateTodoItemCommand): Observable<FileResponse>;
@@ -869,6 +1152,191 @@ export class WeddingDescriptionClient implements IWeddingDescriptionClient {
     }
 }
 
+export class AuditableEntity implements IAuditableEntity {
+    createdBy?: string | undefined;
+    created?: Date;
+    lastModifiedBy?: string | undefined;
+    lastModified?: Date | undefined;
+
+    constructor(data?: IAuditableEntity) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.createdBy = _data["createdBy"];
+            this.created = _data["created"] ? new Date(_data["created"].toString()) : <any>undefined;
+            this.lastModifiedBy = _data["lastModifiedBy"];
+            this.lastModified = _data["lastModified"] ? new Date(_data["lastModified"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): AuditableEntity {
+        data = typeof data === 'object' ? data : {};
+        let result = new AuditableEntity();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["createdBy"] = this.createdBy;
+        data["created"] = this.created ? this.created.toISOString() : <any>undefined;
+        data["lastModifiedBy"] = this.lastModifiedBy;
+        data["lastModified"] = this.lastModified ? this.lastModified.toISOString() : <any>undefined;
+        return data; 
+    }
+}
+
+export interface IAuditableEntity {
+    createdBy?: string | undefined;
+    created?: Date;
+    lastModifiedBy?: string | undefined;
+    lastModified?: Date | undefined;
+}
+
+export class EmailDto extends AuditableEntity implements IEmailDto {
+    id?: number;
+    description?: string | undefined;
+    subject?: string | undefined;
+    body?: string | undefined;
+
+    constructor(data?: IEmailDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.id = _data["id"];
+            this.description = _data["description"];
+            this.subject = _data["subject"];
+            this.body = _data["body"];
+        }
+    }
+
+    static fromJS(data: any): EmailDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new EmailDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["description"] = this.description;
+        data["subject"] = this.subject;
+        data["body"] = this.body;
+        super.toJSON(data);
+        return data; 
+    }
+}
+
+export interface IEmailDto extends IAuditableEntity {
+    id?: number;
+    description?: string | undefined;
+    subject?: string | undefined;
+    body?: string | undefined;
+}
+
+export class CreateEmailCommand implements ICreateEmailCommand {
+    description?: string | undefined;
+    subject?: string | undefined;
+    body?: string | undefined;
+
+    constructor(data?: ICreateEmailCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.description = _data["description"];
+            this.subject = _data["subject"];
+            this.body = _data["body"];
+        }
+    }
+
+    static fromJS(data: any): CreateEmailCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateEmailCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["description"] = this.description;
+        data["subject"] = this.subject;
+        data["body"] = this.body;
+        return data; 
+    }
+}
+
+export interface ICreateEmailCommand {
+    description?: string | undefined;
+    subject?: string | undefined;
+    body?: string | undefined;
+}
+
+export class UpdateEmailCommand implements IUpdateEmailCommand {
+    id?: number;
+    description?: string | undefined;
+    subject?: string | undefined;
+    body?: string | undefined;
+
+    constructor(data?: IUpdateEmailCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.description = _data["description"];
+            this.subject = _data["subject"];
+            this.body = _data["body"];
+        }
+    }
+
+    static fromJS(data: any): UpdateEmailCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateEmailCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["description"] = this.description;
+        data["subject"] = this.subject;
+        data["body"] = this.body;
+        return data; 
+    }
+}
+
+export interface IUpdateEmailCommand {
+    id?: number;
+    description?: string | undefined;
+    subject?: string | undefined;
+    body?: string | undefined;
+}
+
 export class CreateTodoItemCommand implements ICreateTodoItemCommand {
     listId?: number;
     title?: string | undefined;
@@ -1334,54 +1802,6 @@ export interface IWeatherForecast {
     temperatureC?: number;
     temperatureF?: number;
     summary?: string | undefined;
-}
-
-export class AuditableEntity implements IAuditableEntity {
-    createdBy?: string | undefined;
-    created?: Date;
-    lastModifiedBy?: string | undefined;
-    lastModified?: Date | undefined;
-
-    constructor(data?: IAuditableEntity) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.createdBy = _data["createdBy"];
-            this.created = _data["created"] ? new Date(_data["created"].toString()) : <any>undefined;
-            this.lastModifiedBy = _data["lastModifiedBy"];
-            this.lastModified = _data["lastModified"] ? new Date(_data["lastModified"].toString()) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): AuditableEntity {
-        data = typeof data === 'object' ? data : {};
-        let result = new AuditableEntity();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["createdBy"] = this.createdBy;
-        data["created"] = this.created ? this.created.toISOString() : <any>undefined;
-        data["lastModifiedBy"] = this.lastModifiedBy;
-        data["lastModified"] = this.lastModified ? this.lastModified.toISOString() : <any>undefined;
-        return data; 
-    }
-}
-
-export interface IAuditableEntity {
-    createdBy?: string | undefined;
-    created?: Date;
-    lastModifiedBy?: string | undefined;
-    lastModified?: Date | undefined;
 }
 
 export class WeddingDescriptionDto extends AuditableEntity implements IWeddingDescriptionDto {

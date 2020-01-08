@@ -6,16 +6,15 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace CleanArchitecture.Application.Email.Commands.CreateEmail
+namespace CleanArchitecture.Application.Emails.Commands.CreateEmail
 {
-    public class CreateEmailCommand : IRequest
+    public class CreateEmailCommand : IRequest<long>
     {
-        public long Id { get; set; }
         public string Description { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
 
-        public class CreateEmailCommandHandler : IRequestHandler<CreateEmailCommand>
+        public class CreateEmailCommandHandler : IRequestHandler<CreateEmailCommand, long>
         {
             private readonly IApplicationDbContext _context;
 
@@ -24,20 +23,20 @@ namespace CleanArchitecture.Application.Email.Commands.CreateEmail
                 _context = context;
             }
 
-            public async Task<Unit> Handle(CreateEmailCommand request, CancellationToken cancellationToken)
+            public async Task<long> Handle(CreateEmailCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Emails.FindAsync(request.Id);
-
-                if (entity == null)
+                var entity = new Email
                 {
-                    throw new NotFoundException(nameof(TodoItem), request.Id);
-                }
+                    Description = request.Description,
+                    Subject = request.Subject,
+                    Body = request.Body
+                };
 
-                _context.Emails.Remove(entity);
+                _context.Emails.Add(entity);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return Unit.Value;
+                return entity.Id;
             }
         }
     }
