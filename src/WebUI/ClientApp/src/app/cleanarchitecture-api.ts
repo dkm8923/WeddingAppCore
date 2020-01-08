@@ -1442,7 +1442,6 @@ export interface IWeddingDescriptionDto extends IAuditableEntity {
 }
 
 export class CreateWeddingDescriptionCommand implements ICreateWeddingDescriptionCommand {
-    id?: number;
     groomDescription?: string | undefined;
     brideDescription?: string | undefined;
     ceremonyDateTimeLocation?: string | undefined;
@@ -1461,7 +1460,6 @@ export class CreateWeddingDescriptionCommand implements ICreateWeddingDescriptio
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
             this.groomDescription = _data["groomDescription"];
             this.brideDescription = _data["brideDescription"];
             this.ceremonyDateTimeLocation = _data["ceremonyDateTimeLocation"];
@@ -1480,7 +1478,6 @@ export class CreateWeddingDescriptionCommand implements ICreateWeddingDescriptio
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
         data["groomDescription"] = this.groomDescription;
         data["brideDescription"] = this.brideDescription;
         data["ceremonyDateTimeLocation"] = this.ceremonyDateTimeLocation;
@@ -1492,7 +1489,6 @@ export class CreateWeddingDescriptionCommand implements ICreateWeddingDescriptio
 }
 
 export interface ICreateWeddingDescriptionCommand {
-    id?: number;
     groomDescription?: string | undefined;
     brideDescription?: string | undefined;
     ceremonyDateTimeLocation?: string | undefined;

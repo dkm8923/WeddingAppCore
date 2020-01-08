@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Guest.Commands.UpdateGuest
+namespace CleanArchitecture.Application.Guests.Commands.UpdateGuest
 {
     public class UpdateGuestCommand : IRequest
     {

@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.UsaState.Commands.UpdateUsaState;
 using FluentValidation;
 
 namespace CleanArchitecture.Application.UsaStates.Commands.UpdateUsaState

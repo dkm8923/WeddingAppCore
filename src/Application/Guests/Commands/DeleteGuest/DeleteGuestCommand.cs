@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace CleanArchitecture.Application.Guest.Commands.DeleteGuest
+namespace CleanArchitecture.Application.Guests.Commands.DeleteGuest
 {
     public class DeleteGuestCommand : IRequest
     {

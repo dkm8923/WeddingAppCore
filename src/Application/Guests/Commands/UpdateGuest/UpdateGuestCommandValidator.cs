@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Guest.Commands.UpdateGuest;
 using FluentValidation;
 
 namespace CleanArchitecture.Application.Guests.Commands.UpdateGuest

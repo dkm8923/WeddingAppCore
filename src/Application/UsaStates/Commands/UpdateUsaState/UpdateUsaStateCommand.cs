@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.UsaState.Commands.UpdateUsaState
+namespace CleanArchitecture.Application.UsaStates.Commands.UpdateUsaState
 {
     public class UpdateUsaStateCommand : IRequest
     {
