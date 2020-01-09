@@ -26,7 +26,7 @@ namespace CleanArchitecture.Application.WeddingDescriptions.Commands.DeleteWeddi
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(TodoItem), request.Id);
+                    throw new NotFoundException(nameof(WeddingDescription), request.Id);
                 }
 
                 _context.WeddingDescriptions.Remove(entity);

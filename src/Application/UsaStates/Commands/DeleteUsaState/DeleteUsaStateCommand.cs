@@ -26,7 +26,7 @@ namespace CleanArchitecture.Application.UsaStates.Commands.DeleteUsaState
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(TodoItem), request.Id);
+                    throw new NotFoundException(nameof(UsaState), request.Id);
                 }
 
                 _context.UsaStates.Remove(entity);

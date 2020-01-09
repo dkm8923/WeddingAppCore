@@ -26,7 +26,7 @@ namespace CleanArchitecture.Application.Families.Commands.DeleteFamily
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(TodoItem), request.Id);
+                    throw new NotFoundException(nameof(Family), request.Id);
                 }
 
                 _context.Families.Remove(entity);

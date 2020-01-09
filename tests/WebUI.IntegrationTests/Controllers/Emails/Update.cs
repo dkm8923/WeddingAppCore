@@ -21,9 +21,9 @@ namespace CleanArchitecture.WebUI.IntegrationTests.Controllers.Emails
             var command = new UpdateEmailCommand
             {
                 Id = 1,
-                Description = "Test Update",
-                Subject = "Test Update",
-                Body = "Test Update"
+                Description = "Test Description Update",
+                Subject = "Test Subject Update",
+                Body = "Test Body Update"
             };
 
             var content = IntegrationTestHelper.GetRequestContent(command);

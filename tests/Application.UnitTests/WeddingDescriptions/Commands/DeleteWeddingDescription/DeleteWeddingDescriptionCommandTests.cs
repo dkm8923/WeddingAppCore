@@ -8,7 +8,7 @@ using Xunit;
 
 namespace CleanArchitecture.Application.UnitTests.WeddingDescriptions.Commands.DeleteWeddingDescription
 {
-    public class DeleteWeddingDescriptionCommandTests : CommandTestBase
+    public class DeleteUsaStateCommandTests : CommandTestBase
     {
         [Fact]
         public async Task Handle_GivenValidId_ShouldRemovePersistedWeddingDescription()

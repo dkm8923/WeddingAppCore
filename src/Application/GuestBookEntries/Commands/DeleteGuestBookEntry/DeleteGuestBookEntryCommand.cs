@@ -27,7 +27,7 @@ namespace CleanArchitecture.Application.GuestBookEntries.Commands.DeleteGuestBoo
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(TodoItem), request.Id);
+                    throw new NotFoundException(nameof(GuestBookEntry), request.Id);
                 }
 
                 _context.GuestBookEntries.Remove(entity);

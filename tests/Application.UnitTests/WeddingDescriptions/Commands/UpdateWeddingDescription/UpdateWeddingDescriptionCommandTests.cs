@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xunit;
 namespace CleanArchitecture.Application.UnitTests.WeddingDescriptions.Commands.UpdateWeddingDescription
 {
-    public class UpdateWeddingDescriptionCommandTests : CommandTestBase
+    public class UpdateUsaStateCommandTests : CommandTestBase
     {
         [Fact]
         public async Task Handle_GivenValidId_ShouldUpdatePersistedWeddingDescription()

@@ -114,12 +114,18 @@ namespace CleanArchitecture.WebUI.IntegrationTests
 
         public static void SeedSampleData(ApplicationDbContext context)
         {
+            #region Todos
+
             context.TodoItems.AddRange(
                 new TodoItem { Id = 1, Title = "Do this thing." },
                 new TodoItem { Id = 2, Title = "Do this thing too." },
                 new TodoItem { Id = 3, Title = "Do many, many things." },
                 new TodoItem { Id = 4, Title = "This thing is done!", Done = true }
             );
+
+            #endregion
+
+            #region WeddingDescriptions
 
             context.WeddingDescriptions.AddRange(
                 new WeddingDescription
@@ -131,9 +137,9 @@ namespace CleanArchitecture.WebUI.IntegrationTests
                     CeremonyDescription = "Test CeremonyDescription 1",
                     ReceptionDateTimeLocation = "Test ReceptionDateTimeLocation 1",
                     ReceptionDescription = "Test ReceptionDescription 1",
-                    Created = new DateTime(),
+                    Created = DateTime.Now,
                     CreatedBy = "UnitTest",
-                    LastModified = new DateTime(),
+                    LastModified = DateTime.Now,
                     LastModifiedBy = "UnitTest"
                 },
                 new WeddingDescription
@@ -145,14 +151,62 @@ namespace CleanArchitecture.WebUI.IntegrationTests
                     CeremonyDescription = "Test CeremonyDescription 2",
                     ReceptionDateTimeLocation = "Test ReceptionDateTimeLocation 2",
                     ReceptionDescription = "Test ReceptionDescription 2",
-                    Created = new DateTime(),
+                    Created = DateTime.Now,
                     CreatedBy = "UnitTest",
-                    LastModified = new DateTime(),
+                    LastModified = DateTime.Now,
                     LastModifiedBy = "UnitTest"
                 }
             );
 
-            context.Emails.Add(new Email { Id = 1, Description = "test", Subject = "test", Body = "test" });
+            #endregion
+
+            #region Emails
+
+            context.Emails.AddRange(
+                new Email { Id = 1, Description = "Test Description", Subject = "Test Subject", Body = "Test Body" }
+            );
+
+            #endregion
+
+            #region EmailLogs
+
+            context.EmailLogs.AddRange(
+                new EmailLog { Id = 1, EmailId = 1, SentDate = new DateTime(), SentBy = "Test SentBy" }
+            );
+
+            #endregion
+
+            #region GuestBookEntries
+
+            context.GuestBookEntries.AddRange(
+                new GuestBookEntry { Id = 1, Name = "Test Name", Entry = "Test Entry", Approved = true, ApprovedOn = DateTime.Now }
+            );
+
+            #endregion
+
+            #region Guests
+
+            context.Guests.AddRange(
+                new Guest { Id = 1, FirstName = "Test FirstName", LastName = "Test LastName", Email = "Test Email" }
+            );
+
+            #endregion
+
+            #region Families
+
+            context.Families.AddRange(
+                new Family { Id = 1, GuestId = 1, ConfirmationCode = "Test ConfirmationCode", Address1 = "Test Address1", Address2 = "Test Address2", City = "Test City", StateId = 1, Zip = "Test Zip" }
+            );
+
+            #endregion
+
+            #region UsaState
+
+            context.UsaStates.AddRange(
+                new UsaState { Id = 1, Name = "Test Name", AbbreviatedName = "Test AbbreviatedName" }
+            );
+
+            #endregion
 
             context.SaveChanges();
         }

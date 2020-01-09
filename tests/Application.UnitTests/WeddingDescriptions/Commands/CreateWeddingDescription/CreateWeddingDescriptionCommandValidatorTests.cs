@@ -5,7 +5,7 @@ using Xunit;
 
 namespace CleanArchitecture.Application.UnitTests.WeddingDescriptions.Commands.CreateWeddingDescription
 {
-    public class CreateWeddingDescriptionCommandValidatorTests : CommandTestBase
+    public class CreateUsaStateCommandValidatorTests : CommandTestBase
     {
         [Fact]
         public void IsValid_ShouldBeTrue_WhenRequiredFieldsAreSet()

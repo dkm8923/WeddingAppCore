@@ -27,7 +27,7 @@ namespace CleanArchitecture.Application.Emails.Commands.DeleteEmail
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(TodoItem), request.Id);
+                    throw new NotFoundException(nameof(Email), request.Id);
                 }
 
                 _context.Emails.Remove(entity);

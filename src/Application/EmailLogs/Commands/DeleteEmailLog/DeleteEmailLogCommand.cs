@@ -26,7 +26,7 @@ namespace CleanArchitecture.Application.EmailLogs.Commands.DeleteEmailLog
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(TodoItem), request.Id);
+                    throw new NotFoundException(nameof(EmailLog), request.Id);
                 }
 
                 _context.EmailLogs.Remove(entity);

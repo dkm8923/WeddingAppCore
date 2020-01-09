@@ -31,7 +31,6 @@
     <Folder Include="UsaStates\Commands\CreateUsaState\" />
     <Folder Include="UsaStates\Commands\DeleteUsaState\" />
     <Folder Include="UsaStates\Commands\UpdateUsaState\" />
-    <Folder Include="UsaStates\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -20,9 +20,9 @@ namespace CleanArchitecture.WebUI.IntegrationTests.Controllers.Emails
 
             var command = new CreateEmailCommand
             {
-                Description = "Test",
-                Subject = "Test",
-                Body = "Test"
+                Description = "Test Description",
+                Subject = "Test Subject",
+                Body = "Test Body"
             };
 
             var content = IntegrationTestHelper.GetRequestContent(command);

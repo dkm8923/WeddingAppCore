@@ -7,7 +7,7 @@ using Xunit;
 
 namespace CleanArchitecture.Application.UnitTests.WeddingDescriptions.Commands.CreateWeddingDescription
 {
-    public class CreateWeddingDescriptionCommandTests : CommandTestBase
+    public class CreateUsaStateCommandTests : CommandTestBase
     {
         [Fact]
         public async Task Handle_ShouldPersistWeddingDescription()

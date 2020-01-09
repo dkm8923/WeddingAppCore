@@ -27,7 +27,7 @@ namespace CleanArchitecture.Application.Guests.Commands.DeleteGuest
 
                 if (entity == null)
                 {
-                    throw new NotFoundException(nameof(TodoItem), request.Id);
+                    throw new NotFoundException(nameof(Guest), request.Id);
                 }
 
                 _context.Guests.Remove(entity);
