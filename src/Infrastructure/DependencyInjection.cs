@@ -60,9 +60,7 @@ namespace CleanArchitecture.Infrastructure
             }
             else
             {
-                services.AddIdentityServer()
-                    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-
+                services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
                 services.AddTransient<IDateTime, DateTimeService>();
                 services.AddTransient<IIdentityService, IdentityService>();
                 services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();

@@ -35,8 +35,7 @@ namespace CleanArchitecture.WebUI
         {
             //register services
             services.AddSingleton<IFormatQueryString, FormatQueryString>();
-            //services.Add(new ServiceDescriptor(typeof(IFormatQueryString), new FormatQueryString()));
-
+            
             services.AddApplication();
             services.AddInfrastructure(Configuration, Environment);
 
