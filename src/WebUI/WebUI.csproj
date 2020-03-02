@@ -47,8 +47,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\WeddingDescription\wedding-description-create-edit\wedding-description-create-edit.component.ts" />
-    <None Remove="ClientApp\src\app\WeddingDescription\wedding-description\wedding-Description.component.ts" />
+    <None Remove="ClientApp\src\app\app-routing.module.ts" />
+    <None Remove="ClientApp\src\app\feature\home\home.module.ts" />
+    <None Remove="ClientApp\src\app\feature\home\home.routes.ts" />
+    <None Remove="ClientApp\src\app\feature\usa-state\usa-state.module.ts" />
+    <None Remove="ClientApp\src\app\feature\usa-state\usa-state.routes.ts" />
+    <None Remove="ClientApp\src\app\feature\usa-state\usa-state.service.ts" />
+    <None Remove="ClientApp\src\app\shared\shared.module.ts" />
+    <None Remove="ClientApp\src\app\shell\shell.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,8 +63,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\WeddingDescription\wedding-description-create-edit\wedding-description-create-edit.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\WeddingDescription\wedding-description\wedding-description.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\home\home.module.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\feature\home\home.routes.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\usa-state.module.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\usa-state.routes.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\usa-state.service.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\shell.component.ts" />
   </ItemGroup>
 
   <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">

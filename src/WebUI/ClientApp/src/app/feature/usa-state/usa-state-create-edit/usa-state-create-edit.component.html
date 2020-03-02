@@ -1,0 +1,33 @@
+<div class="divCrudFormContainer">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <ul class="ulFormElements">
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('name')">
+          <label class="formLbl required" for="txtName">Name:</label>
+          <input type="text" class="form-control" id="txtName" aria-describedby="stateNameHelp" formControlName="name">
+          <small id="stateNameHelp" class="form-text text-muted">The Full Name Of The State</small>
+          <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Name Required!"></app-field-error-display>
+        </div>
+      </li>
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('abbreviatedName')">
+          <label class="formLbl required" for="txtAbbreviatedName">Abbreviated Name:</label>
+          <input type="text" class="form-control" id="txtAbbreviatedName" aria-describedby="stateAbbreviatedNameHelp" formControlName="abbreviatedName">
+          <small id="stateAbbreviatedNameHelp" class="form-text text-muted">The Abbreviated Name Of The State</small>
+          <app-field-error-display [displayError]="isFieldValid('abbreviatedName')" errorMsg="Abbreviated Name Required!"></app-field-error-display>
+        </div>
+      </li>
+      <li class="liButtons li2Buttons">
+        <div class="divBtnContainer">
+          <app-button-cancel [routerLink]="['/usa-state']"></app-button-cancel>
+        </div>
+        <div class="divBtnContainer">
+          <app-button-save></app-button-save>
+        </div>
+      </li>
+    </ul>
+  </form>
+</div>
+
+  
+<!--this is create edit component-->

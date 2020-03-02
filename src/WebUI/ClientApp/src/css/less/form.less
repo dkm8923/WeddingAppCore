@@ -1,0 +1,170 @@
+.divCrudFormContainer, .divDeleteFormContainer
+{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+
+    .formLbl
+    {
+        font-weight: bold;
+    }
+
+    .formLbl.required
+    {
+        &:after
+        {
+            color: #d00;
+            content: "*";
+            position: absolute;
+            margin-left: 5px;
+            /*top: 7px;*/
+        }
+    }
+
+    /*Form Validation Msg Styling*/
+    .has-error
+    {
+        label, span
+        {
+            color: #a94442;
+        }
+
+        .form-control
+        {
+            border-color: #a94442;
+        }
+    }
+
+    .control-label
+    {
+        font-weight: bold;
+    }
+
+    .control-label.required
+    {
+        &:after
+        {
+            color: #d00;
+            content: "*";
+            position: absolute;
+            margin-left: 5px;
+            /*top: 7px;*/
+        }
+    }
+
+    /* ************************** */
+
+    .ulFormElements
+    {
+        list-style: none;
+        padding: 0;
+
+        .liButtons
+        {
+            .divBtnContainer
+            {
+                display: inline-block;
+
+                &:first-of-type
+                {
+                    text-align: left;
+                }
+
+                &:last-of-type
+                {
+                    text-align: right;
+                }
+            }
+        }
+
+        .li2Buttons
+        {
+            .divBtnContainer
+            {
+                width: 50%;
+            }
+        }
+
+        .li3Buttons
+        {
+            .divBtnContainer
+            {
+                width: 33.33%;
+
+                &:nth-of-type(2)
+                {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.divDeleteFormContainer
+{
+    .ulFormElements
+    {
+        li
+        {
+            margin: 10px;
+
+            .formLbl
+            {
+                display: block;
+            }
+        }
+
+        .liDeleteMsgContainer
+        {
+            font-weight: bold;
+            color: red;
+            font-style: italic;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .liButtons
+        {
+            margin-top: 20px;
+        }
+    }
+}
+
+@media (max-width: 1000px)
+{
+  .divCrudFormContainer, .divDeleteFormContainer
+  {
+      width: 100% !important;
+  }
+}
+
+@media (max-width: 730px)
+{
+  .ulFormElements
+  {
+      .liButtons
+      {
+          .divBtnContainer
+          {
+              display: block !important;
+              width: 100% !important;
+
+              button, input[type="button"]
+              {
+                  width: 100% !important;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+              }
+          }
+      }
+  }
+}
+
+@media (max-width: 580px)
+{
+  .navbar
+  {
+    padding: 10px !important;
+  }
+}
+

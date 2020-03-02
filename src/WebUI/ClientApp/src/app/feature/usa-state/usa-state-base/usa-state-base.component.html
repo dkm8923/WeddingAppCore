@@ -1,0 +1,45 @@
+<div class="divGridHdrContainer">
+  <ul class="li2">
+    <li>
+      <h1>USA State</h1>
+    </li>
+    <li>
+      <app-button-create [routerLink]="['/usa-state/create']"></app-button-create>
+    </li>
+  </ul>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="states">
+  <thead>
+    <tr>
+      <th style="width: 200px;">Actions</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Abrv</th>
+      <th>Created By</th>
+      <th>Created On</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of states">
+      <td style="width: 200px;">
+        <div class="divGridBtnContainer">
+          <ul>
+            <li>
+              <app-grid-button-edit [routerLink]="['/usa-state/edit', s.id]"></app-grid-button-edit>
+            </li>
+            <li>
+              <app-grid-button-delete [routerLink]="['/usa-state/delete', s.id]"></app-grid-button-delete>
+            </li>
+          </ul>
+        </div>
+      </td>
+      <td>{{ s.id }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.abbreviatedName }}</td>
+      <td>{{ s.createdBy }}</td>
+      <td>{{ s.created | date }}</td>
+    </tr>
+  </tbody>
+</table>
+

@@ -1,0 +1,17 @@
+.loadingSpinnerContainer {
+  position: fixed;
+  z-index: 1500;
+  text-align: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  cursor: wait;
+}
+
+.loadingSpinnerContainer .spinner {
+  text-align: center;
+  top: 50%;
+  position: fixed;
+}

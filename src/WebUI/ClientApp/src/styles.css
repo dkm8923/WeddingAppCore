@@ -14,3 +14,27 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+/*Base Styling for BootStrap buttons*/
+.btn-icon-text fa-icon
+{
+    margin-right: 5px;
+}
+
+.has-error label, .has-error span
+{
+    color: #a94442;
+}
+
+.has-error .form-control
+{
+    border-color: #a94442;
+}
+
+.control-label.required:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  /*top: 7px;*/
+}

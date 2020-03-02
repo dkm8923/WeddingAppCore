@@ -1,0 +1,57 @@
+@import "form.less";
+@import "button.less";
+@import "loading.less";
+@import "utility.less";
+
+.appBodyBase
+{
+    .navbar
+    {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .container
+    {
+        max-width: 100%;
+    }
+}
+
+.divGridHdrContainer
+{
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    ul
+    {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li
+        {
+            display: inline-block;
+        }
+    }
+
+    .li2
+    {
+        li
+        {
+            &:first-of-type
+            {
+                text-align: left;
+            }
+
+            &:last-of-type
+            {
+                text-align: right;
+            }
+
+            width: 50%;
+        }
+    }
+}

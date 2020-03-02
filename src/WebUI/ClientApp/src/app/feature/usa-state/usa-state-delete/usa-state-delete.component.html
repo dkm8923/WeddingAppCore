@@ -1,0 +1,38 @@
+<div class="divDeleteFormContainer">
+  <ul class="ulFormElements">
+    <li class="liDeleteMsgContainer">
+      <span>Are You Sure That You Want To Delete The Current Record?</span>
+    </li>
+    <li>
+      <label class="formLbl">Id:</label>
+      <span>{{state?.id}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Name:</label>
+      <span>{{state?.name}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Abbreviated Name:</label>
+      <span>{{state?.abbreviatedName}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Created By:</label>
+      <span>{{state?.createdBy}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Created On:</label>
+      <span>{{state?.created | date}}</span>
+    </li>
+    <li class="liButtons li2Buttons">
+      <div class="divBtnContainer">
+        <app-button-cancel [routerLink]="['/usa-state']"></app-button-cancel>
+      </div>
+      <div class="divBtnContainer">
+        <app-button-delete (click)="onSubmit()"></app-button-delete>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+

@@ -1,61 +1,50 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { TodoComponent } from './todo/todo.component';
 
-//import { WeddingDescriptionComponent } from './WeddingDescription/wedding-description/wedding-description.component';
-//import { WeddingDescriptionCreateEditComponent } from './WeddingDescription/wedding-description-create-edit/wedding-description-create-edit.component';
+import { NavMenuComponent } from './shell/nav-menu/nav-menu.component';
+
+import { UtilityService } from './core/utility.service';
+import { ErrorLogService } from './core/error-log.service';
+
+import { SharedModule } from './shared/shared.module';
+import { ShellModule } from './shell/shell.module';
+
+import { HomeModule } from './feature/home/home.module';
+import { UsaStateModule } from './feature/usa-state/usa-state.module';
 
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
-import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
-    TodoComponent//,
-    //WeddingDescriptionComponent,
-    //WeddingDescriptionCreateEditComponent
+    NavMenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    FontAwesomeModule,
     HttpClientModule,
-    FormsModule,
     ApiAuthorizationModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'todo', component: TodoComponent, canActivate: [AuthorizeGuard] }//,
-      //{ path: 'wedding-desc', component: WeddingDescriptionComponent, canActivate: [AuthorizeGuard] }
-      //{ path: 'wedding-desc', component: WeddingDescriptionComponent, canActivate: [AuthorizeGuard],
-      //    children: [
-      //      { path: '', redirectTo: 'wedding-desc', pathMatch: 'full' },
-      //      { path: 'create', component: WeddingDescriptionCreateEditComponent}
-      //    ]
-      //}
-    ]),
+    ReactiveFormsModule,
+    SharedModule,
+    ShellModule,
+    HomeModule,
+    UsaStateModule,
+    RouterModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+    UtilityService,
+    ErrorLogService
   ],
   bootstrap: [AppComponent]
 })

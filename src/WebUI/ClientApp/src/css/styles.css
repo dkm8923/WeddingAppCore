@@ -1,0 +1,173 @@
+.divCrudFormContainer,
+.divDeleteFormContainer {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  /*Form Validation Msg Styling*/
+  /* ************************** */
+}
+.divCrudFormContainer .formLbl,
+.divDeleteFormContainer .formLbl {
+  font-weight: bold;
+}
+.divCrudFormContainer .formLbl.required:after,
+.divDeleteFormContainer .formLbl.required:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  /*top: 7px;*/
+}
+.divCrudFormContainer .has-error label,
+.divDeleteFormContainer .has-error label,
+.divCrudFormContainer .has-error span,
+.divDeleteFormContainer .has-error span {
+  color: #a94442;
+}
+.divCrudFormContainer .has-error .form-control,
+.divDeleteFormContainer .has-error .form-control {
+  border-color: #a94442;
+}
+.divCrudFormContainer .control-label,
+.divDeleteFormContainer .control-label {
+  font-weight: bold;
+}
+.divCrudFormContainer .control-label.required:after,
+.divDeleteFormContainer .control-label.required:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  /*top: 7px;*/
+}
+.divCrudFormContainer .ulFormElements,
+.divDeleteFormContainer .ulFormElements {
+  list-style: none;
+  padding: 0;
+}
+.divCrudFormContainer .ulFormElements .liButtons .divBtnContainer,
+.divDeleteFormContainer .ulFormElements .liButtons .divBtnContainer {
+  display: inline-block;
+}
+.divCrudFormContainer .ulFormElements .liButtons .divBtnContainer:first-of-type,
+.divDeleteFormContainer .ulFormElements .liButtons .divBtnContainer:first-of-type {
+  text-align: left;
+}
+.divCrudFormContainer .ulFormElements .liButtons .divBtnContainer:last-of-type,
+.divDeleteFormContainer .ulFormElements .liButtons .divBtnContainer:last-of-type {
+  text-align: right;
+}
+.divCrudFormContainer .ulFormElements .li2Buttons .divBtnContainer,
+.divDeleteFormContainer .ulFormElements .li2Buttons .divBtnContainer {
+  width: 50%;
+}
+.divCrudFormContainer .ulFormElements .li3Buttons .divBtnContainer,
+.divDeleteFormContainer .ulFormElements .li3Buttons .divBtnContainer {
+  width: 33.33%;
+}
+.divCrudFormContainer .ulFormElements .li3Buttons .divBtnContainer:nth-of-type(2),
+.divDeleteFormContainer .ulFormElements .li3Buttons .divBtnContainer:nth-of-type(2) {
+  text-align: center;
+}
+.divDeleteFormContainer .ulFormElements li {
+  margin: 10px;
+}
+.divDeleteFormContainer .ulFormElements li .formLbl {
+  display: block;
+}
+.divDeleteFormContainer .ulFormElements .liDeleteMsgContainer {
+  font-weight: bold;
+  color: red;
+  font-style: italic;
+  text-align: center;
+  font-size: 20px;
+}
+.divDeleteFormContainer .ulFormElements .liButtons {
+  margin-top: 20px;
+}
+@media (max-width: 1000px) {
+  .divCrudFormContainer,
+  .divDeleteFormContainer {
+    width: 100% !important;
+  }
+}
+@media (max-width: 730px) {
+  .ulFormElements .liButtons .divBtnContainer {
+    display: block !important;
+    width: 100% !important;
+  }
+  .ulFormElements .liButtons .divBtnContainer button,
+  .ulFormElements .liButtons .divBtnContainer input[type="button"] {
+    width: 100% !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 580px) {
+  .navbar {
+    padding: 10px !important;
+  }
+}
+/*Base Styling for BootStrap buttons*/
+.btn-icon-text fa-icon {
+  margin-right: 5px;
+}
+.divGridBtnContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.divGridBtnContainer ul li {
+  display: inline-block;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.divGridBtnContainer .grid-btn-icon {
+  width: 42px;
+  height: 40px;
+}
+.appLoading app-nav-menu header {
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}
+.appLoading .container {
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+}
+.hidden {
+  display: none;
+}
+.hiddenVisibility {
+  visibility: hidden;
+}
+.appBodyBase .navbar {
+  padding-left: 0;
+  padding-right: 0;
+}
+.appBodyBase .container {
+  max-width: 100%;
+}
+.divGridHdrContainer {
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.divGridHdrContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.divGridHdrContainer ul li {
+  display: inline-block;
+}
+.divGridHdrContainer .li2 li {
+  width: 50%;
+}
+.divGridHdrContainer .li2 li:first-of-type {
+  text-align: left;
+}
+.divGridHdrContainer .li2 li:last-of-type {
+  text-align: right;
+}
