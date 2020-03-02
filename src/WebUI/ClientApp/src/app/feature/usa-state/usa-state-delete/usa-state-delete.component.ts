@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { UsaStateClient } from "../../../cleanarchitecture-api";
+import { UsaStateClient } from "../../../Model/dto/wedding-api-models";
 import { ActivatedRoute } from '@angular/router';
-import { UtilityService } from '../../../core/utility.service';
-import { UsaStateService } from '../usa-state.service';
-import { ErrorLogService } from '../../../core/error-log.service';
+import { UsaStateService } from '../../usa-state';
+import { ErrorLogService, UtilityService } from '../../../core';
 
 @Component({
   selector: 'app-usa-state-delete',

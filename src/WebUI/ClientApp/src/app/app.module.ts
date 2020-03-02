@@ -8,8 +8,7 @@ import { AppComponent } from './app.component';
 
 import { NavMenuComponent } from './shell/nav-menu/nav-menu.component';
 
-import { UtilityService } from './core/utility.service';
-import { ErrorLogService } from './core/error-log.service';
+import { UtilityService, ErrorLogService } from './core';
 
 import { SharedModule } from './shared/shared.module';
 import { ShellModule } from './shell/shell.module';

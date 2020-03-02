@@ -1,6 +1,4 @@
-import { UsaStateBaseComponent } from './usa-state-base/usa-state-base.component';
-import { UsaStateDeleteComponent } from './usa-state-delete/usa-state-delete.component';
-import { UsaStateCreateEditComponent } from './usa-state-create-edit/usa-state-create-edit.component';
+import { UsaStateBaseComponent, UsaStateDeleteComponent, UsaStateCreateEditComponent } from '../usa-state';
 import { AuthorizeGuard } from '../../../api-authorization/authorize.guard';
 
 export const UsaStateRoutes = [

@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { UsaStateClient, CreateUsaStateCommand, UpdateUsaStateCommand } from "../../../cleanarchitecture-api";
-import { UtilityService } from '../../../core/utility.service';
-import { FormValidationService } from '../../../shared/form-elements/validation/form-validation.service';
-import { ErrorLogService } from '../../../core/error-log.service';
-import { UsaStateService } from '../usa-state.service';
+import { UsaStateClient, CreateUsaStateCommand, UpdateUsaStateCommand } from "../../../Model/dto/wedding-api-models";
+import { ErrorLogService, UtilityService } from '../../../core';
+import { FormValidationService } from '../../../shared';
+import { UsaStateService } from '../../usa-state';
 
 @Component({
   selector: 'app-usa-state-detail',

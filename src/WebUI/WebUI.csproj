@@ -48,11 +48,15 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\app-routing.module.ts" />
+    <None Remove="ClientApp\src\app\core\index.ts" />
     <None Remove="ClientApp\src\app\feature\home\home.module.ts" />
     <None Remove="ClientApp\src\app\feature\home\home.routes.ts" />
+    <None Remove="ClientApp\src\app\feature\home\index.ts" />
+    <None Remove="ClientApp\src\app\feature\usa-state\index.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.module.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.routes.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.service.ts" />
+    <None Remove="ClientApp\src\app\shared\index.ts" />
     <None Remove="ClientApp\src\app\shared\shared.module.ts" />
     <None Remove="ClientApp\src\app\shell\shell.component.ts" />
   </ItemGroup>
@@ -64,12 +68,15 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\core\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\feature\home\home.module.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\feature\home\home.routes.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\feature\home\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\usa-state.module.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -79,8 +86,14 @@
     <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\usa-state.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\shared\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\shared.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\shell.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\core\Model\" />
+    <Folder Include="ClientApp\src\app\Model\dto\" />
   </ItemGroup>
 
   <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
