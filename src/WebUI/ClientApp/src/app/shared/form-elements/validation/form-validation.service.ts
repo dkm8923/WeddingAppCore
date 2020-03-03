@@ -27,7 +27,11 @@ export class FormValidationService {
     //  ret = true;
     //}
 
-    if (!formField.valid && formField.touched || formField.untouched && formSubmitAttempt) {
+    //if (!formField.valid && formField.touched || formField.untouched && formSubmitAttempt) {
+    //  ret = true;
+    //}
+
+    if (formSubmitAttempt && formField.errors) {
       ret = true;
     }
 
