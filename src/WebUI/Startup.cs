@@ -51,6 +51,11 @@ namespace CleanArchitecture.WebUI
                 .AddNewtonsoftJson();
 
             services.AddRazorPages();
+            services.AddMvc();
+
+            //services.AddMvc().AddRazorPagesOptions(options => {
+            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
+            //}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>
