@@ -93,7 +93,6 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\core\Model\" />
-    <Folder Include="ClientApp\src\app\Model\dto\" />
   </ItemGroup>
 
   <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">

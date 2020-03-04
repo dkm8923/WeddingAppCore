@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UsaStateClient, UsaStateDto } from "../../../Model/dto/wedding-api-models";
+import { UsaStateClient, UsaStateDto } from "../../../model/dto/wedding-api-models";
 
 @Component({
   selector: 'app-usa-state-base',

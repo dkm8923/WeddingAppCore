@@ -109,7 +109,7 @@
       "enumNameGeneratorType": null,
       "serviceHost": null,
       "serviceSchemes": null,
-      "output": "ClientApp/src/app/Model/dto/wedding-api-models.ts"
+      "output": "ClientApp/src/app/model/dto/wedding-api-models.ts"
     }
   }
 }

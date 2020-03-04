@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UsaStateClient } from "../../../Model/dto/wedding-api-models";
+import { UsaStateClient } from "../../../model/dto/wedding-api-models";
 import { ActivatedRoute } from '@angular/router';
 import { UsaStateService } from '../../usa-state';
 import { ErrorLogService, UtilityService } from '../../../core';

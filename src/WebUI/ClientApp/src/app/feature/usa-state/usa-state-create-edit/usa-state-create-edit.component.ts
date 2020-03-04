@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { UsaStateClient, CreateUsaStateCommand, UpdateUsaStateCommand } from "../../../Model/dto/wedding-api-models";
+import { UsaStateClient, CreateUsaStateCommand, UpdateUsaStateCommand } from "../../../model/dto/wedding-api-models";
 import { ErrorLogService, UtilityService } from '../../../core';
 import { FormValidationService } from '../../../shared';
 import { UsaStateService } from '../../usa-state';
