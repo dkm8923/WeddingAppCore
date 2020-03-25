@@ -1,7 +1,38 @@
-<body id="appBodyBase" class="appBodyBase">
+<!--<router-outlet></router-outlet>-->
+
+<!--<body id="appBodyBase" class="appBodyBase">
   <app-loading-spinner></app-loading-spinner>
   <app-nav-menu></app-nav-menu>
   <div class="container">
     <router-outlet></router-outlet>
   </div>
-</body>
+</body>-->
+
+<mk-layout-wrapper class="appBodyBase">
+  <mk-layout-sidebar-right>
+    Sidebar right HTML
+  </mk-layout-sidebar-right>
+  <mk-layout-header [isSidebarLeftToggle]="false" [logoLink]="['/home']">
+    <mk-layout-header-logo>MSS ADMIN</mk-layout-header-logo>
+    <mk-layout-header-logo-mini>MSS</mk-layout-header-logo-mini>
+    <!--Header HTML-->
+  </mk-layout-header>
+  <mk-layout-sidebar-left>
+    <!--Sidebar left HTML (just above menu)-->
+  </mk-layout-sidebar-left>
+  <mk-layout-sidebar-right>
+    <!--Sidebar left HTML (just above menu)-->
+    <!--<div>Test 1</div>-->
+  </mk-layout-sidebar-right>
+  <mk-layout-content>
+    <router-outlet></router-outlet>
+  </mk-layout-content>
+  <mk-layout-footer>
+    <mk-layout-footer-left>
+      Footer left HTML
+    </mk-layout-footer-left>
+    <mk-layout-footer-right>
+      Mauk Software Solutions 2020
+    </mk-layout-footer-right>
+  </mk-layout-footer>
+</mk-layout-wrapper>

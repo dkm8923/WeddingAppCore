@@ -47,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\admin-lte-config.ts" />
     <None Remove="ClientApp\src\app\app-routing.module.ts" />
     <None Remove="ClientApp\src\app\core\index.ts" />
     <None Remove="ClientApp\src\app\feature\home\home.module.ts" />
@@ -67,6 +68,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\admin-lte-config.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\core\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\feature\home\home.module.ts">

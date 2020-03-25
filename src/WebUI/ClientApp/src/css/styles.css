@@ -143,6 +143,13 @@
 .appBodyBase .navbar {
   padding-left: 0;
   padding-right: 0;
+  height: 51px;
+}
+.appBodyBase .navbar .sidebar-right-toggle {
+    margin-left: 94%;
+}
+.appBodyBase .navbar .sidebar-right-toggle a {
+    padding: 0 !important;
 }
 .appBodyBase .container {
   max-width: 100%;
