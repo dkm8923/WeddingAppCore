@@ -4,9 +4,6 @@ import { ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { adminLteConf } from '../../admin-lte-config';   //Import the layout configuration.
-import { LayoutModule } from 'angular-admin-lte';   //Import the layout module.
-
 import { AppComponent } from './app.component';
 
 import { NavMenuComponent } from './shell/nav-menu/nav-menu.component';
@@ -36,8 +33,7 @@ import { AppRoutingModule } from './app-routing.module';
     ApiAuthorizationModule,
     ReactiveFormsModule,
     SharedModule,
-    //ShellModule,
-    LayoutModule.forRoot(adminLteConf),   //Provide the configuration to the layout module.
+    ShellModule,
     HomeModule,
     UsaStateModule,
     RouterModule,
