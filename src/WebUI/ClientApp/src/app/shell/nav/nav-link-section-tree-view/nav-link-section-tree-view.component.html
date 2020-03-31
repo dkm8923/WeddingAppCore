@@ -1,0 +1,12 @@
+<li class="nav-item nav-item-tree-view has-treeview">
+  <a href="#" class="nav-link">
+    <i class="nav-icon {{fontAwesomeCss}}" *ngIf="fontAwesomeCss"></i>
+    <p>
+      {{text}}
+      <i class="fas fa-angle-left right"></i>
+    </p>
+  </a>
+  <ul class="nav nav-treeview">
+    <app-nav-link-single text="{{link.text}}" fontAwesomeCss="{{link.fontAwesomeCss}}" *ngFor="let link of navLinks"></app-nav-link-single>
+  </ul>
+</li>

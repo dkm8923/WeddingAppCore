@@ -56,9 +56,9 @@
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.module.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.routes.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.service.ts" />
+    <None Remove="ClientApp\src\app\model\shell\nav\navLink.ts" />
     <None Remove="ClientApp\src\app\shared\index.ts" />
     <None Remove="ClientApp\src\app\shared\shared.module.ts" />
-    <None Remove="ClientApp\src\app\shell\shell.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -86,13 +86,16 @@
     <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\usa-state.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\nav\NavLink.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\shared.module.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\shell\shell.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\core\Model\" />
+    <Folder Include="ClientApp\src\app\shell\left-nav\" />
+    <Folder Include="ClientApp\src\app\shell\nav-link\" />
+    <Folder Include="ClientApp\src\app\shell\nav\" />
   </ItemGroup>
 
   <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">

@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { NavMenuComponent } from './shell/nav-menu/nav-menu.component';
-
 import { UtilityService, ErrorLogService } from './core';
 
 import { SharedModule } from './shared/shared.module';
@@ -24,8 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavMenuComponent
+    AppComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
