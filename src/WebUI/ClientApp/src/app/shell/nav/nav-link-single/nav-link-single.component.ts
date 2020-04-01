@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NavLink } from '../../../model/shell/nav/NavLink';
 
 @Component({
   selector: 'app-nav-link-single',
@@ -6,8 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./nav-link-single.component.css']
 })
 export class NavLinkSingleComponent {
-
-  @Input() text: string;
-  @Input() fontAwesomeCss: string;
-  @Input() badgeText: string;
+  @Input() navLink: NavLink;
 }

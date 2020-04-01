@@ -10,6 +10,8 @@ import { RightMenuComponent } from './right-menu/right-menu.component';
 import { NavLinkSingleComponent } from './nav/nav-link-single/nav-link-single.component';
 import { NavLinkSectionHeaderComponent } from './nav/nav-link-section-header/nav-link-section-header.component';
 import { NavLinkSectionTreeViewComponent } from './nav/nav-link-section-tree-view/nav-link-section-tree-view.component';
+import { NavLinkHomeComponent } from './nav/nav-link-home/nav-link-home.component';
+import { NavLinkUserProfileComponent } from './nav/nav-link-user-profile/nav-link-user-profile.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,9 @@ import { NavLinkSectionTreeViewComponent } from './nav/nav-link-section-tree-vie
     ShellLayoutBaseComponent,
     NavLinkSingleComponent,
     NavLinkSectionHeaderComponent,
-    NavLinkSectionTreeViewComponent
+    NavLinkSectionTreeViewComponent,
+    NavLinkHomeComponent,
+    NavLinkUserProfileComponent
   ],
   exports: [
     FooterComponent,

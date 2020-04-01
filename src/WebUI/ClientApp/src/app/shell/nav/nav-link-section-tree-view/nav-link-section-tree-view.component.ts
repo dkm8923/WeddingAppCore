@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NavLink } from '../../../model/shell/nav/NavLink';
 
 @Component({
   selector: 'app-nav-link-section-tree-view',
@@ -8,5 +9,5 @@ import { Component, Input } from '@angular/core';
 export class NavLinkSectionTreeViewComponent {
   @Input() text: string;
   @Input() fontAwesomeCss: string;
-  @Input() navLinks: [];
+  @Input() navLinks: NavLink[];
 }

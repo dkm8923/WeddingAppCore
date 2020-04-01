@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavLink } from '../../model/shell/nav/NavLink';
+//import { NavLinkSection } from '../../model/shell/nav/NavLinkSection';
 
 @Component({
   selector: 'app-left-nav',
@@ -7,22 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftNavComponent implements OnInit {
 
-  navLinks = [
-    {
-      text: "test 1",
-      fontAwesomeCss: "far fa-flag"
-    },
-    {
-      text: "test 2",
-      fontAwesomeCss: "far fa-map"
-    },
-    {
-      text: "test 3",
-      fontAwesomeCss: "far fa-wrench"
-    }
-  ];
+  //navLinkSection: NavLinkSection;
+  navLinks: NavLink[];
+  
+  constructor() {
+    this.navLinks = [
+      {
+        text: "Usa State",
+        fontAwesomeCss: "far fa-flag",
+        url: "/usa-state"
+      },
+      {
+        text: "Address",
+        fontAwesomeCss: "far fa-map",
+        url: "/address"
+      }
+    ];
 
-  constructor() { }
+    //this.navLinkSection = {
+    //  sectionText: "Administration",
+    //  navLinks: this.navLinks
+    //};
+  }
 
   ngOnInit() {
   }

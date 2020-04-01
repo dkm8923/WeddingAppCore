@@ -7,6 +7,6 @@
     </p>
   </a>
   <ul class="nav nav-treeview">
-    <app-nav-link-single text="{{link.text}}" fontAwesomeCss="{{link.fontAwesomeCss}}" *ngFor="let link of navLinks"></app-nav-link-single>
+    <app-nav-link-single [navLink]="link" *ngFor="let link of navLinks"></app-nav-link-single>
   </ul>
 </li>

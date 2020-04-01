@@ -1,9 +1,10 @@
 <li class="nav-item nav-item-single">
+  <!--<a href="pages/calendar.html" class="nav-link" [routerLink]="{{navLink.url}}">-->
   <a href="pages/calendar.html" class="nav-link">
-    <i class="nav-icon {{fontAwesomeCss}}" *ngIf="fontAwesomeCss"></i>
+    <i class="nav-icon {{navLink.fontAwesomeCss}}" *ngIf="navLink.fontAwesomeCss"></i>
     <p>
-      {{text}}
-      <span class="badge badge-info right" *ngIf="badgeText">{{badgeText}}</span>
+      {{navLink.text}}
+      <span class="badge badge-info right" *ngIf="navLink.badgeText">{{navLink.badgeText}}</span>
     </p>
   </a>
 </li>
