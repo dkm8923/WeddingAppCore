@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 
 import { ShellLayoutBaseComponent } from './shell-layout-base/shell-layout-base.component';
 import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
 import { LeftNavComponent } from './left-nav/left-nav.component';
 import { RightMenuComponent } from './right-menu/right-menu.component';
 import { NavLinkSingleComponent } from './nav/nav-link-single/nav-link-single.component';
@@ -12,6 +11,11 @@ import { NavLinkSectionHeaderComponent } from './nav/nav-link-section-header/nav
 import { NavLinkSectionTreeViewComponent } from './nav/nav-link-section-tree-view/nav-link-section-tree-view.component';
 import { NavLinkHomeComponent } from './nav/nav-link-home/nav-link-home.component';
 import { NavLinkUserProfileComponent } from './nav/nav-link-user-profile/nav-link-user-profile.component';
+import { HeaderSearchFormComponent } from './header/header-search-form/header-search-form.component';
+import { HeaderMessageMenuComponent } from './header/header-message-menu/header-message-menu.component';
+import { HeaderNotificationMenuComponent } from './header/header-notification-menu/header-notification-menu.component';
+import { HeaderRightMenuToggleComponent } from './header/header-right-menu-toggle/header-right-menu-toggle.component';
+import { HeaderBaseComponent } from './header/header-base/header-base.component';
 
 @NgModule({
   imports: [
@@ -20,7 +24,6 @@ import { NavLinkUserProfileComponent } from './nav/nav-link-user-profile/nav-lin
   ],
   declarations: [
     FooterComponent,
-    HeaderComponent,
     LeftNavComponent,
     RightMenuComponent,
     ShellLayoutBaseComponent,
@@ -28,11 +31,15 @@ import { NavLinkUserProfileComponent } from './nav/nav-link-user-profile/nav-lin
     NavLinkSectionHeaderComponent,
     NavLinkSectionTreeViewComponent,
     NavLinkHomeComponent,
-    NavLinkUserProfileComponent
+    NavLinkUserProfileComponent,
+    HeaderSearchFormComponent,
+    HeaderMessageMenuComponent,
+    HeaderNotificationMenuComponent,
+    HeaderRightMenuToggleComponent,
+    HeaderBaseComponent
   ],
   exports: [
     FooterComponent,
-    HeaderComponent,
     LeftNavComponent,
     RightMenuComponent,
     ShellLayoutBaseComponent

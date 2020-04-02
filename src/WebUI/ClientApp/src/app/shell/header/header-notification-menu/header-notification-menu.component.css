@@ -1,0 +1,19 @@
+.header-notification-menu .nav-link {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.header-notification-menu .navbar-badge {
+  font-size: .6rem;
+  font-weight: 300;
+  padding: 2px 4px;
+  position: absolute;
+  right: 5px;
+  top: 9px;
+}
+
+.header-notification-menu .dropdown-menu-lg {
+  max-width: 300px;
+  min-width: 280px;
+  padding: 0;
+}
