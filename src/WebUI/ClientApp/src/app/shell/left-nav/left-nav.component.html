@@ -1,12 +1,10 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <app-nav-link-home></app-nav-link-home>
+  <app-nav-link-home [navLinkHome]="leftNavBaseModel.navLinkHome" *ngIf="leftNavBaseModel.navLinkHome"></app-nav-link-home>
   <div class="sidebar">
-    <app-nav-link-user-profile></app-nav-link-user-profile>
+    <app-nav-link-user-profile [navLinkUserProfile]="leftNavBaseModel.navLinkUserProfile" *ngIf="leftNavBaseModel.navLinkUserProfile"></app-nav-link-user-profile>
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!--<app-nav-link-section-tree-view text="Administration" fontAwesomeCss="fas fa-tools" [navLinks]="navLinks"></app-nav-link-section-tree-view>-->
-        <app-nav-link-section-header text="Administration"></app-nav-link-section-header>
-        <app-nav-link-single [navLink]="link" *ngFor="let link of navLinks"></app-nav-link-single>
+        <app-nav-link-section-header [navLinkSection]="section" *ngFor="let section of leftNavBaseModel.navLinkSection"></app-nav-link-section-header>
       </ul>
     </nav>
   </div>

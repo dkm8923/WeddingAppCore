@@ -56,8 +56,12 @@
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.module.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.routes.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.service.ts" />
+    <None Remove="ClientApp\src\app\model\shell\LayoutBaseModel.ts" />
+    <None Remove="ClientApp\src\app\model\shell\left-nav\LeftNavBaseModel.ts" />
     <None Remove="ClientApp\src\app\model\shell\nav\navLink.ts" />
+    <None Remove="ClientApp\src\app\model\shell\nav\NavLinkHome.ts" />
     <None Remove="ClientApp\src\app\model\shell\nav\NavLinkSection.ts" />
+    <None Remove="ClientApp\src\app\model\shell\nav\NavLinkUserProfile.ts" />
     <None Remove="ClientApp\src\app\shared\index.ts" />
     <None Remove="ClientApp\src\app\shared\shared.module.ts" />
   </ItemGroup>
@@ -87,8 +91,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\usa-state.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\LayoutBaseModel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\left-nav\LeftNavBaseModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\shell\nav\NavLink.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\nav\NavLinkHome.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\shell\nav\NavLinkSection.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\nav\NavLinkUserProfile.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\shared.module.ts" />
   </ItemGroup>

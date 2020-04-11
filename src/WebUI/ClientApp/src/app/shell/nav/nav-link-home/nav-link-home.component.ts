@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NavLinkHome } from '../../../model/shell/nav/NavLinkHome';
 
 @Component({
   selector: 'app-nav-link-home',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-link-home.component.css']
 })
 export class NavLinkHomeComponent implements OnInit {
+
+  @Input() navLinkHome: NavLinkHome;
 
   constructor() { }
 

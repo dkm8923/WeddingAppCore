@@ -1,1 +1,42 @@
-<p>right-menu works!</p>
+<aside class="control-sidebar control-sidebar-dark">
+  <div class="p-3 control-sidebar-content">
+    <h5>Customize AdminLTE</h5>
+    <hr class="mb-2" />
+    <div class="mb-1">
+      <input type="checkbox" value="1" class="mr-1" />
+      <span>Checkbox text goes here...</span>
+    </div>
+    <div class="mb-4">
+      <h6>Navbar Variants</h6>
+      <div class="d-flex">
+        <div class="d-flex flex-wrap mb-3">
+          <app-layout-color-selector colorCssClass="{{c}}" *ngFor="let c of sidebarColors"></app-layout-color-selector>
+        </div>
+      </div>
+      <h6>Accent Color Variants</h6>
+      <div class="d-flex">
+        <div class="d-flex flex-wrap mb-3">
+          <app-layout-color-selector colorCssClass="{{c}}" *ngFor="let c of sidebarColors"></app-layout-color-selector>
+        </div>
+      </div>
+      <h6>Dark Sidebar Variants</h6>
+      <div class="d-flex">
+        <div class="d-flex flex-wrap mb-3">
+          <app-layout-color-selector colorCssClass="{{c}}" *ngFor="let c of sidebarColors"></app-layout-color-selector>
+        </div>
+      </div>
+      <h6>Light Sidebar Variants</h6>
+      <div class="d-flex">
+        <div class="d-flex flex-wrap mb-3">
+          <app-layout-color-selector colorCssClass="{{c}}" *ngFor="let c of sidebarColors"></app-layout-color-selector>
+        </div>
+      </div>
+      <h6>Brand Logo Variants</h6>
+      <div class="d-flex">
+        <div class="d-flex flex-wrap mb-3">
+          <app-layout-color-selector colorCssClass="{{c}}" *ngFor="let c of sidebarColors"></app-layout-color-selector>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

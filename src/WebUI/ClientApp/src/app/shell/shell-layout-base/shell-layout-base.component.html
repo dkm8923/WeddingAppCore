@@ -1,6 +1,6 @@
 <div class="wrapper">
   <app-header-base></app-header-base>
-  <app-left-nav></app-left-nav>
+  <app-left-nav [leftNavBaseModel]="leftNavBaseModel"></app-left-nav>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -42,10 +42,8 @@
       </div>
     </section>
   </div>
-
-
-
   <app-footer></app-footer>
+  <app-right-menu></app-right-menu>
 </div>
 
 

@@ -1,1 +1,3 @@
-<li class="nav-header nav-link-section-header">{{text}}</li>
+<li class="nav-header nav-link-section-header">{{navLinkSection.sectionText}}</li>
+<app-nav-link-single [navLink]="link" *ngFor="let link of navLinkSection.navLinks"></app-nav-link-single>
+
