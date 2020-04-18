@@ -6,6 +6,7 @@ import { NavLink } from '../../model/shell/nav/NavLink';
 import { NavLinkUserProfile } from '../../model/shell/nav/NavLinkUserProfile';
 import { NavLinkHome } from '../../model/shell/nav/NavLinkHome';
 import { LayoutBaseModel } from '../../model/shell/LayoutBaseModel';
+import { Footer } from '../../model/shell/footer/Footer';
 
 @Component({
   selector: 'app-shell-layout-base',
@@ -15,6 +16,7 @@ import { LayoutBaseModel } from '../../model/shell/LayoutBaseModel';
 export class ShellLayoutBaseComponent implements OnInit {
 
   layoutBaseModel: LayoutBaseModel;
+  footer: Footer;
   leftNavBaseModel: LeftNavBaseModel;
   navLinkSections: NavLinkSection[] = [];
   navLinks: NavLink[] = [];
@@ -32,8 +34,11 @@ export class ShellLayoutBaseComponent implements OnInit {
       new NavLinkUserProfile("assets/dist/img/user2-160x160.jpg", "Faggy McFaggetson 123")
     );
 
+    this.footer = new Footer("MSS Admin UI", "Version 1.0", "Copyright 2020");
+
     this.layoutBaseModel = {
-      leftNavBaseModel: this.leftNavBaseModel
+      leftNavBaseModel: this.leftNavBaseModel,
+      footer: this.footer
     };
 
     console.log("layoutBaseModel");

@@ -1,12 +1,12 @@
 <div class="wrapper">
   <app-header-base></app-header-base>
-  <app-left-nav [leftNavBaseModel]="leftNavBaseModel"></app-left-nav>
+  <app-left-nav [leftNavBaseModel]="layoutBaseModel.leftNavBaseModel"></app-left-nav>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container-fluid">
+      <!--<div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Dashboard Test</h1>
@@ -18,7 +18,7 @@
             </ol>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
 
     <section class="content">
@@ -42,7 +42,7 @@
       </div>
     </section>
   </div>
-  <app-footer></app-footer>
+  <app-footer [footer]="layoutBaseModel.footer"></app-footer>
   <app-right-menu></app-right-menu>
 </div>
 

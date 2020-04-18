@@ -1,1 +1,1 @@
-{"version":3,"file":"LayoutBaseModel.js","sourceRoot":"","sources":["LayoutBaseModel.ts"],"names":[],"mappings":";;AAEA;IACE,yBAAY,gBAAkC;QAC5C,IAAI,CAAC,gBAAgB,GAAG,gBAAgB,CAAC;IAC3C,CAAC;IAGH,sBAAC;AAAD,CAAC,AAND,IAMC;AANY,0CAAe"}
+{"version":3,"file":"LayoutBaseModel.js","sourceRoot":"","sources":["LayoutBaseModel.ts"],"names":[],"mappings":";;AAGA;IACE,yBAAY,gBAAkC,EAAE,MAAc;QAC5D,IAAI,CAAC,gBAAgB,GAAG,gBAAgB,CAAC;QACzC,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;IACvB,CAAC;IAIH,sBAAC;AAAD,CAAC,AARD,IAQC;AARY,0CAAe"}
