@@ -1,6 +1,5 @@
 <li class="nav-item nav-item-single">
-  <!--<a href="pages/calendar.html" class="nav-link" [routerLink]="{{navLink.url}}">-->
-  <a href="pages/calendar.html" class="nav-link">
+  <a [routerLink]="navLink.url" class="nav-link">
     <i class="nav-icon {{navLink.fontAwesomeCss}}" *ngIf="navLink.fontAwesomeCss"></i>
     <p>
       {{navLink.text}}
