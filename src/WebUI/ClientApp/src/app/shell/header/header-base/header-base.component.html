@@ -3,17 +3,17 @@
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
+    <!--<li class="nav-item d-none d-sm-inline-block">
       <a href="index3.html" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link">Contact</a>
-    </li>
+    </li>-->
   </ul>
-  <!--<app-header-search-form></app-header-search-form>-->
+  <app-header-search-form *ngIf="headerBaseModel.showHeaderSearchBar"></app-header-search-form>
   <ul class="navbar-nav ml-auto">
-    <app-header-message-menu></app-header-message-menu>
-    <app-header-notification-menu></app-header-notification-menu>
-    <app-header-right-menu-toggle></app-header-right-menu-toggle>
+    <app-header-message-menu [headerMessageArr]="headerBaseModel.headerMessageArr" *ngIf="headerBaseModel.showHeaderMessages"></app-header-message-menu>
+    <app-header-notification-menu [headerNotificationArr]="headerBaseModel.headerNotificationArr" *ngIf="headerBaseModel.showHeaderNotifications"></app-header-notification-menu>
+    <app-header-right-menu-toggle *ngIf="headerBaseModel.showHeaderRightMenuToggle"></app-header-right-menu-toggle>
   </ul>
 </nav>

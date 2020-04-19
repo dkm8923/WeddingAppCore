@@ -56,7 +56,10 @@
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.module.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.routes.ts" />
     <None Remove="ClientApp\src\app\feature\usa-state\usa-state.service.ts" />
-    <None Remove="ClientApp\src\app\model\shell\footer\Footer.ts" />
+    <None Remove="ClientApp\src\app\model\shell\footer\FooterBaseModel.ts" />
+    <None Remove="ClientApp\src\app\model\shell\header\HeaderBaseModel.ts" />
+    <None Remove="ClientApp\src\app\model\shell\header\HeaderMessage.ts" />
+    <None Remove="ClientApp\src\app\model\shell\header\HeaderNotification.ts" />
     <None Remove="ClientApp\src\app\model\shell\LayoutBaseModel.ts" />
     <None Remove="ClientApp\src\app\model\shell\left-nav\LeftNavBaseModel.ts" />
     <None Remove="ClientApp\src\app\model\shell\nav\navLink.ts" />
@@ -92,7 +95,10 @@
     <TypeScriptCompile Include="ClientApp\src\app\feature\usa-state\usa-state.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\model\shell\footer\Footer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\footer\FooterBaseModel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\header\HeaderBaseModel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\header\HeaderMessage.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\shell\header\HeaderNotification.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\shell\LayoutBaseModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\shell\left-nav\LeftNavBaseModel.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\model\shell\nav\NavLink.ts" />

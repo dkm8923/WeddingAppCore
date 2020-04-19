@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Footer } from '../../model/shell/footer/Footer'
+import { FooterBaseModel } from '../../model/shell/footer/FooterBaseModel'
 
 
 @Component({
@@ -9,20 +9,17 @@ import { Footer } from '../../model/shell/footer/Footer'
 })
 export class FooterComponent implements OnInit {
 
-  @Input() footer: Footer;
+  @Input() footerBaseModel: FooterBaseModel;
   listItemCt: number = 0;
   ulCss: string;
 
   constructor() {
-    //this.footer = new Footer("MSS Admin UI",
-    //  "Version 1.0",
-    //  "Copyright 2020");
   }
 
   ngOnInit() {
-    this.checkForTextVal(this.footer.leftText);
-    this.checkForTextVal(this.footer.middleText);
-    this.checkForTextVal(this.footer.rightText);
+    this.checkForTextVal(this.footerBaseModel.leftText);
+    this.checkForTextVal(this.footerBaseModel.middleText);
+    this.checkForTextVal(this.footerBaseModel.rightText);
     this.ulCss = "li" + this.listItemCt.toString();
   }
 

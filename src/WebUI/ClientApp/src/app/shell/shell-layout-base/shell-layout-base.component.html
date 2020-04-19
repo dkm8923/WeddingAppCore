@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <app-header-base></app-header-base>
+  <app-header-base [headerBaseModel]="layoutBaseModel.headerBaseModel"></app-header-base>
   <app-left-nav [leftNavBaseModel]="layoutBaseModel.leftNavBaseModel"></app-left-nav>
 
   <!-- Content Wrapper. Contains page content -->
@@ -42,7 +42,7 @@
       </div>
     </section>
   </div>
-  <app-footer [footer]="layoutBaseModel.footer"></app-footer>
+  <app-footer [footerBaseModel]="layoutBaseModel.footerBaseModel"></app-footer>
   <app-right-menu></app-right-menu>
 </div>
 

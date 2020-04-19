@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Footer = /** @class */ (function () {
-    function Footer(leftText, middleText, rightText) {
+var FooterBaseModel = /** @class */ (function () {
+    function FooterBaseModel(leftText, middleText, rightText) {
         this.leftText = leftText;
         this.middleText = middleText;
         this.rightText = rightText;
     }
-    return Footer;
+    return FooterBaseModel;
 }());
-exports.Footer = Footer;
+exports.FooterBaseModel = FooterBaseModel;
 //# sourceMappingURL=Footer.js.map

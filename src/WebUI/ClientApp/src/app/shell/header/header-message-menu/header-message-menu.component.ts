@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { HeaderMessage } from '../../../model/shell/header/HeaderMessage';
 
 @Component({
   selector: 'app-header-message-menu',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderMessageMenuComponent implements OnInit {
 
-  constructor() { }
+  @Input() headerMessageArr: HeaderMessage[] = [];
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

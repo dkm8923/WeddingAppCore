@@ -17,6 +17,8 @@ import { HeaderNotificationMenuComponent } from './header/header-notification-me
 import { HeaderRightMenuToggleComponent } from './header/header-right-menu-toggle/header-right-menu-toggle.component';
 import { HeaderBaseComponent } from './header/header-base/header-base.component';
 import { LayoutColorSelectorComponent } from './layout-color-selector/layout-color-selector.component';
+import { HeaderMessageComponent } from './header/header-message/header-message.component';
+import { HeaderNotificationComponent } from './header/header-notification/header-notification.component';
 
 @NgModule({
   imports: [
@@ -38,7 +40,9 @@ import { LayoutColorSelectorComponent } from './layout-color-selector/layout-col
     HeaderNotificationMenuComponent,
     HeaderRightMenuToggleComponent,
     HeaderBaseComponent,
-    LayoutColorSelectorComponent
+    LayoutColorSelectorComponent,
+    HeaderMessageComponent,
+    HeaderNotificationComponent
   ],
   exports: [
     FooterComponent,

@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var LayoutBaseModel = /** @class */ (function () {
-    function LayoutBaseModel(leftNavBaseModel, footer) {
+    function LayoutBaseModel(leftNavBaseModel, footerBaseModel, headerBaseModel) {
         this.leftNavBaseModel = leftNavBaseModel;
-        this.footer = footer;
+        this.footerBaseModel = footerBaseModel;
+        this.headerBaseModel = headerBaseModel;
     }
     return LayoutBaseModel;
 }());

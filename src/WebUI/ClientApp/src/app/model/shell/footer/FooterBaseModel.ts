@@ -1,4 +1,4 @@
-export class Footer
+export class FooterBaseModel
 {
   constructor(leftText: string, middleText: string, rightText?: string) {
     this.leftText = leftText;
