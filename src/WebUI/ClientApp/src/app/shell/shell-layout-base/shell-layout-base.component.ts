@@ -34,6 +34,8 @@ export class ShellLayoutBaseComponent implements OnInit {
 
     this.navLinkSections.push(new NavLinkSection("Administration", this.navLinks));
 
+    this.navLinkSections.push(new NavLinkSection("Application Settings", [new NavLink("Customize Layout", "/application-settings", "far fa-edit")]));
+
     this.leftNavBaseModel = new LeftNavBaseModel(
       this.navLinkSections,
       new NavLinkHome("assets/dist/img/AdminLTELogo.png", "Admin UI Test"),

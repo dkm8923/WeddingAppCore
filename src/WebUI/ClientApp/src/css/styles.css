@@ -40,6 +40,11 @@
   margin-left: 5px;
   /*top: 7px;*/
 }
+.divCrudFormContainer .formCheckbox,
+.divDeleteFormContainer .formCheckbox {
+  margin-left: 10px;
+  vertical-align: middle;
+}
 .divCrudFormContainer .ulFormElements,
 .divDeleteFormContainer .ulFormElements {
   list-style: none;
@@ -146,10 +151,10 @@
   height: 51px;
 }
 .appBodyBase .navbar .sidebar-right-toggle {
-    margin-left: 94%;
+  margin-left: 94%;
 }
 .appBodyBase .navbar .sidebar-right-toggle a {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 .appBodyBase .container {
   max-width: 100%;

@@ -1,0 +1,96 @@
+
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Header Properties</h3>
+    </div>
+    <div class="card-body">
+      <div class="divCrudFormContainer">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+          <ul class="ulFormElements">
+            <li>
+              <div class="form-group">
+                <label class="formLbl" for="txtName">Show Header Search Bar:</label>
+                <input type="checkbox" class="formCheckbox" aria-describedby="showHeaderSearchBarHelp" formControlName="name">
+                <small id="showHeaderSearchBarHelp" class="form-text text-muted">Enable / Disable Search Bar On Top Header</small>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label class="formLbl" for="txtName">Show Header Messages:</label>
+                <input type="checkbox" class="formCheckbox" aria-describedby="showHeaderMessagesHelp" formControlName="name">
+                <small id="showHeaderMessagesHelp" class="form-text text-muted">Enable / Disable Messages On Top Header</small>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label class="formLbl" for="txtName">Show Header Notifications:</label>
+                <input type="checkbox" class="formCheckbox" aria-describedby="showHeaderNotificationsHelp" formControlName="name">
+                <small id="showHeaderNotificationsHelp" class="form-text text-muted">Enable / Disable Notifications On Top Header</small>
+              </div>
+            </li>
+            <li>
+              <div class="form-group">
+                <label class="formLbl" for="txtName">Show Header Right Side Menu Toggle:</label>
+                <input type="checkbox" class="formCheckbox" aria-describedby="showHeaderRightSideToggleHelp" formControlName="name">
+                <small id="showHeaderRightSideToggleHelp" class="form-text text-muted">Enable / Disable Right Side Menu Toggle On Top Header</small>
+              </div>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+    <!--<div class="card-footer">
+
+  </div>-->
+  </div>
+
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Footer Properties</h3>
+    </div>
+    <div class="card-body">
+      <div class="divCrudFormContainer">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+          <ul class="ulFormElements">
+            <li>
+              <div class="form-group" [ngClass]="displayFieldCss('name')">
+                <label class="formLbl" for="txtName">Left Text:</label>
+                <input type="text" class="form-control" id="txtFooterLeftText" aria-describedby="footerLeftTextHelp" formControlName="name">
+                <small id="footerLeftTextHelp" class="form-text text-muted">The Left Text Of The Footer</small>
+                <!--<app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Name Required!"></app-field-error-display>-->
+              </div>
+            </li>
+            <li>
+              <div class="form-group" [ngClass]="displayFieldCss('name')">
+                <label class="formLbl" for="txtName">Middle Text:</label>
+                <input type="text" class="form-control" id="txtFooterMiddleText" aria-describedby="footerMiddleTextHelp" formControlName="name">
+                <small id="footerMiddleTextHelp" class="form-text text-muted">The Middle Text Of The Footer</small>
+                <!--<app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Name Required!"></app-field-error-display>-->
+              </div>
+            </li>
+            <li>
+              <div class="form-group" [ngClass]="displayFieldCss('name')">
+                <label class="formLbl" for="txtName">Right Text:</label>
+                <input type="text" class="form-control" id="txtFooterRightText" aria-describedby="footerRightTextHelp" formControlName="name">
+                <small id="footerRightTextHelp" class="form-text text-muted">The Right Text Of The Footer</small>
+                <!--<app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Name Required!"></app-field-error-display>-->
+              </div>
+            </li>
+            <li class="liButtons li2Buttons">
+              <div class="divBtnContainer">
+                <app-button-cancel [routerLink]="['/usa-state']"></app-button-cancel>
+              </div>
+              <div class="divBtnContainer">
+                <app-button-save></app-button-save>
+              </div>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+    <!--<div class="card-footer">
+
+    </div>-->
+  </div>
+
+

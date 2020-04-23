@@ -3,10 +3,10 @@
   <app-left-nav [leftNavBaseModel]="layoutBaseModel.leftNavBaseModel"></app-left-nav>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div id="appBodyBase" class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <!--<div class="container-fluid">
+    <!--<div class="content-header">
+      <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0 text-dark">Dashboard Test</h1>
@@ -18,13 +18,13 @@
             </ol>
           </div>
         </div>
-      </div>-->
-    </div>
+      </div>
+    </div>-->
 
     <section class="content">
       <div class="container-fluid">
         <div class="content-header">
-          <div class="container-fluid">
+          <!--<div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
                 <h1 class="m-0 text-dark">Dashboard Test</h1>
@@ -36,7 +36,7 @@
                 </ol>
               </div>
             </div>
-          </div>
+          </div>-->
         </div>
         <router-outlet></router-outlet>
       </div>
@@ -45,5 +45,7 @@
   <app-footer [footerBaseModel]="layoutBaseModel.footerBaseModel"></app-footer>
   <app-right-menu></app-right-menu>
 </div>
+
+<app-loading-spinner></app-loading-spinner>
 
 

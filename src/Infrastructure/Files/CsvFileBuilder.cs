@@ -14,10 +14,10 @@ namespace CleanArchitecture.Infrastructure.Files
             using var memoryStream = new MemoryStream();
             using (var streamWriter = new StreamWriter(memoryStream))
             {
-                using var csvWriter = new CsvWriter(streamWriter);
+                //using var csvWriter = new CsvWriter(streamWriter);
 
-                csvWriter.Configuration.RegisterClassMap<TodoItemRecordMap>();
-                csvWriter.WriteRecords(records);
+                //csvWriter.Configuration.RegisterClassMap<TodoItemRecordMap>();
+                //csvWriter.WriteRecords(records);
             }
 
             return memoryStream.ToArray();

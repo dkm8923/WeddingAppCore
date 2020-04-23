@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Common;
 using CleanArchitecture.Domain.Entities;
+using CleanArchitecture.Domain.Entities.UiAppSettings;
 using CleanArchitecture.Infrastructure.Identity;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
@@ -38,6 +39,11 @@ namespace CleanArchitecture.Infrastructure.Persistence
         public DbSet<EmailLog> EmailLogs { get; set; }
         public DbSet<GuestBookEntry> GuestBookEntries { get; set; }
         public DbSet<UsaState> UsaStates { get; set; }
+
+        //Ui App Settings
+        public DbSet<UiAppSetting> UiAppSettings { get; set; }
+        public DbSet<UiAppSettingReferenceType> UiAppSettingReferenceTypes { get; set; }
+        public DbSet<UiAppSettingApplication> UiAppSettingApplications { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

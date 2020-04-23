@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { SharedModule } from '../shared/shared.module';
+
+import { ErrorLogService } from '../core';
 
 import { ShellLayoutBaseComponent } from './shell-layout-base/shell-layout-base.component';
 import { FooterComponent } from './footer/footer.component';
@@ -19,11 +24,14 @@ import { HeaderBaseComponent } from './header/header-base/header-base.component'
 import { LayoutColorSelectorComponent } from './layout-color-selector/layout-color-selector.component';
 import { HeaderMessageComponent } from './header/header-message/header-message.component';
 import { HeaderNotificationComponent } from './header/header-notification/header-notification.component';
+import { ApplicationSettingsBaseComponent } from './application-settings/application-settings-base/application-settings-base.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [
     FooterComponent,
@@ -42,13 +50,17 @@ import { HeaderNotificationComponent } from './header/header-notification/header
     HeaderBaseComponent,
     LayoutColorSelectorComponent,
     HeaderMessageComponent,
-    HeaderNotificationComponent
+    HeaderNotificationComponent,
+    ApplicationSettingsBaseComponent
   ],
   exports: [
     FooterComponent,
     LeftNavComponent,
     RightMenuComponent,
     ShellLayoutBaseComponent
+  ],
+  providers: [
+    ErrorLogService
   ]
 })
 export class ShellModule {}
