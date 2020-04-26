@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { UiAppSettingClient, CreateUiAppSettingCommand, UpdateUiAppSettingCommand } from "../../../model/dto/wedding-api-models";
-import { ErrorLogService, UtilityService } from '../../../core';
-import { FormValidationService } from '../../../shared';
+import { UiAppSettingClient, CreateUiAppSettingCommand, UpdateUiAppSettingCommand } from "../../../../model/dto/wedding-api-models";
+import { ErrorLogService, UtilityService } from '../../../../core';
+import { FormValidationService } from '../../../../shared';
+import { AppSettingsService } from '../app-settings.service';
 
 @Component({
-  selector: 'app-application-settings-base',
-  templateUrl: './application-settings-base.component.html',
-  styleUrls: ['./application-settings-base.component.css']
+  selector: 'app-app-settings-create-edit',
+  templateUrl: './app-settings-create-edit.component.html',
+  styleUrls: ['./app-settings-create-edit.component.css']
 })
-export class ApplicationSettingsBaseComponent implements OnInit {
+export class AppSettingsCreateEditComponent implements OnInit {
 
   formGroup: FormGroup;
   id: number;
@@ -24,50 +25,59 @@ export class ApplicationSettingsBaseComponent implements OnInit {
     private formValSvc: FormValidationService,
     private errorLogSvc: ErrorLogService,
     private formBuilder: FormBuilder,
-    private router: Router
-    //private usaStateSvc: UsaStateService,
+    private appSettingsSvc: AppSettingsService,
   ) {
 
     this.formGroup = this.formBuilder.group({
       applicationId: new FormControl(''),
       referenceTypeId: new FormControl(''),
       footer: new FormGroup({
-        textLeft: new FormControl('text left'),
-        textMiddle: new FormControl('text middle'),
-        textRight: new FormControl('text right'),
+        textLeft: new FormControl(''),
+        textMiddle: new FormControl(''),
+        textRight: new FormControl(''),
       })
     });
   }
 
   ngOnInit(): void {
-    //this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-
-    this.utilSvc.showLoadingSpinner();
+    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
 
     //load data for id and set form in edit mode
-    //if (this.id) {
-    //  this.utilSvc.showLoadingSpinner();
+    if (this.id) {
+      this.utilSvc.showLoadingSpinner();
 
-    //  this.client.get(this.id).subscribe(result => {
-    //    console.log("Usa State edit");
-    //    console.log(result);
+      this.client.get(this.id).subscribe(result => {
 
-    //    this.formGroup.setValue({
-    //      name: result[0].name,
-    //      abbreviatedName: result[0].abbreviatedName
-    //    });
+        //parse json
+        result[0].json = JSON.parse(result[0].json);
 
-    //    this.utilSvc.hideLoadingSpinner();
-    //  },
-    //    error => {
-    //      this.errorLogSvc.logError(error);
-    //    });
-    //}
+        console.log("App Settings Edit");
+        console.log(result);
+
+        this.formGroup.setValue({
+          applicationId: result[0].applicationId,
+          referenceTypeId: result[0].referenceTypeId,
+          //footer: {
+          //  textLeft: result[0].footer.textLeft,
+          //  textMiddle: "",
+          //  textRight: ""
+          //}
+          footer: {
+            textLeft: result[0].json.textLeft,
+            textMiddle: result[0].json.textMiddle,
+            textRight: result[0].json.textRight
+          }
+        });
+
+        this.utilSvc.hideLoadingSpinner();
+      },
+        error => {
+          this.errorLogSvc.logError(error);
+        });
+    }
 
     //set focus to name textbox
     //setTimeout(() => document.getElementById("txtName").focus(), 250);
-
-    this.utilSvc.hideLoadingSpinner();
   }
 
   displayFieldCss(field: string) {
@@ -87,7 +97,7 @@ export class ApplicationSettingsBaseComponent implements OnInit {
       result => {
         console.log("Post Result");
         console.log(result);
-        this.returnToReport();
+        this.appSettingsSvc.returnToReport();
       },
       error => {
         this.errorLogSvc.logError(error);
@@ -97,6 +107,7 @@ export class ApplicationSettingsBaseComponent implements OnInit {
 
   edit() {
     this.client.update(this.id, <UpdateUiAppSettingCommand>{
+      id: this.id,
       applicationId: 1,
       referenceTypeId: 2,
       json: JSON.stringify(this.formGroup.value.footer)
@@ -104,7 +115,7 @@ export class ApplicationSettingsBaseComponent implements OnInit {
       result => {
         console.log("Post Result");
         console.log(result);
-        this.returnToReport();
+        this.appSettingsSvc.returnToReport();
       },
       error => {
         this.errorLogSvc.logError(error);
@@ -131,10 +142,4 @@ export class ApplicationSettingsBaseComponent implements OnInit {
       }
     }
   }
-
-  returnToReport() {
-    this.utilSvc.hideLoadingSpinner();
-    this.router.navigateByUrl('/application-settings')
-  }
-
 }

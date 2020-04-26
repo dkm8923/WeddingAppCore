@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UiAppSettingReferenceTypeClient, UiAppSettingReferenceTypeDto } from "../../../../model/dto/wedding-api-models";
 
 @Component({
@@ -6,7 +6,7 @@ import { UiAppSettingReferenceTypeClient, UiAppSettingReferenceTypeDto } from ".
   templateUrl: './reference-type-base.component.html',
   styleUrls: ['./reference-type-base.component.css']
 })
-export class ReferenceTypeBaseComponent implements OnInit {
+export class ReferenceTypeBaseComponent {
 
   public data: UiAppSettingReferenceTypeDto[];
 

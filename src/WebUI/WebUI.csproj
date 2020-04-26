@@ -68,6 +68,9 @@
     <None Remove="ClientApp\src\app\model\shell\nav\NavLinkUserProfile.ts" />
     <None Remove="ClientApp\src\app\shared\index.ts" />
     <None Remove="ClientApp\src\app\shared\shared.module.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\app-settings\app-settings.routes.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\app-settings\app-settings.service.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\app-settings\index.ts" />
     <None Remove="ClientApp\src\app\shell\application-settings\application\application.routes.ts" />
     <None Remove="ClientApp\src\app\shell\application-settings\application\application.service.ts" />
     <None Remove="ClientApp\src\app\shell\application-settings\application\index.ts" />
@@ -114,6 +117,9 @@
     <TypeScriptCompile Include="ClientApp\src\app\model\shell\nav\NavLinkUserProfile.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\app-settings\app-settings.routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\app-settings\app-settings.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\app-settings\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\application.routes.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\application.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\index.ts" />

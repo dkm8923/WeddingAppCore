@@ -1,0 +1,45 @@
+<div class="card card-primary">
+  <div class="card-header">
+    <h3 class="card-title">Footer Properties</h3>
+  </div>
+  <div class="card-body">
+    <div class="divCrudFormContainer">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <ul class="ulFormElements" formGroupName="footer">
+          <li>
+            <div class="form-group">
+              <label class="formLbl" for="txtFooterLeftText">Left Text:</label>
+              <input type="text" class="form-control" id="txtFooterLeftText" aria-describedby="footerLeftTextHelp" formControlName="textLeft">
+              <small id="footerLeftTextHelp" class="form-text text-muted">The Left Text Of The Footer</small>
+            </div>
+          </li>
+          <li>
+            <div class="form-group">
+              <label class="formLbl" for="txtFooterMiddleText">Middle Text:</label>
+              <input type="text" class="form-control" id="txtFooterMiddleText" aria-describedby="footerMiddleTextHelp" formControlName="textMiddle">
+              <small id="footerMiddleTextHelp" class="form-text text-muted">The Middle Text Of The Footer</small>
+            </div>
+          </li>
+          <li>
+            <div class="form-group">
+              <label class="formLbl" for="txtFooterRightText">Right Text:</label>
+              <input type="text" class="form-control" id="txtFooterRightText" aria-describedby="footerRightTextHelp" formControlName="textRight">
+              <small id="footerRightTextHelp" class="form-text text-muted">The Right Text Of The Footer</small>
+            </div>
+          </li>
+          <li class="liButtons li2Buttons">
+            <div class="divBtnContainer">
+              <app-button-cancel [routerLink]="['/application-settings/app-settings']"></app-button-cancel>
+            </div>
+            <div class="divBtnContainer">
+              <app-button-save></app-button-save>
+            </div>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+  <!--<div class="card-footer">
+
+  </div>-->
+</div>

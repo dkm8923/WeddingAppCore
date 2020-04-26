@@ -31,6 +31,9 @@ import { ApplicationDeleteComponent } from './application-settings/application/a
 import { ReferenceTypeBaseComponent } from './application-settings/reference-type/reference-type-base/reference-type-base.component';
 import { ReferenceTypeCreateEditComponent } from './application-settings/reference-type/reference-type-create-edit/reference-type-create-edit.component';
 import { ReferenceTypeDeleteComponent } from './application-settings/reference-type/reference-type-delete/reference-type-delete.component';
+import { AppSettingsBaseComponent } from './application-settings/app-settings/app-settings-base/app-settings-base.component';
+import { AppSettingsCreateEditComponent } from './application-settings/app-settings/app-settings-create-edit/app-settings-create-edit.component';
+import { AppSettingsDeleteComponent } from './application-settings/app-settings/app-settings-delete/app-settings-delete.component';
 
 @NgModule({
   imports: [
@@ -63,7 +66,10 @@ import { ReferenceTypeDeleteComponent } from './application-settings/reference-t
     ApplicationDeleteComponent,
     ReferenceTypeBaseComponent,
     ReferenceTypeCreateEditComponent,
-    ReferenceTypeDeleteComponent
+    ReferenceTypeDeleteComponent,
+    AppSettingsBaseComponent,
+    AppSettingsCreateEditComponent,
+    AppSettingsDeleteComponent
   ],
   exports: [
     FooterComponent,
