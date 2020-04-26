@@ -1,0 +1,31 @@
+<div class="divCrudFormContainer">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <ul class="ulFormElements">
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('name')">
+          <label class="formLbl required" for="txtName">Name:</label>
+          <input type="text" class="form-control" id="txtName" aria-describedby="applicationNameHelp" formControlName="name">
+          <small id="applicationNameHelp" class="form-text text-muted">The Name Of The Application</small>
+          <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Name Required!"></app-field-error-display>
+        </div>
+      </li>
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('description')">
+          <label class="formLbl required" for="txtDescription">Description:</label>
+          <input type="text" class="form-control" id="txtDescription" aria-describedby="applicationDescriptionHelp" formControlName="description">
+          <small id="applicationDescriptionHelp" class="form-text text-muted">The Description Of The Application</small>
+          <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Abbreviated Name Required!"></app-field-error-display>
+        </div>
+      </li>
+      <li class="liButtons li2Buttons">
+        <div class="divBtnContainer">
+          <app-button-cancel [routerLink]="['/application-settings/application']"></app-button-cancel>
+        </div>
+        <div class="divBtnContainer">
+          <app-button-save></app-button-save>
+        </div>
+      </li>
+    </ul>
+  </form>
+</div>
+

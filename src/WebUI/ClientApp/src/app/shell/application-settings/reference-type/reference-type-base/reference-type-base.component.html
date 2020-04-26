@@ -1,10 +1,10 @@
 <div class="divGridHdrContainer">
   <ul class="li2">
     <li>
-      <h1>USA State</h1>
+      <h1>Reference Type</h1>
     </li>
     <li>
-      <app-button-create [routerLink]="['/usa-state/create']"></app-button-create>
+      <app-button-create [routerLink]="['create']"></app-button-create>
     </li>
   </ul>
 </div>
@@ -15,9 +15,11 @@
       <th style="width: 200px;">Actions</th>
       <th>Id</th>
       <th>Name</th>
-      <th>Abrv</th>
+      <th>Description</th>
       <th>Created By</th>
       <th>Created On</th>
+      <th>Updated By</th>
+      <th>Updated On</th>
     </tr>
   </thead>
   <tbody>
@@ -26,19 +28,21 @@
         <div class="divGridBtnContainer">
           <ul>
             <li>
-              <app-grid-button-edit [routerLink]="['/usa-state/edit', d.id]"></app-grid-button-edit>
+              <app-grid-button-edit [routerLink]="['edit', d.id]"></app-grid-button-edit>
             </li>
             <li>
-              <app-grid-button-delete [routerLink]="['/usa-state/delete', d.id]"></app-grid-button-delete>
+              <app-grid-button-delete [routerLink]="['delete', d.id]"></app-grid-button-delete>
             </li>
           </ul>
         </div>
       </td>
       <td>{{ d.id }}</td>
       <td>{{ d.name }}</td>
-      <td>{{ d.abbreviatedName }}</td>
+      <td>{{ d.description }}</td>
       <td>{{ d.createdBy }}</td>
       <td>{{ d.created | date }}</td>
+      <td>{{ d.lastModifiedBy }}</td>
+      <td>{{ d.lastModified | date }}</td>
     </tr>
   </tbody>
 </table>

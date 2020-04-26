@@ -25,6 +25,12 @@ import { LayoutColorSelectorComponent } from './layout-color-selector/layout-col
 import { HeaderMessageComponent } from './header/header-message/header-message.component';
 import { HeaderNotificationComponent } from './header/header-notification/header-notification.component';
 import { ApplicationSettingsBaseComponent } from './application-settings/application-settings-base/application-settings-base.component';
+import { ApplicationBaseComponent } from './application-settings/application/application-base/application-base.component';
+import { ApplicationCreateEditComponent } from './application-settings/application/application-create-edit/application-create-edit.component';
+import { ApplicationDeleteComponent } from './application-settings/application/application-delete/application-delete.component';
+import { ReferenceTypeBaseComponent } from './application-settings/reference-type/reference-type-base/reference-type-base.component';
+import { ReferenceTypeCreateEditComponent } from './application-settings/reference-type/reference-type-create-edit/reference-type-create-edit.component';
+import { ReferenceTypeDeleteComponent } from './application-settings/reference-type/reference-type-delete/reference-type-delete.component';
 
 @NgModule({
   imports: [
@@ -51,7 +57,13 @@ import { ApplicationSettingsBaseComponent } from './application-settings/applica
     LayoutColorSelectorComponent,
     HeaderMessageComponent,
     HeaderNotificationComponent,
-    ApplicationSettingsBaseComponent
+    ApplicationSettingsBaseComponent,
+    ApplicationBaseComponent,
+    ApplicationCreateEditComponent,
+    ApplicationDeleteComponent,
+    ReferenceTypeBaseComponent,
+    ReferenceTypeCreateEditComponent,
+    ReferenceTypeDeleteComponent
   ],
   exports: [
     FooterComponent,

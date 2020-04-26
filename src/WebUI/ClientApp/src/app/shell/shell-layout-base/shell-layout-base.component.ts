@@ -34,7 +34,11 @@ export class ShellLayoutBaseComponent implements OnInit {
 
     this.navLinkSections.push(new NavLinkSection("Administration", this.navLinks));
 
-    this.navLinkSections.push(new NavLinkSection("Application Settings", [new NavLink("Customize Layout", "/application-settings", "far fa-edit")]));
+    this.navLinkSections.push(new NavLinkSection("Application Settings", [
+      new NavLink("Customize Layout", "/application-settings", "far fa-edit"),
+      new NavLink("Application Editor", "/application-settings/application", "far fa-edit"),
+      new NavLink("Reference Type Editor", "/application-settings/reference-type", "far fa-edit"),
+    ]));
 
     this.leftNavBaseModel = new LeftNavBaseModel(
       this.navLinkSections,

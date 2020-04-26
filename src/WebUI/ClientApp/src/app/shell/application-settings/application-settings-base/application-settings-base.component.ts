@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+import { UiAppSettingApplicationClient, CreateUiAppSettingApplicationCommand, UpdateUiAppSettingApplicationCommand } from "../../../model/dto/wedding-api-models";
 import { ErrorLogService, UtilityService } from '../../../core';
 import { FormValidationService } from '../../../shared';
 
@@ -18,7 +19,7 @@ export class ApplicationSettingsBaseComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    //private client: UsaStateClient,
+    private client: UiAppSettingApplicationClient,
     private utilSvc: UtilityService,
     private formValSvc: FormValidationService,
     private errorLogSvc: ErrorLogService,

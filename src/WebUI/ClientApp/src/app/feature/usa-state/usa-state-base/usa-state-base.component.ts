@@ -7,13 +7,13 @@ import { UsaStateClient, UsaStateDto } from "../../../model/dto/wedding-api-mode
   styleUrls: ['./usa-state-base.component.css']
 })
 export class UsaStateBaseComponent {
-  public states: UsaStateDto[];
+  public data: UsaStateDto[];
 
   constructor(private client: UsaStateClient) {
     client.getAll().subscribe(result => {
-      this.states = result;
+      this.data = result;
       console.log("Usa States");
-      console.log(this.states);
+      console.log(this.data);
     }, error => console.error(error));
   }
 }

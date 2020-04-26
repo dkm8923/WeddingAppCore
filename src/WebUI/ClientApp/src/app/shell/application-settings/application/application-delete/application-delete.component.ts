@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
-import { UsaStateClient } from "../../../model/dto/wedding-api-models";
+import { UiAppSettingApplicationClient } from "../../../../model/dto/wedding-api-models";
 import { ActivatedRoute } from '@angular/router';
-import { UsaStateService } from '../../usa-state';
-import { ErrorLogService, UtilityService } from '../../../core';
+import { ApplicationService } from '../application.service';
+import { ErrorLogService, UtilityService } from '../../../../core';
 
 @Component({
-  selector: 'app-usa-state-delete',
-  templateUrl: './usa-state-delete.component.html',
-  styleUrls: ['./usa-state-delete.component.css']
+  selector: 'app-application-delete',
+  templateUrl: './application-delete.component.html',
+  styleUrls: ['./application-delete.component.css']
 })
-export class UsaStateDeleteComponent {
+export class ApplicationDeleteComponent {
   id: number;
   data: {};
 
   constructor(
     private route: ActivatedRoute,
-    private client: UsaStateClient,
+    private client: UiAppSettingApplicationClient,
     private utilSvc: UtilityService,
-    private usaStateSvc: UsaStateService,
+    private applicationSvc: ApplicationService,
     private errorLogSvc: ErrorLogService
   ) {
 
@@ -31,7 +31,7 @@ export class UsaStateDeleteComponent {
       this.utilSvc.showLoadingSpinner();
 
       this.client.get(this.id).subscribe(result => {
-        this.data = result[0]; 
+        this.data = result[0];
         this.utilSvc.hideLoadingSpinner();
       },
         error => {
@@ -44,7 +44,7 @@ export class UsaStateDeleteComponent {
     this.utilSvc.showLoadingSpinner();
 
     this.client.delete(this.id).subscribe(result => {
-      this.usaStateSvc.returnToReport();
+      this.applicationSvc.returnToReport();
     }, error => {
       this.errorLogSvc.logError(error);
     });

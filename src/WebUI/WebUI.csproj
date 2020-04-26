@@ -68,6 +68,12 @@
     <None Remove="ClientApp\src\app\model\shell\nav\NavLinkUserProfile.ts" />
     <None Remove="ClientApp\src\app\shared\index.ts" />
     <None Remove="ClientApp\src\app\shared\shared.module.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\application\application.routes.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\application\application.service.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\application\index.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\reference-type\index.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\reference-type\reference-type.routes.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\reference-type\reference-type.service.ts" />
     <None Remove="ClientApp\src\app\shell\shell.routes.ts" />
   </ItemGroup>
 
@@ -108,6 +114,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\model\shell\nav\NavLinkUserProfile.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\application.routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\application.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\reference-type\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\reference-type\reference-type.routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\reference-type\reference-type.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\shell.routes.ts" />
   </ItemGroup>
 
@@ -115,7 +127,6 @@
     <Folder Include="ClientApp\src\app\core\Model\" />
     <Folder Include="ClientApp\src\app\shell\left-nav\" />
     <Folder Include="ClientApp\src\app\shell\nav\" />
-    <Folder Include="ClientApp\src\app\shell\application-settings\" />
   </ItemGroup>
 
   <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
