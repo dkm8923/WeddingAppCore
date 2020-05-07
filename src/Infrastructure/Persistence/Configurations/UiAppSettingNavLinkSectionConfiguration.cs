@@ -6,11 +6,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CleanArchitecture.Infrastructure.Persistence.Configurations
 {
-    public class UiAppSettingFooterConfiguration : IEntityTypeConfiguration<UiAppSettingFooter>
+    public class UiAppSettingNavLinkSectionConfiguration : IEntityTypeConfiguration<UiAppSettingNavLinkSection>
     {
-        public void Configure(EntityTypeBuilder<UiAppSettingFooter> builder)
+        public void Configure(EntityTypeBuilder<UiAppSettingNavLinkSection> builder)
         {
             builder.Property(t => t.ApplicationId).IsRequired();
+            builder.Property(t => t.Text).IsRequired();
         }
     }
 }

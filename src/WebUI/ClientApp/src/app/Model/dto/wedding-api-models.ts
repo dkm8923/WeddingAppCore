@@ -2850,6 +2850,572 @@ export class UiAppSettingFooterClient implements IUiAppSettingFooterClient {
     }
 }
 
+export interface IUiAppSettingNavLinkClient {
+    getAll(): Observable<UiAppSettingNavLinkDto[]>;
+    create(command: CreateUiAppSettingNavLinkCommand): Observable<number>;
+    get(id: number): Observable<UiAppSettingNavLinkDto[]>;
+    update(id: number, command: UpdateUiAppSettingNavLinkCommand): Observable<FileResponse>;
+    delete(id: number): Observable<FileResponse>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class UiAppSettingNavLinkClient implements IUiAppSettingNavLinkClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    getAll(): Observable<UiAppSettingNavLinkDto[]> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLink";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(<any>response_);
+                } catch (e) {
+                    return <Observable<UiAppSettingNavLinkDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<UiAppSettingNavLinkDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<UiAppSettingNavLinkDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(UiAppSettingNavLinkDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<UiAppSettingNavLinkDto[]>(<any>null);
+    }
+
+    create(command: CreateUiAppSettingNavLinkCommand): Observable<number> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLink";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(<any>response_);
+                } catch (e) {
+                    return <Observable<number>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<number>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<number>(<any>null);
+    }
+
+    get(id: number): Observable<UiAppSettingNavLinkDto[]> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLink/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGet(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGet(<any>response_);
+                } catch (e) {
+                    return <Observable<UiAppSettingNavLinkDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<UiAppSettingNavLinkDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGet(response: HttpResponseBase): Observable<UiAppSettingNavLinkDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(UiAppSettingNavLinkDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<UiAppSettingNavLinkDto[]>(<any>null);
+    }
+
+    update(id: number, command: UpdateUiAppSettingNavLinkCommand): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLink/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+
+    delete(id: number): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLink/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+}
+
+export interface IUiAppSettingNavLinkSectionClient {
+    getAll(): Observable<UiAppSettingNavLinkSectionDto[]>;
+    create(command: CreateUiAppSettingNavLinkSectionCommand): Observable<number>;
+    get(id: number): Observable<UiAppSettingNavLinkSectionDto[]>;
+    update(id: number, command: UpdateUiAppSettingNavLinkSectionCommand): Observable<FileResponse>;
+    delete(id: number): Observable<FileResponse>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class UiAppSettingNavLinkSectionClient implements IUiAppSettingNavLinkSectionClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    getAll(): Observable<UiAppSettingNavLinkSectionDto[]> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLinkSection";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(<any>response_);
+                } catch (e) {
+                    return <Observable<UiAppSettingNavLinkSectionDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<UiAppSettingNavLinkSectionDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<UiAppSettingNavLinkSectionDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(UiAppSettingNavLinkSectionDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<UiAppSettingNavLinkSectionDto[]>(<any>null);
+    }
+
+    create(command: CreateUiAppSettingNavLinkSectionCommand): Observable<number> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLinkSection";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(<any>response_);
+                } catch (e) {
+                    return <Observable<number>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<number>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<number>(<any>null);
+    }
+
+    get(id: number): Observable<UiAppSettingNavLinkSectionDto[]> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLinkSection/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGet(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGet(<any>response_);
+                } catch (e) {
+                    return <Observable<UiAppSettingNavLinkSectionDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<UiAppSettingNavLinkSectionDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGet(response: HttpResponseBase): Observable<UiAppSettingNavLinkSectionDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(UiAppSettingNavLinkSectionDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<UiAppSettingNavLinkSectionDto[]>(<any>null);
+    }
+
+    update(id: number, command: UpdateUiAppSettingNavLinkSectionCommand): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLinkSection/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+
+    delete(id: number): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/UiAppSettingNavLinkSection/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+}
+
 export interface IUiAppSettingReferenceTypeClient {
     getAll(): Observable<UiAppSettingReferenceTypeDto[]>;
     create(command: CreateUiAppSettingReferenceTypeCommand): Observable<number>;
@@ -5688,6 +6254,334 @@ export interface IUpdateUiAppSettingFooterCommand {
     textLeft?: string | undefined;
     textMiddle?: string | undefined;
     textRight?: string | undefined;
+}
+
+export class UiAppSettingNavLinkDto implements IUiAppSettingNavLinkDto {
+    id?: number;
+    applicationId?: number;
+    navLinkSectionId?: number | undefined;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    url?: string | undefined;
+    badgeText?: string | undefined;
+
+    constructor(data?: IUiAppSettingNavLinkDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.navLinkSectionId = _data["navLinkSectionId"];
+            this.text = _data["text"];
+            this.fontAwesomeCss = _data["fontAwesomeCss"];
+            this.url = _data["url"];
+            this.badgeText = _data["badgeText"];
+        }
+    }
+
+    static fromJS(data: any): UiAppSettingNavLinkDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiAppSettingNavLinkDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationId"] = this.applicationId;
+        data["navLinkSectionId"] = this.navLinkSectionId;
+        data["text"] = this.text;
+        data["fontAwesomeCss"] = this.fontAwesomeCss;
+        data["url"] = this.url;
+        data["badgeText"] = this.badgeText;
+        return data; 
+    }
+}
+
+export interface IUiAppSettingNavLinkDto {
+    id?: number;
+    applicationId?: number;
+    navLinkSectionId?: number | undefined;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    url?: string | undefined;
+    badgeText?: string | undefined;
+}
+
+export class CreateUiAppSettingNavLinkCommand implements ICreateUiAppSettingNavLinkCommand {
+    applicationId?: number;
+    navLinkSectionId?: number | undefined;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    url?: string | undefined;
+    badgeText?: string | undefined;
+
+    constructor(data?: ICreateUiAppSettingNavLinkCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.applicationId = _data["applicationId"];
+            this.navLinkSectionId = _data["navLinkSectionId"];
+            this.text = _data["text"];
+            this.fontAwesomeCss = _data["fontAwesomeCss"];
+            this.url = _data["url"];
+            this.badgeText = _data["badgeText"];
+        }
+    }
+
+    static fromJS(data: any): CreateUiAppSettingNavLinkCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateUiAppSettingNavLinkCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicationId"] = this.applicationId;
+        data["navLinkSectionId"] = this.navLinkSectionId;
+        data["text"] = this.text;
+        data["fontAwesomeCss"] = this.fontAwesomeCss;
+        data["url"] = this.url;
+        data["badgeText"] = this.badgeText;
+        return data; 
+    }
+}
+
+export interface ICreateUiAppSettingNavLinkCommand {
+    applicationId?: number;
+    navLinkSectionId?: number | undefined;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    url?: string | undefined;
+    badgeText?: string | undefined;
+}
+
+export class UpdateUiAppSettingNavLinkCommand implements IUpdateUiAppSettingNavLinkCommand {
+    id?: number;
+    applicationId?: number;
+    navLinkSectionId?: number | undefined;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    url?: string | undefined;
+    badgeText?: string | undefined;
+
+    constructor(data?: IUpdateUiAppSettingNavLinkCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.navLinkSectionId = _data["navLinkSectionId"];
+            this.text = _data["text"];
+            this.fontAwesomeCss = _data["fontAwesomeCss"];
+            this.url = _data["url"];
+            this.badgeText = _data["badgeText"];
+        }
+    }
+
+    static fromJS(data: any): UpdateUiAppSettingNavLinkCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateUiAppSettingNavLinkCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationId"] = this.applicationId;
+        data["navLinkSectionId"] = this.navLinkSectionId;
+        data["text"] = this.text;
+        data["fontAwesomeCss"] = this.fontAwesomeCss;
+        data["url"] = this.url;
+        data["badgeText"] = this.badgeText;
+        return data; 
+    }
+}
+
+export interface IUpdateUiAppSettingNavLinkCommand {
+    id?: number;
+    applicationId?: number;
+    navLinkSectionId?: number | undefined;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    url?: string | undefined;
+    badgeText?: string | undefined;
+}
+
+export class UiAppSettingNavLinkSectionDto implements IUiAppSettingNavLinkSectionDto {
+    id?: number;
+    applicationId?: number;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    badgeText?: string | undefined;
+
+    constructor(data?: IUiAppSettingNavLinkSectionDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.text = _data["text"];
+            this.fontAwesomeCss = _data["fontAwesomeCss"];
+            this.badgeText = _data["badgeText"];
+        }
+    }
+
+    static fromJS(data: any): UiAppSettingNavLinkSectionDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiAppSettingNavLinkSectionDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationId"] = this.applicationId;
+        data["text"] = this.text;
+        data["fontAwesomeCss"] = this.fontAwesomeCss;
+        data["badgeText"] = this.badgeText;
+        return data; 
+    }
+}
+
+export interface IUiAppSettingNavLinkSectionDto {
+    id?: number;
+    applicationId?: number;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    badgeText?: string | undefined;
+}
+
+export class CreateUiAppSettingNavLinkSectionCommand implements ICreateUiAppSettingNavLinkSectionCommand {
+    applicationId?: number;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    badgeText?: string | undefined;
+
+    constructor(data?: ICreateUiAppSettingNavLinkSectionCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.applicationId = _data["applicationId"];
+            this.text = _data["text"];
+            this.fontAwesomeCss = _data["fontAwesomeCss"];
+            this.badgeText = _data["badgeText"];
+        }
+    }
+
+    static fromJS(data: any): CreateUiAppSettingNavLinkSectionCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateUiAppSettingNavLinkSectionCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicationId"] = this.applicationId;
+        data["text"] = this.text;
+        data["fontAwesomeCss"] = this.fontAwesomeCss;
+        data["badgeText"] = this.badgeText;
+        return data; 
+    }
+}
+
+export interface ICreateUiAppSettingNavLinkSectionCommand {
+    applicationId?: number;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    badgeText?: string | undefined;
+}
+
+export class UpdateUiAppSettingNavLinkSectionCommand implements IUpdateUiAppSettingNavLinkSectionCommand {
+    id?: number;
+    applicationId?: number;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    badgeText?: string | undefined;
+
+    constructor(data?: IUpdateUiAppSettingNavLinkSectionCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.text = _data["text"];
+            this.fontAwesomeCss = _data["fontAwesomeCss"];
+            this.badgeText = _data["badgeText"];
+        }
+    }
+
+    static fromJS(data: any): UpdateUiAppSettingNavLinkSectionCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateUiAppSettingNavLinkSectionCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationId"] = this.applicationId;
+        data["text"] = this.text;
+        data["fontAwesomeCss"] = this.fontAwesomeCss;
+        data["badgeText"] = this.badgeText;
+        return data; 
+    }
+}
+
+export interface IUpdateUiAppSettingNavLinkSectionCommand {
+    id?: number;
+    applicationId?: number;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    badgeText?: string | undefined;
 }
 
 export class CreateUiAppSettingReferenceTypeCommand implements ICreateUiAppSettingReferenceTypeCommand {

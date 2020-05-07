@@ -46,6 +46,8 @@ namespace CleanArchitecture.Infrastructure.Persistence
         public DbSet<UiAppSettingApplication> UiAppSettingApplications { get; set; }
         public DbSet<UiAppSettingFooter> UiAppSettingFooters { get; set; }
         public DbSet<UiAppSettingHeader> UiAppSettingHeaders { get; set; }
+        public DbSet<UiAppSettingNavLink> UiAppSettingNavLinks { get; set; }
+        public DbSet<UiAppSettingNavLinkSection> UiAppSettingNavLinkSections { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
