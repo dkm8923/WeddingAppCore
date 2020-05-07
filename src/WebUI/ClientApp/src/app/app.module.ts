@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
 import { UtilityService, ErrorLogService } from './core';
+import { AppGlobalService } from './shared/services/app-global/app-global.service'
 
 import { SharedModule } from './shared/shared.module';
 import { ShellModule } from './shell/shell.module';
@@ -40,8 +41,15 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
     UtilityService,
-    ErrorLogService
+    ErrorLogService,
+    AppGlobalService,
+    { provide: APP_INITIALIZER, useFactory: appGlobalProviderFactory, deps: [AppGlobalService], multi: true }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+export function appGlobalProviderFactory(provider: AppGlobalService) {
+  return () => provider.loadInitData();
+}

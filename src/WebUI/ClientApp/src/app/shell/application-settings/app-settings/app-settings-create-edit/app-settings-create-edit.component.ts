@@ -56,17 +56,17 @@ export class AppSettingsCreateEditComponent implements OnInit {
 
         this.formGroup.setValue({
           applicationId: result[0].applicationId,
-          referenceTypeId: result[0].referenceTypeId,
+          referenceTypeId: result[0].referenceTypeId//,
           //footer: {
           //  textLeft: result[0].footer.textLeft,
           //  textMiddle: "",
           //  textRight: ""
           //}
-          footer: {
-            textLeft: result[0].json.textLeft,
-            textMiddle: result[0].json.textMiddle,
-            textRight: result[0].json.textRight
-          }
+          //footer: {
+          //  textLeft: result[0].json.textLeft,
+          //  textMiddle: result[0].json.textMiddle,
+          //  textRight: result[0].json.textRight
+          //}
         });
 
         this.utilSvc.hideLoadingSpinner();

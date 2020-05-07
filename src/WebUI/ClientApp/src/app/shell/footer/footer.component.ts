@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FooterBaseModel } from '../../model/shell/footer/FooterBaseModel'
-
+import { UiAppSettingFooterDto } from '../../model/dto/wedding-api-models'
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +8,7 @@ import { FooterBaseModel } from '../../model/shell/footer/FooterBaseModel'
 })
 export class FooterComponent implements OnInit {
 
-  @Input() footerBaseModel: FooterBaseModel;
+  @Input() footerBaseModel: UiAppSettingFooterDto;
   listItemCt: number = 0;
   ulCss: string;
 
@@ -17,9 +16,9 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkForTextVal(this.footerBaseModel.leftText);
-    this.checkForTextVal(this.footerBaseModel.middleText);
-    this.checkForTextVal(this.footerBaseModel.rightText);
+    this.checkForTextVal(this.footerBaseModel.textLeft);
+    this.checkForTextVal(this.footerBaseModel.textMiddle);
+    this.checkForTextVal(this.footerBaseModel.textRight);
     this.ulCss = "li" + this.listItemCt.toString();
   }
 

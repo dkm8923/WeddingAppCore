@@ -6,6 +6,38 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/Common": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "operationId": "Common_GetCommonData",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCommonDataRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCommonDataResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Email": {
       "get": {
         "tags": [
@@ -1528,6 +1560,169 @@
         }
       }
     },
+    "/api/UiAppSettingFooter": {
+      "get": {
+        "tags": [
+          "UiAppSettingFooter"
+        ],
+        "operationId": "UiAppSettingFooter_GetAll",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UiAppSettingFooterDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "UiAppSettingFooter"
+        ],
+        "operationId": "UiAppSettingFooter_Create",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUiAppSettingFooterCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/UiAppSettingFooter/{id}": {
+      "get": {
+        "tags": [
+          "UiAppSettingFooter"
+        ],
+        "operationId": "UiAppSettingFooter_Get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UiAppSettingFooterDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "UiAppSettingFooter"
+        ],
+        "operationId": "UiAppSettingFooter_Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "x-position": 1
+          }
+        ],
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUiAppSettingFooterCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UiAppSettingFooter"
+        ],
+        "operationId": "UiAppSettingFooter_Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/UiAppSettingReferenceType": {
       "get": {
         "tags": [
@@ -2073,7 +2268,56 @@
   },
   "components": {
     "schemas": {
-      "EmailDto": {
+      "GetCommonDataResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "usaStates": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UsaStateDto"
+            }
+          },
+          "uiAppSettingReferenceTypes": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UiAppSettingReferenceTypeDto"
+            }
+          },
+          "uiAppSettingApplications": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UiAppSettingApplicationDto"
+            }
+          },
+          "uiAppSettingFooters": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UiAppSettingFooterDto"
+            }
+          },
+          "uiAppSettings": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/UiAppSettingDto"
+            }
+          },
+          "layoutData": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/LayoutData"
+              }
+            ]
+          }
+        }
+      },
+      "UsaStateDto": {
         "allOf": [
           {
             "$ref": "#/components/schemas/AuditableEntity"
@@ -2086,15 +2330,11 @@
                 "type": "integer",
                 "format": "int64"
               },
-              "description": {
+              "name": {
                 "type": "string",
                 "nullable": true
               },
-              "subject": {
-                "type": "string",
-                "nullable": true
-              },
-              "body": {
+              "abbreviatedName": {
                 "type": "string",
                 "nullable": true
               }
@@ -2124,6 +2364,200 @@
             "nullable": true
           }
         }
+      },
+      "UiAppSettingReferenceTypeDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "name": {
+                "type": "string",
+                "nullable": true
+              },
+              "description": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "UiAppSettingApplicationDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "name": {
+                "type": "string",
+                "nullable": true
+              },
+              "description": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "UiAppSettingFooterDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "applicationId": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "textLeft": {
+                "type": "string",
+                "nullable": true
+              },
+              "textMiddle": {
+                "type": "string",
+                "nullable": true
+              },
+              "textRight": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "UiAppSettingDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "applicationId": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "referenceTypeId": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "json": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "LayoutData": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "footer": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UiAppSettingFooterDto"
+              }
+            ]
+          }
+        }
+      },
+      "GetCommonDataRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "usaStates": {
+            "type": "boolean"
+          },
+          "uiAppSettingReferenceTypes": {
+            "type": "boolean"
+          },
+          "uiAppSettingApplications": {
+            "type": "boolean"
+          },
+          "uiAppSettingFooters": {
+            "type": "boolean"
+          },
+          "uiAppSettings": {
+            "type": "boolean"
+          },
+          "uiLayoutData": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/UiLayoutDataReq"
+              }
+            ]
+          }
+        }
+      },
+      "UiLayoutDataReq": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "applicationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "EmailDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AuditableEntity"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "description": {
+                "type": "string",
+                "nullable": true
+              },
+              "subject": {
+                "type": "string",
+                "nullable": true
+              },
+              "body": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
       },
       "CreateEmailCommand": {
         "type": "object",
@@ -2670,31 +3104,6 @@
           }
         }
       },
-      "UiAppSettingApplicationDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/AuditableEntity"
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "id": {
-                "type": "integer",
-                "format": "int64"
-              },
-              "name": {
-                "type": "string",
-                "nullable": true
-              },
-              "description": {
-                "type": "string",
-                "nullable": true
-              }
-            }
-          }
-        ]
-      },
       "CreateUiAppSettingApplicationCommand": {
         "type": "object",
         "additionalProperties": false,
@@ -2726,35 +3135,6 @@
             "nullable": true
           }
         }
-      },
-      "UiAppSettingDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/AuditableEntity"
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "id": {
-                "type": "integer",
-                "format": "int64"
-              },
-              "applicationId": {
-                "type": "integer",
-                "format": "int64"
-              },
-              "referenceTypeId": {
-                "type": "integer",
-                "format": "int64"
-              },
-              "json": {
-                "type": "string",
-                "nullable": true
-              }
-            }
-          }
-        ]
       },
       "CreateUiAppSettingCommand": {
         "type": "object",
@@ -2796,30 +3176,55 @@
           }
         }
       },
-      "UiAppSettingReferenceTypeDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/AuditableEntity"
+      "CreateUiAppSettingFooterCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "applicationId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
           },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "id": {
-                "type": "integer",
-                "format": "int64"
-              },
-              "name": {
-                "type": "string",
-                "nullable": true
-              },
-              "description": {
-                "type": "string",
-                "nullable": true
-              }
-            }
+          "textLeft": {
+            "type": "string",
+            "nullable": true
+          },
+          "textMiddle": {
+            "type": "string",
+            "nullable": true
+          },
+          "textRight": {
+            "type": "string",
+            "nullable": true
           }
-        ]
+        }
+      },
+      "UpdateUiAppSettingFooterCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "applicationId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "textLeft": {
+            "type": "string",
+            "nullable": true
+          },
+          "textMiddle": {
+            "type": "string",
+            "nullable": true
+          },
+          "textRight": {
+            "type": "string",
+            "nullable": true
+          }
+        }
       },
       "CreateUiAppSettingReferenceTypeCommand": {
         "type": "object",
@@ -2852,31 +3257,6 @@
             "nullable": true
           }
         }
-      },
-      "UsaStateDto": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/AuditableEntity"
-          },
-          {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-              "id": {
-                "type": "integer",
-                "format": "int64"
-              },
-              "name": {
-                "type": "string",
-                "nullable": true
-              },
-              "abbreviatedName": {
-                "type": "string",
-                "nullable": true
-              }
-            }
-          }
-        ]
       },
       "CreateUsaStateCommand": {
         "type": "object",

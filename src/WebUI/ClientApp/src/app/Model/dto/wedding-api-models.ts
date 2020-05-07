@@ -14,6 +14,76 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
+export interface ICommonClient {
+    getCommonData(command: GetCommonDataRequest): Observable<GetCommonDataResponse>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CommonClient implements ICommonClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    getCommonData(command: GetCommonDataRequest): Observable<GetCommonDataResponse> {
+        let url_ = this.baseUrl + "/api/Common";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetCommonData(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetCommonData(<any>response_);
+                } catch (e) {
+                    return <Observable<GetCommonDataResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<GetCommonDataResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetCommonData(response: HttpResponseBase): Observable<GetCommonDataResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = GetCommonDataResponse.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<GetCommonDataResponse>(<any>null);
+    }
+}
+
 export interface IEmailClient {
     getAll(): Observable<EmailDto[]>;
     create(command: CreateEmailCommand): Observable<number>;
@@ -2497,6 +2567,289 @@ export class UiAppSettingClient implements IUiAppSettingClient {
     }
 }
 
+export interface IUiAppSettingFooterClient {
+    getAll(): Observable<UiAppSettingFooterDto[]>;
+    create(command: CreateUiAppSettingFooterCommand): Observable<number>;
+    get(id: number): Observable<UiAppSettingFooterDto[]>;
+    update(id: number, command: UpdateUiAppSettingFooterCommand): Observable<FileResponse>;
+    delete(id: number): Observable<FileResponse>;
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class UiAppSettingFooterClient implements IUiAppSettingFooterClient {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    getAll(): Observable<UiAppSettingFooterDto[]> {
+        let url_ = this.baseUrl + "/api/UiAppSettingFooter";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(<any>response_);
+                } catch (e) {
+                    return <Observable<UiAppSettingFooterDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<UiAppSettingFooterDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<UiAppSettingFooterDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(UiAppSettingFooterDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<UiAppSettingFooterDto[]>(<any>null);
+    }
+
+    create(command: CreateUiAppSettingFooterCommand): Observable<number> {
+        let url_ = this.baseUrl + "/api/UiAppSettingFooter";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(<any>response_);
+                } catch (e) {
+                    return <Observable<number>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<number>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<number> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<number>(<any>null);
+    }
+
+    get(id: number): Observable<UiAppSettingFooterDto[]> {
+        let url_ = this.baseUrl + "/api/UiAppSettingFooter/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGet(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGet(<any>response_);
+                } catch (e) {
+                    return <Observable<UiAppSettingFooterDto[]>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<UiAppSettingFooterDto[]>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGet(response: HttpResponseBase): Observable<UiAppSettingFooterDto[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(UiAppSettingFooterDto.fromJS(item));
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<UiAppSettingFooterDto[]>(<any>null);
+    }
+
+    update(id: number, command: UpdateUiAppSettingFooterCommand): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/UiAppSettingFooter/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+
+    delete(id: number): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/UiAppSettingFooter/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
+    }
+}
+
 export interface IUiAppSettingReferenceTypeClient {
     getAll(): Observable<UiAppSettingReferenceTypeDto[]>;
     create(command: CreateUiAppSettingReferenceTypeCommand): Observable<number>;
@@ -3416,6 +3769,102 @@ export class WeddingDescriptionClient implements IWeddingDescriptionClient {
     }
 }
 
+export class GetCommonDataResponse implements IGetCommonDataResponse {
+    usaStates?: UsaStateDto[] | undefined;
+    uiAppSettingReferenceTypes?: UiAppSettingReferenceTypeDto[] | undefined;
+    uiAppSettingApplications?: UiAppSettingApplicationDto[] | undefined;
+    uiAppSettingFooters?: UiAppSettingFooterDto[] | undefined;
+    uiAppSettings?: UiAppSettingDto[] | undefined;
+    layoutData?: LayoutData | undefined;
+
+    constructor(data?: IGetCommonDataResponse) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["usaStates"])) {
+                this.usaStates = [] as any;
+                for (let item of _data["usaStates"])
+                    this.usaStates!.push(UsaStateDto.fromJS(item));
+            }
+            if (Array.isArray(_data["uiAppSettingReferenceTypes"])) {
+                this.uiAppSettingReferenceTypes = [] as any;
+                for (let item of _data["uiAppSettingReferenceTypes"])
+                    this.uiAppSettingReferenceTypes!.push(UiAppSettingReferenceTypeDto.fromJS(item));
+            }
+            if (Array.isArray(_data["uiAppSettingApplications"])) {
+                this.uiAppSettingApplications = [] as any;
+                for (let item of _data["uiAppSettingApplications"])
+                    this.uiAppSettingApplications!.push(UiAppSettingApplicationDto.fromJS(item));
+            }
+            if (Array.isArray(_data["uiAppSettingFooters"])) {
+                this.uiAppSettingFooters = [] as any;
+                for (let item of _data["uiAppSettingFooters"])
+                    this.uiAppSettingFooters!.push(UiAppSettingFooterDto.fromJS(item));
+            }
+            if (Array.isArray(_data["uiAppSettings"])) {
+                this.uiAppSettings = [] as any;
+                for (let item of _data["uiAppSettings"])
+                    this.uiAppSettings!.push(UiAppSettingDto.fromJS(item));
+            }
+            this.layoutData = _data["layoutData"] ? LayoutData.fromJS(_data["layoutData"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): GetCommonDataResponse {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetCommonDataResponse();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.usaStates)) {
+            data["usaStates"] = [];
+            for (let item of this.usaStates)
+                data["usaStates"].push(item.toJSON());
+        }
+        if (Array.isArray(this.uiAppSettingReferenceTypes)) {
+            data["uiAppSettingReferenceTypes"] = [];
+            for (let item of this.uiAppSettingReferenceTypes)
+                data["uiAppSettingReferenceTypes"].push(item.toJSON());
+        }
+        if (Array.isArray(this.uiAppSettingApplications)) {
+            data["uiAppSettingApplications"] = [];
+            for (let item of this.uiAppSettingApplications)
+                data["uiAppSettingApplications"].push(item.toJSON());
+        }
+        if (Array.isArray(this.uiAppSettingFooters)) {
+            data["uiAppSettingFooters"] = [];
+            for (let item of this.uiAppSettingFooters)
+                data["uiAppSettingFooters"].push(item.toJSON());
+        }
+        if (Array.isArray(this.uiAppSettings)) {
+            data["uiAppSettings"] = [];
+            for (let item of this.uiAppSettings)
+                data["uiAppSettings"].push(item.toJSON());
+        }
+        data["layoutData"] = this.layoutData ? this.layoutData.toJSON() : <any>undefined;
+        return data; 
+    }
+}
+
+export interface IGetCommonDataResponse {
+    usaStates?: UsaStateDto[] | undefined;
+    uiAppSettingReferenceTypes?: UiAppSettingReferenceTypeDto[] | undefined;
+    uiAppSettingApplications?: UiAppSettingApplicationDto[] | undefined;
+    uiAppSettingFooters?: UiAppSettingFooterDto[] | undefined;
+    uiAppSettings?: UiAppSettingDto[] | undefined;
+    layoutData?: LayoutData | undefined;
+}
+
 export class AuditableEntity implements IAuditableEntity {
     createdBy?: string | undefined;
     created?: Date;
@@ -3462,6 +3911,351 @@ export interface IAuditableEntity {
     created?: Date;
     lastModifiedBy?: string | undefined;
     lastModified?: Date | undefined;
+}
+
+export class UsaStateDto extends AuditableEntity implements IUsaStateDto {
+    id?: number;
+    name?: string | undefined;
+    abbreviatedName?: string | undefined;
+
+    constructor(data?: IUsaStateDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.abbreviatedName = _data["abbreviatedName"];
+        }
+    }
+
+    static fromJS(data: any): UsaStateDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UsaStateDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["abbreviatedName"] = this.abbreviatedName;
+        super.toJSON(data);
+        return data; 
+    }
+}
+
+export interface IUsaStateDto extends IAuditableEntity {
+    id?: number;
+    name?: string | undefined;
+    abbreviatedName?: string | undefined;
+}
+
+export class UiAppSettingReferenceTypeDto extends AuditableEntity implements IUiAppSettingReferenceTypeDto {
+    id?: number;
+    name?: string | undefined;
+    description?: string | undefined;
+
+    constructor(data?: IUiAppSettingReferenceTypeDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+        }
+    }
+
+    static fromJS(data: any): UiAppSettingReferenceTypeDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiAppSettingReferenceTypeDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        super.toJSON(data);
+        return data; 
+    }
+}
+
+export interface IUiAppSettingReferenceTypeDto extends IAuditableEntity {
+    id?: number;
+    name?: string | undefined;
+    description?: string | undefined;
+}
+
+export class UiAppSettingApplicationDto extends AuditableEntity implements IUiAppSettingApplicationDto {
+    id?: number;
+    name?: string | undefined;
+    description?: string | undefined;
+
+    constructor(data?: IUiAppSettingApplicationDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.description = _data["description"];
+        }
+    }
+
+    static fromJS(data: any): UiAppSettingApplicationDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiAppSettingApplicationDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["description"] = this.description;
+        super.toJSON(data);
+        return data; 
+    }
+}
+
+export interface IUiAppSettingApplicationDto extends IAuditableEntity {
+    id?: number;
+    name?: string | undefined;
+    description?: string | undefined;
+}
+
+export class UiAppSettingFooterDto extends AuditableEntity implements IUiAppSettingFooterDto {
+    id?: number;
+    applicationId?: number;
+    textLeft?: string | undefined;
+    textMiddle?: string | undefined;
+    textRight?: string | undefined;
+
+    constructor(data?: IUiAppSettingFooterDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.textLeft = _data["textLeft"];
+            this.textMiddle = _data["textMiddle"];
+            this.textRight = _data["textRight"];
+        }
+    }
+
+    static fromJS(data: any): UiAppSettingFooterDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiAppSettingFooterDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationId"] = this.applicationId;
+        data["textLeft"] = this.textLeft;
+        data["textMiddle"] = this.textMiddle;
+        data["textRight"] = this.textRight;
+        super.toJSON(data);
+        return data; 
+    }
+}
+
+export interface IUiAppSettingFooterDto extends IAuditableEntity {
+    id?: number;
+    applicationId?: number;
+    textLeft?: string | undefined;
+    textMiddle?: string | undefined;
+    textRight?: string | undefined;
+}
+
+export class UiAppSettingDto extends AuditableEntity implements IUiAppSettingDto {
+    id?: number;
+    applicationId?: number;
+    referenceTypeId?: number;
+    json?: string | undefined;
+
+    constructor(data?: IUiAppSettingDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.referenceTypeId = _data["referenceTypeId"];
+            this.json = _data["json"];
+        }
+    }
+
+    static fromJS(data: any): UiAppSettingDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiAppSettingDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationId"] = this.applicationId;
+        data["referenceTypeId"] = this.referenceTypeId;
+        data["json"] = this.json;
+        super.toJSON(data);
+        return data; 
+    }
+}
+
+export interface IUiAppSettingDto extends IAuditableEntity {
+    id?: number;
+    applicationId?: number;
+    referenceTypeId?: number;
+    json?: string | undefined;
+}
+
+export class LayoutData implements ILayoutData {
+    footer?: UiAppSettingFooterDto | undefined;
+
+    constructor(data?: ILayoutData) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.footer = _data["footer"] ? UiAppSettingFooterDto.fromJS(_data["footer"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): LayoutData {
+        data = typeof data === 'object' ? data : {};
+        let result = new LayoutData();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["footer"] = this.footer ? this.footer.toJSON() : <any>undefined;
+        return data; 
+    }
+}
+
+export interface ILayoutData {
+    footer?: UiAppSettingFooterDto | undefined;
+}
+
+export class GetCommonDataRequest implements IGetCommonDataRequest {
+    usaStates?: boolean;
+    uiAppSettingReferenceTypes?: boolean;
+    uiAppSettingApplications?: boolean;
+    uiAppSettingFooters?: boolean;
+    uiAppSettings?: boolean;
+    uiLayoutData?: UiLayoutDataReq | undefined;
+
+    constructor(data?: IGetCommonDataRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.usaStates = _data["usaStates"];
+            this.uiAppSettingReferenceTypes = _data["uiAppSettingReferenceTypes"];
+            this.uiAppSettingApplications = _data["uiAppSettingApplications"];
+            this.uiAppSettingFooters = _data["uiAppSettingFooters"];
+            this.uiAppSettings = _data["uiAppSettings"];
+            this.uiLayoutData = _data["uiLayoutData"] ? UiLayoutDataReq.fromJS(_data["uiLayoutData"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): GetCommonDataRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetCommonDataRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["usaStates"] = this.usaStates;
+        data["uiAppSettingReferenceTypes"] = this.uiAppSettingReferenceTypes;
+        data["uiAppSettingApplications"] = this.uiAppSettingApplications;
+        data["uiAppSettingFooters"] = this.uiAppSettingFooters;
+        data["uiAppSettings"] = this.uiAppSettings;
+        data["uiLayoutData"] = this.uiLayoutData ? this.uiLayoutData.toJSON() : <any>undefined;
+        return data; 
+    }
+}
+
+export interface IGetCommonDataRequest {
+    usaStates?: boolean;
+    uiAppSettingReferenceTypes?: boolean;
+    uiAppSettingApplications?: boolean;
+    uiAppSettingFooters?: boolean;
+    uiAppSettings?: boolean;
+    uiLayoutData?: UiLayoutDataReq | undefined;
+}
+
+export class UiLayoutDataReq implements IUiLayoutDataReq {
+    applicationId?: number;
+
+    constructor(data?: IUiLayoutDataReq) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.applicationId = _data["applicationId"];
+        }
+    }
+
+    static fromJS(data: any): UiLayoutDataReq {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiLayoutDataReq();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicationId"] = this.applicationId;
+        return data; 
+    }
+}
+
+export interface IUiLayoutDataReq {
+    applicationId?: number;
 }
 
 export class EmailDto extends AuditableEntity implements IEmailDto {
@@ -4620,47 +5414,6 @@ export interface IUpdateTodoListCommand {
     title?: string | undefined;
 }
 
-export class UiAppSettingApplicationDto extends AuditableEntity implements IUiAppSettingApplicationDto {
-    id?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-
-    constructor(data?: IUiAppSettingApplicationDto) {
-        super(data);
-    }
-
-    init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.description = _data["description"];
-        }
-    }
-
-    static fromJS(data: any): UiAppSettingApplicationDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new UiAppSettingApplicationDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["description"] = this.description;
-        super.toJSON(data);
-        return data; 
-    }
-}
-
-export interface IUiAppSettingApplicationDto extends IAuditableEntity {
-    id?: number;
-    name?: string | undefined;
-    description?: string | undefined;
-}
-
 export class CreateUiAppSettingApplicationCommand implements ICreateUiAppSettingApplicationCommand {
     name?: string | undefined;
     description?: string | undefined;
@@ -4743,51 +5496,6 @@ export interface IUpdateUiAppSettingApplicationCommand {
     id?: number;
     name?: string | undefined;
     description?: string | undefined;
-}
-
-export class UiAppSettingDto extends AuditableEntity implements IUiAppSettingDto {
-    id?: number;
-    applicationId?: number;
-    referenceTypeId?: number;
-    json?: string | undefined;
-
-    constructor(data?: IUiAppSettingDto) {
-        super(data);
-    }
-
-    init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.id = _data["id"];
-            this.applicationId = _data["applicationId"];
-            this.referenceTypeId = _data["referenceTypeId"];
-            this.json = _data["json"];
-        }
-    }
-
-    static fromJS(data: any): UiAppSettingDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new UiAppSettingDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["applicationId"] = this.applicationId;
-        data["referenceTypeId"] = this.referenceTypeId;
-        data["json"] = this.json;
-        super.toJSON(data);
-        return data; 
-    }
-}
-
-export interface IUiAppSettingDto extends IAuditableEntity {
-    id?: number;
-    applicationId?: number;
-    referenceTypeId?: number;
-    json?: string | undefined;
 }
 
 export class CreateUiAppSettingCommand implements ICreateUiAppSettingCommand {
@@ -4882,27 +5590,83 @@ export interface IUpdateUiAppSettingCommand {
     json?: string | undefined;
 }
 
-export class UiAppSettingReferenceTypeDto extends AuditableEntity implements IUiAppSettingReferenceTypeDto {
-    id?: number;
-    name?: string | undefined;
-    description?: string | undefined;
+export class CreateUiAppSettingFooterCommand implements ICreateUiAppSettingFooterCommand {
+    applicationId?: number | undefined;
+    textLeft?: string | undefined;
+    textMiddle?: string | undefined;
+    textRight?: string | undefined;
 
-    constructor(data?: IUiAppSettingReferenceTypeDto) {
-        super(data);
-    }
-
-    init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.description = _data["description"];
+    constructor(data?: ICreateUiAppSettingFooterCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
         }
     }
 
-    static fromJS(data: any): UiAppSettingReferenceTypeDto {
+    init(_data?: any) {
+        if (_data) {
+            this.applicationId = _data["applicationId"];
+            this.textLeft = _data["textLeft"];
+            this.textMiddle = _data["textMiddle"];
+            this.textRight = _data["textRight"];
+        }
+    }
+
+    static fromJS(data: any): CreateUiAppSettingFooterCommand {
         data = typeof data === 'object' ? data : {};
-        let result = new UiAppSettingReferenceTypeDto();
+        let result = new CreateUiAppSettingFooterCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["applicationId"] = this.applicationId;
+        data["textLeft"] = this.textLeft;
+        data["textMiddle"] = this.textMiddle;
+        data["textRight"] = this.textRight;
+        return data; 
+    }
+}
+
+export interface ICreateUiAppSettingFooterCommand {
+    applicationId?: number | undefined;
+    textLeft?: string | undefined;
+    textMiddle?: string | undefined;
+    textRight?: string | undefined;
+}
+
+export class UpdateUiAppSettingFooterCommand implements IUpdateUiAppSettingFooterCommand {
+    id?: number;
+    applicationId?: number | undefined;
+    textLeft?: string | undefined;
+    textMiddle?: string | undefined;
+    textRight?: string | undefined;
+
+    constructor(data?: IUpdateUiAppSettingFooterCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.textLeft = _data["textLeft"];
+            this.textMiddle = _data["textMiddle"];
+            this.textRight = _data["textRight"];
+        }
+    }
+
+    static fromJS(data: any): UpdateUiAppSettingFooterCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateUiAppSettingFooterCommand();
         result.init(data);
         return result;
     }
@@ -4910,17 +5674,20 @@ export class UiAppSettingReferenceTypeDto extends AuditableEntity implements IUi
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["name"] = this.name;
-        data["description"] = this.description;
-        super.toJSON(data);
+        data["applicationId"] = this.applicationId;
+        data["textLeft"] = this.textLeft;
+        data["textMiddle"] = this.textMiddle;
+        data["textRight"] = this.textRight;
         return data; 
     }
 }
 
-export interface IUiAppSettingReferenceTypeDto extends IAuditableEntity {
+export interface IUpdateUiAppSettingFooterCommand {
     id?: number;
-    name?: string | undefined;
-    description?: string | undefined;
+    applicationId?: number | undefined;
+    textLeft?: string | undefined;
+    textMiddle?: string | undefined;
+    textRight?: string | undefined;
 }
 
 export class CreateUiAppSettingReferenceTypeCommand implements ICreateUiAppSettingReferenceTypeCommand {
@@ -5005,47 +5772,6 @@ export interface IUpdateUiAppSettingReferenceTypeCommand {
     id?: number;
     name?: string | undefined;
     description?: string | undefined;
-}
-
-export class UsaStateDto extends AuditableEntity implements IUsaStateDto {
-    id?: number;
-    name?: string | undefined;
-    abbreviatedName?: string | undefined;
-
-    constructor(data?: IUsaStateDto) {
-        super(data);
-    }
-
-    init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.abbreviatedName = _data["abbreviatedName"];
-        }
-    }
-
-    static fromJS(data: any): UsaStateDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new UsaStateDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["abbreviatedName"] = this.abbreviatedName;
-        super.toJSON(data);
-        return data; 
-    }
-}
-
-export interface IUsaStateDto extends IAuditableEntity {
-    id?: number;
-    name?: string | undefined;
-    abbreviatedName?: string | undefined;
 }
 
 export class CreateUsaStateCommand implements ICreateUsaStateCommand {

@@ -2,13 +2,13 @@
 using CleanArchitecture.Application.UiAppSettingApplications.Commands.UpdateUiAppSettingApplication;
 using FluentValidation;
 
-namespace CleanArchitecture.Application.UUiAppSettingApplications.Commands.UpdateUUiAppSettingApplication
+namespace CleanArchitecture.Application.UiAppSettingApplications.Commands.UpdateUUiAppSettingApplication
 {
-    public class UpdateUUiAppSettingApplicationCommandValidator : AbstractValidator<UpdateUiAppSettingApplicationCommand>
+    public class UpdateUiAppSettingApplicationCommandValidator : AbstractValidator<UpdateUiAppSettingApplicationCommand>
     {
         private readonly IApplicationDbContext _context;
 
-        public UpdateUUiAppSettingApplicationCommandValidator(IApplicationDbContext context)
+        public UpdateUiAppSettingApplicationCommandValidator(IApplicationDbContext context)
         {
             _context = context;
 

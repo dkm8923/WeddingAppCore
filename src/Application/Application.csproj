@@ -28,6 +28,10 @@
     <Folder Include="Guests\Commands\DeleteGuest\" />
     <Folder Include="Guests\Commands\UpdateGuest\" />
     <Folder Include="Guests\Queries\" />
+    <Folder Include="UiAppSettings\UiAppSettingHeaders\Commands\CreateUiAppSettingHeader\" />
+    <Folder Include="UiAppSettings\UiAppSettingHeaders\Commands\DeleteUiAppSettingHeader\" />
+    <Folder Include="UiAppSettings\UiAppSettingHeaders\Commands\UpdateUiAppSettingHeader\" />
+    <Folder Include="UiAppSettings\UiAppSettingHeaders\Queries\" />
     <Folder Include="UsaStates\Commands\CreateUsaState\" />
     <Folder Include="UsaStates\Commands\DeleteUsaState\" />
     <Folder Include="UsaStates\Commands\UpdateUsaState\" />

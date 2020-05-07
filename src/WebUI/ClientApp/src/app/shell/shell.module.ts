@@ -24,7 +24,6 @@ import { HeaderBaseComponent } from './header/header-base/header-base.component'
 import { LayoutColorSelectorComponent } from './layout-color-selector/layout-color-selector.component';
 import { HeaderMessageComponent } from './header/header-message/header-message.component';
 import { HeaderNotificationComponent } from './header/header-notification/header-notification.component';
-import { ApplicationSettingsBaseComponent } from './application-settings/application-settings-base/application-settings-base.component';
 import { ApplicationBaseComponent } from './application-settings/application/application-base/application-base.component';
 import { ApplicationCreateEditComponent } from './application-settings/application/application-create-edit/application-create-edit.component';
 import { ApplicationDeleteComponent } from './application-settings/application/application-delete/application-delete.component';
@@ -60,7 +59,6 @@ import { AppSettingsDeleteComponent } from './application-settings/app-settings/
     LayoutColorSelectorComponent,
     HeaderMessageComponent,
     HeaderNotificationComponent,
-    ApplicationSettingsBaseComponent,
     ApplicationBaseComponent,
     ApplicationCreateEditComponent,
     ApplicationDeleteComponent,

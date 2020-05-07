@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AppGlobalService } from '../../shared/services/app-global/app-global.service'
+
 import { LeftNavBaseModel } from '../../model/shell/left-nav/LeftNavBaseModel';
 import { NavLinkSection } from '../../model/shell/nav/NavLinkSection';
 import { NavLink } from '../../model/shell/nav/NavLink';
 import { NavLinkUserProfile } from '../../model/shell/nav/NavLinkUserProfile';
 import { NavLinkHome } from '../../model/shell/nav/NavLinkHome';
 import { LayoutBaseModel } from '../../model/shell/LayoutBaseModel';
-import { FooterBaseModel } from '../../model/shell/footer/FooterBaseModel';
+import { UiAppSettingFooterDto } from '../../model/dto/wedding-api-models'
 import { HeaderBaseModel } from '../../model/shell/header/HeaderBaseModel';
 import { HeaderMessage } from '../../model/shell/header/HeaderMessage';
 import { HeaderNotification } from '../../model/shell/header/HeaderNotification';
@@ -18,8 +20,11 @@ import { HeaderNotification } from '../../model/shell/header/HeaderNotification'
 })
 export class ShellLayoutBaseComponent implements OnInit {
 
+  appGlobalSvc: AppGlobalService;
+  commonData: any;
+
   layoutBaseModel: LayoutBaseModel;
-  footerBaseModel: FooterBaseModel;
+  footerBaseModel: UiAppSettingFooterDto;
   headerBaseModel: HeaderBaseModel;
   headerMessageArr: HeaderMessage[] = [];
   headerNotificationArr: HeaderNotification[] = [];
@@ -27,7 +32,15 @@ export class ShellLayoutBaseComponent implements OnInit {
   navLinkSections: NavLinkSection[] = [];
   navLinks: NavLink[] = [];
 
-  constructor() {
+  constructor(
+    appGlobalSvc: AppGlobalService
+  ) {
+
+    this.commonData = appGlobalSvc.getCommonData();
+
+    console.log("appGlobalSvc from Shell layout base");
+    console.log(appGlobalSvc);
+    console.log(this.commonData);
 
     this.navLinks.push(new NavLink("Usa State", "/usa-state", "far fa-flag"));
     this.navLinks.push(new NavLink("Address", "/address", "far fa-map"));
@@ -47,7 +60,7 @@ export class ShellLayoutBaseComponent implements OnInit {
       new NavLinkUserProfile("assets/dist/img/user2-160x160.jpg", "Faggy McFaggetson 123")
     );
 
-    this.footerBaseModel = new FooterBaseModel("MSS Admin UI", "Version 1.0", "Copyright 2020");
+    this.footerBaseModel = new UiAppSettingFooterDto({ textLeft: this.commonData.layoutData.footer.textLeft, textMiddle: this.commonData.layoutData.footer.textMiddle, textRight: this.commonData.layoutData.footer.textRight });
 
     this.headerMessageArr.push(new HeaderMessage("Brad Diesel", "assets/dist/img/user1-128x128.jpg", "Call me whenever you can...", "4 Hours Ago"));
     this.headerMessageArr.push(new HeaderMessage("John Pierce", "assets/dist/img/user8-128x128.jpg", "I got your message bro", "3 Hours Ago"));

@@ -24,6 +24,8 @@ namespace CleanArchitecture.Application.Common.Interfaces
         public DbSet<UiAppSetting> UiAppSettings { get; set; }
         public DbSet<UiAppSettingReferenceType> UiAppSettingReferenceTypes { get; set; }
         public DbSet<UiAppSettingApplication> UiAppSettingApplications { get; set; }
+        public DbSet<UiAppSettingFooter> UiAppSettingFooters { get; set; }
+        public DbSet<UiAppSettingHeader> UiAppSettingHeaders { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
