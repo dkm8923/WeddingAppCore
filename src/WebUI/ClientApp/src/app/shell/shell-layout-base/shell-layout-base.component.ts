@@ -60,7 +60,8 @@ export class ShellLayoutBaseComponent implements OnInit {
       new NavLinkUserProfile("assets/dist/img/user2-160x160.jpg", "Faggy McFaggetson 123")
     );
 
-    this.footerBaseModel = new UiAppSettingFooterDto({ textLeft: this.commonData.layoutData.footer.textLeft, textMiddle: this.commonData.layoutData.footer.textMiddle, textRight: this.commonData.layoutData.footer.textRight });
+    //this.footerBaseModel = new UiAppSettingFooterDto({ textLeft: this.commonData.layoutData.footer.textLeft, textMiddle: this.commonData.layoutData.footer.textMiddle, textRight: this.commonData.layoutData.footer.textRight });
+    this.footerBaseModel = new UiAppSettingFooterDto({ textLeft: "test 1", textMiddle: "test 2", textRight: "test 3" });
 
     this.headerMessageArr.push(new HeaderMessage("Brad Diesel", "assets/dist/img/user1-128x128.jpg", "Call me whenever you can...", "4 Hours Ago"));
     this.headerMessageArr.push(new HeaderMessage("John Pierce", "assets/dist/img/user8-128x128.jpg", "I got your message bro", "3 Hours Ago"));

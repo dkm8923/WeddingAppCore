@@ -23,18 +23,6 @@ namespace CleanArchitecture.WebUI.Controllers
         //    FooterBaseModel
         //}
 
-        //[HttpPost]
-        //public async Task<ActionResult<GetCommonDataResponse>> GetInitData()
-        //{
-        //    return await this.GetCommonData(new GetCommonDataRequest { 
-        //        UsaStates = true, 
-        //        UiAppSettingReferenceTypes = true,
-        //        UiAppSettingApplications = true,
-        //        UiAppSettingFooters = true,
-        //        UiAppSettings = true,
-        //    });
-        //}
-
         [HttpPost]
         public async Task<ActionResult<GetCommonDataResponse>> GetCommonData(GetCommonDataRequest command)
         {
@@ -89,42 +77,6 @@ namespace CleanArchitecture.WebUI.Controllers
 
             return ret;
         }
-
-        //private GetCommonDataResponse FormatCommonData(GetCommonDataResponse req, IEnumerable<UiAppSettingReferenceTypeDto> refTypes)
-        //{
-        //    //check for footer data
-        //    var headerRefTypeId = refTypes.Where(q => q.Name == ReferenceTypes.HeaderBaseModel.ToString()).FirstOrDefault().Id;
-
-        //    //check for footer data converting UiAppSetting to Footer model. First find Footer ref type, and then query UiAppSetting data by ref type id
-        //    //req.LayoutData.FooterBaseModel = req.UiAppSettings.Where(q => q.ReferenceTypeId == refTypes.Where(q => q.Name == ReferenceTypes.FooterBaseModel.ToString()).FirstOrDefault().Id).FirstOrDefault().Json.Cast<FooterBaseModel>().FirstOrDefault();
-        //    req.LayoutData.FooterBaseModel = this.GetFooterData(req, refTypes);
-
-        //    return req;
-        //}
-
-        //private FooterBaseModel GetFooterData(GetCommonDataResponse req, IEnumerable<UiAppSettingReferenceTypeDto> refTypes) 
-        //{
-        //    try 
-        //    {
-        //        var ret = new FooterBaseModel();
-        //        var footerRefType = refTypes.Where(q => q.Name == ReferenceTypes.FooterBaseModel.ToString()).FirstOrDefault().Id;
-        //        //req.UiAppSettings.Where(q => q.ReferenceTypeId == footerRefType).FirstOrDefault();
-
-        //        var json = req.UiAppSettings.Where(q => q.ReferenceTypeId == footerRefType).FirstOrDefault().Json;
-
-        //        var footer = JsonConvert.DeserializeObject<FooterBaseModel>(json);
-
-
-        //        //var footerData = JsonSerializer.Deserialize<FooterBaseModel>(json); 
-        //        //ret = req.UiAppSettings.Where(q => q.ReferenceTypeId == footerRefType).FirstOrDefault().Json.Cast<FooterBaseModel>().FirstOrDefault();
-        //        ret = footer;
-        //        return ret;
-        //    }
-        //    catch (Exception e) 
-        //    {
-        //        throw e;
-        //    }
-        //}
     }
 }
 
