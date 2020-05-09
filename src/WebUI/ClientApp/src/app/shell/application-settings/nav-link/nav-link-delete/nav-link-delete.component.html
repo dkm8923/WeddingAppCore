@@ -1,0 +1,58 @@
+<div class="divDeleteFormContainer">
+  <ul class="ulFormElements">
+    <li class="liDeleteMsgContainer">
+      <span>Are You Sure That You Want To Delete The Current Record?</span>
+    </li>
+    <li>
+      <label class="formLbl">Id:</label>
+      <span>{{data?.id}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Application Id:</label>
+      <span>{{data?.applicationId}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Nav Link Section Id:</label>
+      <span>{{data?.navLinkSectionId}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Text:</label>
+      <span>{{data?.text}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Font Awesome Css:</label>
+      <span>{{data?.fontAwesomeCss}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Badge Text:</label>
+      <span>{{data?.badgeText}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Created By:</label>
+      <span>{{data?.createdBy}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Created On:</label>
+      <span>{{data?.created | date}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Updated By:</label>
+      <span>{{data?.lastModifiedBy}}</span>
+    </li>
+    <li>
+      <label class="formLbl">Updated On:</label>
+      <span>{{data?.lastModified | date}}</span>
+    </li>
+    <li class="liButtons li2Buttons">
+      <div class="divBtnContainer">
+        <app-button-cancel [routerLink]="['/application-settings/application']"></app-button-cancel>
+      </div>
+      <div class="divBtnContainer">
+        <app-button-delete (click)="onSubmit()"></app-button-delete>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+

@@ -6256,7 +6256,7 @@ export interface IUpdateUiAppSettingFooterCommand {
     textRight?: string | undefined;
 }
 
-export class UiAppSettingNavLinkDto implements IUiAppSettingNavLinkDto {
+export class UiAppSettingNavLinkDto extends AuditableEntity implements IUiAppSettingNavLinkDto {
     id?: number;
     applicationId?: number;
     navLinkSectionId?: number | undefined;
@@ -6266,15 +6266,11 @@ export class UiAppSettingNavLinkDto implements IUiAppSettingNavLinkDto {
     badgeText?: string | undefined;
 
     constructor(data?: IUiAppSettingNavLinkDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
+        super(data);
     }
 
     init(_data?: any) {
+        super.init(_data);
         if (_data) {
             this.id = _data["id"];
             this.applicationId = _data["applicationId"];
@@ -6302,11 +6298,12 @@ export class UiAppSettingNavLinkDto implements IUiAppSettingNavLinkDto {
         data["fontAwesomeCss"] = this.fontAwesomeCss;
         data["url"] = this.url;
         data["badgeText"] = this.badgeText;
+        super.toJSON(data);
         return data; 
     }
 }
 
-export interface IUiAppSettingNavLinkDto {
+export interface IUiAppSettingNavLinkDto extends IAuditableEntity {
     id?: number;
     applicationId?: number;
     navLinkSectionId?: number | undefined;
@@ -6432,7 +6429,7 @@ export interface IUpdateUiAppSettingNavLinkCommand {
     badgeText?: string | undefined;
 }
 
-export class UiAppSettingNavLinkSectionDto implements IUiAppSettingNavLinkSectionDto {
+export class UiAppSettingNavLinkSectionDto extends AuditableEntity implements IUiAppSettingNavLinkSectionDto {
     id?: number;
     applicationId?: number;
     text?: string | undefined;
@@ -6440,15 +6437,11 @@ export class UiAppSettingNavLinkSectionDto implements IUiAppSettingNavLinkSectio
     badgeText?: string | undefined;
 
     constructor(data?: IUiAppSettingNavLinkSectionDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
+        super(data);
     }
 
     init(_data?: any) {
+        super.init(_data);
         if (_data) {
             this.id = _data["id"];
             this.applicationId = _data["applicationId"];
@@ -6472,11 +6465,12 @@ export class UiAppSettingNavLinkSectionDto implements IUiAppSettingNavLinkSectio
         data["text"] = this.text;
         data["fontAwesomeCss"] = this.fontAwesomeCss;
         data["badgeText"] = this.badgeText;
+        super.toJSON(data);
         return data; 
     }
 }
 
-export interface IUiAppSettingNavLinkSectionDto {
+export interface IUiAppSettingNavLinkSectionDto extends IAuditableEntity {
     id?: number;
     applicationId?: number;
     text?: string | undefined;

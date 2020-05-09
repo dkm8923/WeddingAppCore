@@ -73,6 +73,12 @@
     <None Remove="ClientApp\src\app\shell\application-settings\application\application.routes.ts" />
     <None Remove="ClientApp\src\app\shell\application-settings\application\application.service.ts" />
     <None Remove="ClientApp\src\app\shell\application-settings\application\index.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\nav-link-section\index.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\nav-link-section\nav-link-section.routes.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\nav-link-section\nav-link-section.service.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\nav-link\index.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\nav-link\nav-link.routes.ts" />
+    <None Remove="ClientApp\src\app\shell\application-settings\nav-link\nav-link.service.ts" />
     <None Remove="ClientApp\src\app\shell\application-settings\reference-type\index.ts" />
     <None Remove="ClientApp\src\app\shell\application-settings\reference-type\reference-type.routes.ts" />
     <None Remove="ClientApp\src\app\shell\application-settings\reference-type\reference-type.service.ts" />
@@ -121,6 +127,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\application.routes.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\application.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\application\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\nav-link-section\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\nav-link-section\nav-link-section.routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\nav-link-section\nav-link-section.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\nav-link\index.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\nav-link\nav-link.routes.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\nav-link\nav-link.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\reference-type\index.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\reference-type\reference-type.routes.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shell\application-settings\reference-type\reference-type.service.ts" />

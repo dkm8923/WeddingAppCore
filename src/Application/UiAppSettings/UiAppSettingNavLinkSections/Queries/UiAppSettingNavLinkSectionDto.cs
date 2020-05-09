@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CleanArchitecture.Application.Common.Mappings;
+using CleanArchitecture.Domain.Common;
+using CleanArchitecture.Domain.Entities.UiAppSettings;
 
 namespace CleanArchitecture.Application.UiAppSettings.UiAppSettingNavLinkSections.Queries
 {
-    public class UiAppSettingNavLinkSectionDto
+    public class UiAppSettingNavLinkSectionDto : AuditableEntity, IMapFrom<UiAppSettingNavLinkSection>
     {
         public long Id { get; set; }
         public long ApplicationId { get; set; }

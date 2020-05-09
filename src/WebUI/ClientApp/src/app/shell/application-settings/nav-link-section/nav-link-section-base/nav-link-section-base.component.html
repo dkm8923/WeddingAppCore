@@ -1,0 +1,53 @@
+<div class="divGridHdrContainer">
+  <ul class="li2">
+    <li>
+      <h1>Nav Link Section</h1>
+    </li>
+    <li>
+      <app-button-create [routerLink]="['create']"></app-button-create>
+    </li>
+  </ul>
+</div>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="data">
+  <thead>
+    <tr>
+      <th style="width: 200px;">Actions</th>
+      <th>Id</th>
+      <th>Application Id</th>
+      <th>Text</th>
+      <th>FontAwesomeCss</th>
+      <th>BadgeText</th>
+      <th>Created By</th>
+      <th>Created On</th>
+      <th>Updated By</th>
+      <th>Updated On</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of data">
+      <td style="width: 200px;">
+        <div class="divGridBtnContainer">
+          <ul>
+            <li>
+              <app-grid-button-edit [routerLink]="['edit', d.id]"></app-grid-button-edit>
+            </li>
+            <li>
+              <app-grid-button-delete [routerLink]="['delete', d.id]"></app-grid-button-delete>
+            </li>
+          </ul>
+        </div>
+      </td>
+      <td>{{ d.id }}</td>
+      <td>{{ d.applicationId }}</td>
+      <td>{{ d.text }}</td>
+      <td>{{ d.fontAwesomeCss }}</td>
+      <td>{{ d.badgeText }}</td>
+      <td>{{ d.createdBy }}</td>
+      <td>{{ d.created | date }}</td>
+      <td>{{ d.lastModifiedBy }}</td>
+      <td>{{ d.lastModified | date }}</td>
+    </tr>
+  </tbody>
+</table>
+

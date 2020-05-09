@@ -33,6 +33,12 @@ import { ReferenceTypeDeleteComponent } from './application-settings/reference-t
 import { AppSettingsBaseComponent } from './application-settings/app-settings/app-settings-base/app-settings-base.component';
 import { AppSettingsCreateEditComponent } from './application-settings/app-settings/app-settings-create-edit/app-settings-create-edit.component';
 import { AppSettingsDeleteComponent } from './application-settings/app-settings/app-settings-delete/app-settings-delete.component';
+import { NavLinkBaseComponent } from './application-settings/nav-link/nav-link-base/nav-link-base.component';
+import { NavLinkCreateEditComponent } from './application-settings/nav-link/nav-link-create-edit/nav-link-create-edit.component';
+import { NavLinkDeleteComponent } from './application-settings/nav-link/nav-link-delete/nav-link-delete.component';
+import { NavLinkSectionBaseComponent } from './application-settings/nav-link-section/nav-link-section-base/nav-link-section-base.component';
+import { NavLinkSectionCreateEditComponent } from './application-settings/nav-link-section/nav-link-section-create-edit/nav-link-section-create-edit.component';
+import { NavLinkSectionDeleteComponent } from './application-settings/nav-link-section/nav-link-section-delete/nav-link-section-delete.component';
 
 @NgModule({
   imports: [
@@ -67,7 +73,13 @@ import { AppSettingsDeleteComponent } from './application-settings/app-settings/
     ReferenceTypeDeleteComponent,
     AppSettingsBaseComponent,
     AppSettingsCreateEditComponent,
-    AppSettingsDeleteComponent
+    AppSettingsDeleteComponent,
+    NavLinkBaseComponent,
+    NavLinkCreateEditComponent,
+    NavLinkDeleteComponent,
+    NavLinkSectionBaseComponent,
+    NavLinkSectionCreateEditComponent,
+    NavLinkSectionDeleteComponent
   ],
   exports: [
     FooterComponent,

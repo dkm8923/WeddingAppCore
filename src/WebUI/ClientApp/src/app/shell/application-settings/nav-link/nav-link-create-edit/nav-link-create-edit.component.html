@@ -1,0 +1,63 @@
+<div class="divCrudFormContainer">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <ul class="ulFormElements">
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('applicationId')">
+          <label class="formLbl required" for="txtNavLinkApplication">Application:</label>
+          <input type="text" class="form-control" id="txtNavLinkApplication" aria-describedby="navLinkApplicationHelp" formControlName="applicationId">
+          <small id="navLinkApplicationHelp" class="form-text text-muted">The Application Nav Link is assigned to</small>
+          <app-field-error-display [displayError]="isFieldValid('applicationId')" errorMsg="Application Required!"></app-field-error-display>
+        </div>
+      </li>
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('navLinkSectionId')">
+          <label class="formLbl required" for="txtNavLinkSection">Nav Link Section:</label>
+          <input type="text" class="form-control" id="txtNavLinkSection" aria-describedby="navLinkSectionHelp" formControlName="applicationId">
+          <small id="navLinkSectionHelp" class="form-text text-muted">The Section the Nav Link is assigned to</small>
+          <!--<app-field-error-display [displayError]="isFieldValid('navLinkSectionId')" errorMsg="Nav Link Section Required!"></app-field-error-display>-->
+        </div>
+      </li>
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('text')">
+          <label class="formLbl required" for="txtNavLinkText">Text:</label>
+          <input type="text" class="form-control" id="txtNavLinkText" aria-describedby="navLinkTextHelp" formControlName="text">
+          <small id="navLinkTextHelp" class="form-text text-muted">The Text Of The Nav Link</small>
+          <app-field-error-display [displayError]="isFieldValid('text')" errorMsg="Nav Link Text Required!"></app-field-error-display>
+        </div>
+      </li>
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('fontAwesomeCss')">
+          <label class="formLbl required" for="txtNavLinkText">Font Awesome Css:</label>
+          <input type="text" class="form-control" id="txtNavLinkFontAwesomeCss" aria-describedby="navLinkCssHelp" formControlName="fontAwesomeCss">
+          <small id="navLinkCssHelp" class="form-text text-muted">The Font Awesome Css Of The Nav Link</small>
+          <!--<app-field-error-display [displayError]="isFieldValid('fontAwesomeCss')" errorMsg="Nav Link Font Awesome Css Required!"></app-field-error-display>-->
+        </div>
+      </li>
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('url')">
+          <label class="formLbl required" for="txtNavLinkText">Url:</label>
+          <input type="text" class="form-control" id="txtNavLinkUrl" aria-describedby="navLinkUrlHelp" formControlName="url">
+          <small id="navLinkUrlHelp" class="form-text text-muted">The Url Of The Nav Link</small>
+          <app-field-error-display [displayError]="isFieldValid('url')" errorMsg="Nav Link Url Required!"></app-field-error-display>
+        </div>
+      </li>
+      <li>
+        <div class="form-group" [ngClass]="displayFieldCss('badgeText')">
+          <label class="formLbl required" for="txtNavLinkText">Badge Text:</label>
+          <input type="text" class="form-control" id="txtNavLinkBadgeText" aria-describedby="navLinkBadgeTextHelp" formControlName="badgeText">
+          <small id="navLinkBadgeTextHelp" class="form-text text-muted">The Badge Text Of The Nav Link</small>
+          <!--<app-field-error-display [displayError]="isFieldValid('badgeText')" errorMsg="Nav Link Badge Text Required!"></app-field-error-display>-->
+        </div>
+      </li>
+      <li class="liButtons li2Buttons">
+        <div class="divBtnContainer">
+          <app-button-cancel [routerLink]="['/application-settings/nav-link']"></app-button-cancel>
+        </div>
+        <div class="divBtnContainer">
+          <app-button-save></app-button-save>
+        </div>
+      </li>
+    </ul>
+  </form>
+</div>
+
