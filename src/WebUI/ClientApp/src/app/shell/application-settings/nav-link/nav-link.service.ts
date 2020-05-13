@@ -15,6 +15,6 @@ export class NavLinkService {
 
   returnToReport(): void {
     this.utilSvc.hideLoadingSpinner();
-    this.router.navigateByUrl('/nav-link/nav-link')
+    this.router.navigateByUrl('/application-settings/nav-link')
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UiAppSettingNavLinkClient } from "../../../../model/dto/wedding-api-models";
+import { UiAppSettingNavLinkSectionClient } from "../../../../model/dto/wedding-api-models";
 import { ActivatedRoute } from '@angular/router';
 import { NavLinkSectionService } from '../nav-link-section.service';
 import { ErrorLogService, UtilityService } from '../../../../core';
@@ -16,7 +16,7 @@ export class NavLinkSectionDeleteComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private client: UiAppSettingNavLinkClient,
+    private client: UiAppSettingNavLinkSectionClient,
     private utilSvc: UtilityService,
     private navLinkSectionSvc: NavLinkSectionService,
     private errorLogSvc: ErrorLogService

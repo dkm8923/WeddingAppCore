@@ -12,9 +12,9 @@
       <li>
         <div class="form-group" [ngClass]="displayFieldCss('navLinkSectionId')">
           <label class="formLbl required" for="txtNavLinkSection">Nav Link Section:</label>
-          <input type="text" class="form-control" id="txtNavLinkSection" aria-describedby="navLinkSectionHelp" formControlName="applicationId">
+          <input type="text" class="form-control" id="txtNavLinkSection" aria-describedby="navLinkSectionHelp" formControlName="navLinkSectionId">
           <small id="navLinkSectionHelp" class="form-text text-muted">The Section the Nav Link is assigned to</small>
-          <!--<app-field-error-display [displayError]="isFieldValid('navLinkSectionId')" errorMsg="Nav Link Section Required!"></app-field-error-display>-->
+          <app-field-error-display [displayError]="isFieldValid('navLinkSectionId')" errorMsg="Nav Link Section Required!"></app-field-error-display>
         </div>
       </li>
       <li>

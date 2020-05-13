@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Domain.Entities.UiAppSettings
 {
-    public class UiAppSettingNavLinkSection
+    public class UiAppSettingNavLinkSection : AuditableEntity
     {
         public long Id { get; set; }
         public long ApplicationId { get; set; }

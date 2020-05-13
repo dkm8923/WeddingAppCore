@@ -29,8 +29,12 @@ export class NavLinkCreateEditComponent implements OnInit {
   ) {
 
     this.formGroup = this.formBuilder.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required]
+      applicationId: ['', Validators.required],
+      navLinkSectionId: ['', Validators.required],
+      text: ['', Validators.required],
+      fontAwesomeCss: [''],
+      url: ['', Validators.required],
+      badgeText: ['']
     });
   }
 
