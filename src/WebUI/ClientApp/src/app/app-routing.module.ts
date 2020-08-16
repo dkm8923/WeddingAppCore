@@ -7,6 +7,7 @@ import { HomeRoutes } from './feature/home/home.routes';
 import { UsaStateRoutes } from './feature/usa-state/usa-state.routes';
 
 const routes: Routes = [
+  //{ path: 'home', children: HomeRoutes },
   { path: 'application-settings', children: ShellRoutes, canActivate: [AuthorizeGuard] },
   { path: 'home', children: HomeRoutes, canActivate: [AuthorizeGuard] },
   { path: 'usa-state', children: UsaStateRoutes, canActivate: [AuthorizeGuard] },

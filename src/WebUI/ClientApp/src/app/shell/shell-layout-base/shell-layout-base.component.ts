@@ -59,7 +59,7 @@ export class ShellLayoutBaseComponent implements OnInit {
     this.leftNavBaseModel = new LeftNavBaseModel(
       this.navLinkSections,
       new NavLinkHome("assets/dist/img/AdminLTELogo.png", "Admin UI Test"),
-      new NavLinkUserProfile("assets/dist/img/user2-160x160.jpg", "Faggy McFaggetson 123")
+      new NavLinkUserProfile("assets/dist/img/user2-160x160.jpg", "Test User 123")
     );
 
     //this.footerBaseModel = new UiAppSettingFooterDto({ textLeft: this.commonData.layoutData.footer.textLeft, textMiddle: this.commonData.layoutData.footer.textMiddle, textRight: this.commonData.layoutData.footer.textRight });

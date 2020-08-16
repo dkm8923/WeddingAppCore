@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
 import { UtilityService, ErrorLogService } from './core';
+//import { AuthorizeService } from '../api-authorization/authorize.service';
 import { AppGlobalService } from './shared/services/app-global/app-global.service'
 
 import { SharedModule } from './shared/shared.module';
@@ -42,6 +43,7 @@ import { AppRoutingModule } from './app-routing.module';
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
     UtilityService,
     ErrorLogService,
+    //AuthorizeService,
     AppGlobalService,
     { provide: APP_INITIALIZER, useFactory: appGlobalProviderFactory, deps: [AppGlobalService], multi: true }
   ],
@@ -51,5 +53,6 @@ export class AppModule { }
 
 
 export function appGlobalProviderFactory(provider: AppGlobalService) {
+
   return () => provider.loadInitData();
 }
