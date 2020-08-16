@@ -39,6 +39,7 @@ import { NavLinkDeleteComponent } from './application-settings/nav-link/nav-link
 import { NavLinkSectionBaseComponent } from './application-settings/nav-link-section/nav-link-section-base/nav-link-section-base.component';
 import { NavLinkSectionCreateEditComponent } from './application-settings/nav-link-section/nav-link-section-create-edit/nav-link-section-create-edit.component';
 import { NavLinkSectionDeleteComponent } from './application-settings/nav-link-section/nav-link-section-delete/nav-link-section-delete.component';
+import { HeaderLogoutComponent } from './header/header-logout/header-logout.component';
 
 @NgModule({
   imports: [
@@ -79,7 +80,8 @@ import { NavLinkSectionDeleteComponent } from './application-settings/nav-link-s
     NavLinkDeleteComponent,
     NavLinkSectionBaseComponent,
     NavLinkSectionCreateEditComponent,
-    NavLinkSectionDeleteComponent
+    NavLinkSectionDeleteComponent,
+    HeaderLogoutComponent
   ],
   exports: [
     FooterComponent,

@@ -3,6 +3,8 @@ using CleanArchitecture.Application.UiAppSettingReferenceTypes.Queries;
 using CleanArchitecture.Application.UiAppSettings.Queries;
 using CleanArchitecture.Application.UiAppSettings.UiAppSettingApplications.Queries;
 using CleanArchitecture.Application.UiAppSettings.UiAppSettingFooters.Queries;
+using CleanArchitecture.Application.UiAppSettings.UiAppSettingNavLinks.Queries;
+using CleanArchitecture.Application.UiAppSettings.UiAppSettingNavLinkSections.Queries;
 using CleanArchitecture.Application.UsaStates.Queries;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -46,6 +48,16 @@ namespace CleanArchitecture.WebUI.Controllers
                 ret.UiAppSettingApplications = await Mediator.Send(new GetUiAppSettingApplicationQuery());
             }
 
+            if (command.UiAppSettingNavLinks)
+            {
+                ret.UiAppSettingNavLinks = await Mediator.Send(new GetUiAppSettingNavLinkQuery());
+            }
+
+            if (command.UiAppSettingNavLinkSections)
+            {
+                ret.UiAppSettingNavLinkSections = await Mediator.Send(new GetUiAppSettingNavLinkSectionQuery());
+            }
+
             if (command.UiAppSettingFooters)
             {
                 ret.UiAppSettingFooters = await Mediator.Send(new GetUiAppSettingFooterQuery());
@@ -73,6 +85,13 @@ namespace CleanArchitecture.WebUI.Controllers
                 //    ret.LayoutData.Header = new UiAppSettingHeaderDto();
                 //    ret.LayoutData.Header = Header.FirstOrDefault();
                 //}
+                
+                var application = await Mediator.Send(new GetUiAppSettingApplicationQuery { Id = command.UiLayoutData.ApplicationId });
+                ret.LayoutData.Application = application.FirstOrDefault();
+                
+                ret.LayoutData.UiAppSettingNavLinks = await Mediator.Send(new GetUiAppSettingNavLinkQuery { ApplicationId = command.UiLayoutData.ApplicationId });
+
+                ret.LayoutData.UiAppSettingNavLinkSections = await Mediator.Send(new GetUiAppSettingNavLinkSectionQuery { ApplicationId = command.UiLayoutData.ApplicationId });
             }
 
             return ret;
@@ -85,6 +104,8 @@ public class GetCommonDataRequest
     public bool UsaStates { get; set; }
     public bool UiAppSettingReferenceTypes { get; set; }
     public bool UiAppSettingApplications { get; set; }
+    public bool UiAppSettingNavLinks { get; set; }
+    public bool UiAppSettingNavLinkSections { get; set; }
     public bool UiAppSettingFooters { get; set; }
     public bool UiAppSettings { get; set; }
     public UiLayoutDataReq UiLayoutData { get; set; }
@@ -100,6 +121,8 @@ public class GetCommonDataResponse
     public IEnumerable<UsaStateDto> UsaStates { get; set; }
     public IEnumerable<UiAppSettingReferenceTypeDto> UiAppSettingReferenceTypes { get; set; }
     public IEnumerable<UiAppSettingApplicationDto> UiAppSettingApplications { get; set; }
+    public IEnumerable<UiAppSettingNavLinkDto> UiAppSettingNavLinks { get; set; }
+    public IEnumerable<UiAppSettingNavLinkSectionDto> UiAppSettingNavLinkSections { get; set; }
     public IEnumerable<UiAppSettingFooterDto> UiAppSettingFooters { get; set; }
     public IEnumerable<UiAppSettingDto> UiAppSettings { get; set; }
     public LayoutData LayoutData { get; set; }
@@ -109,4 +132,7 @@ public class LayoutData
 {
     public UiAppSettingFooterDto Footer { get; set; }
     //public UiAppSettingHeaderDto Header { get; set; }
+    public UiAppSettingApplicationDto Application { get; set; }
+    public IEnumerable<UiAppSettingNavLinkDto> UiAppSettingNavLinks { get; set; }
+    public IEnumerable<UiAppSettingNavLinkSectionDto> UiAppSettingNavLinkSections { get; set; }
 }

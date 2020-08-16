@@ -4339,6 +4339,8 @@ export class GetCommonDataResponse implements IGetCommonDataResponse {
     usaStates?: UsaStateDto[] | undefined;
     uiAppSettingReferenceTypes?: UiAppSettingReferenceTypeDto[] | undefined;
     uiAppSettingApplications?: UiAppSettingApplicationDto[] | undefined;
+    uiAppSettingNavLinks?: UiAppSettingNavLinkDto[] | undefined;
+    uiAppSettingNavLinkSections?: UiAppSettingNavLinkSectionDto[] | undefined;
     uiAppSettingFooters?: UiAppSettingFooterDto[] | undefined;
     uiAppSettings?: UiAppSettingDto[] | undefined;
     layoutData?: LayoutData | undefined;
@@ -4368,6 +4370,16 @@ export class GetCommonDataResponse implements IGetCommonDataResponse {
                 this.uiAppSettingApplications = [] as any;
                 for (let item of _data["uiAppSettingApplications"])
                     this.uiAppSettingApplications!.push(UiAppSettingApplicationDto.fromJS(item));
+            }
+            if (Array.isArray(_data["uiAppSettingNavLinks"])) {
+                this.uiAppSettingNavLinks = [] as any;
+                for (let item of _data["uiAppSettingNavLinks"])
+                    this.uiAppSettingNavLinks!.push(UiAppSettingNavLinkDto.fromJS(item));
+            }
+            if (Array.isArray(_data["uiAppSettingNavLinkSections"])) {
+                this.uiAppSettingNavLinkSections = [] as any;
+                for (let item of _data["uiAppSettingNavLinkSections"])
+                    this.uiAppSettingNavLinkSections!.push(UiAppSettingNavLinkSectionDto.fromJS(item));
             }
             if (Array.isArray(_data["uiAppSettingFooters"])) {
                 this.uiAppSettingFooters = [] as any;
@@ -4407,6 +4419,16 @@ export class GetCommonDataResponse implements IGetCommonDataResponse {
             for (let item of this.uiAppSettingApplications)
                 data["uiAppSettingApplications"].push(item.toJSON());
         }
+        if (Array.isArray(this.uiAppSettingNavLinks)) {
+            data["uiAppSettingNavLinks"] = [];
+            for (let item of this.uiAppSettingNavLinks)
+                data["uiAppSettingNavLinks"].push(item.toJSON());
+        }
+        if (Array.isArray(this.uiAppSettingNavLinkSections)) {
+            data["uiAppSettingNavLinkSections"] = [];
+            for (let item of this.uiAppSettingNavLinkSections)
+                data["uiAppSettingNavLinkSections"].push(item.toJSON());
+        }
         if (Array.isArray(this.uiAppSettingFooters)) {
             data["uiAppSettingFooters"] = [];
             for (let item of this.uiAppSettingFooters)
@@ -4426,6 +4448,8 @@ export interface IGetCommonDataResponse {
     usaStates?: UsaStateDto[] | undefined;
     uiAppSettingReferenceTypes?: UiAppSettingReferenceTypeDto[] | undefined;
     uiAppSettingApplications?: UiAppSettingApplicationDto[] | undefined;
+    uiAppSettingNavLinks?: UiAppSettingNavLinkDto[] | undefined;
+    uiAppSettingNavLinkSections?: UiAppSettingNavLinkSectionDto[] | undefined;
     uiAppSettingFooters?: UiAppSettingFooterDto[] | undefined;
     uiAppSettings?: UiAppSettingDto[] | undefined;
     layoutData?: LayoutData | undefined;
@@ -4602,6 +4626,112 @@ export interface IUiAppSettingApplicationDto extends IAuditableEntity {
     description?: string | undefined;
 }
 
+export class UiAppSettingNavLinkDto extends AuditableEntity implements IUiAppSettingNavLinkDto {
+    id?: number;
+    applicationId?: number;
+    navLinkSectionId?: number | undefined;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    url?: string | undefined;
+    badgeText?: string | undefined;
+
+    constructor(data?: IUiAppSettingNavLinkDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.navLinkSectionId = _data["navLinkSectionId"];
+            this.text = _data["text"];
+            this.fontAwesomeCss = _data["fontAwesomeCss"];
+            this.url = _data["url"];
+            this.badgeText = _data["badgeText"];
+        }
+    }
+
+    static fromJS(data: any): UiAppSettingNavLinkDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiAppSettingNavLinkDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationId"] = this.applicationId;
+        data["navLinkSectionId"] = this.navLinkSectionId;
+        data["text"] = this.text;
+        data["fontAwesomeCss"] = this.fontAwesomeCss;
+        data["url"] = this.url;
+        data["badgeText"] = this.badgeText;
+        super.toJSON(data);
+        return data; 
+    }
+}
+
+export interface IUiAppSettingNavLinkDto extends IAuditableEntity {
+    id?: number;
+    applicationId?: number;
+    navLinkSectionId?: number | undefined;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    url?: string | undefined;
+    badgeText?: string | undefined;
+}
+
+export class UiAppSettingNavLinkSectionDto extends AuditableEntity implements IUiAppSettingNavLinkSectionDto {
+    id?: number;
+    applicationId?: number;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    badgeText?: string | undefined;
+
+    constructor(data?: IUiAppSettingNavLinkSectionDto) {
+        super(data);
+    }
+
+    init(_data?: any) {
+        super.init(_data);
+        if (_data) {
+            this.id = _data["id"];
+            this.applicationId = _data["applicationId"];
+            this.text = _data["text"];
+            this.fontAwesomeCss = _data["fontAwesomeCss"];
+            this.badgeText = _data["badgeText"];
+        }
+    }
+
+    static fromJS(data: any): UiAppSettingNavLinkSectionDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UiAppSettingNavLinkSectionDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["applicationId"] = this.applicationId;
+        data["text"] = this.text;
+        data["fontAwesomeCss"] = this.fontAwesomeCss;
+        data["badgeText"] = this.badgeText;
+        super.toJSON(data);
+        return data; 
+    }
+}
+
+export interface IUiAppSettingNavLinkSectionDto extends IAuditableEntity {
+    id?: number;
+    applicationId?: number;
+    text?: string | undefined;
+    fontAwesomeCss?: string | undefined;
+    badgeText?: string | undefined;
+}
+
 export class UiAppSettingFooterDto extends AuditableEntity implements IUiAppSettingFooterDto {
     id?: number;
     applicationId?: number;
@@ -4698,6 +4828,9 @@ export interface IUiAppSettingDto extends IAuditableEntity {
 
 export class LayoutData implements ILayoutData {
     footer?: UiAppSettingFooterDto | undefined;
+    application?: UiAppSettingApplicationDto | undefined;
+    uiAppSettingNavLinks?: UiAppSettingNavLinkDto[] | undefined;
+    uiAppSettingNavLinkSections?: UiAppSettingNavLinkSectionDto[] | undefined;
 
     constructor(data?: ILayoutData) {
         if (data) {
@@ -4711,6 +4844,17 @@ export class LayoutData implements ILayoutData {
     init(_data?: any) {
         if (_data) {
             this.footer = _data["footer"] ? UiAppSettingFooterDto.fromJS(_data["footer"]) : <any>undefined;
+            this.application = _data["application"] ? UiAppSettingApplicationDto.fromJS(_data["application"]) : <any>undefined;
+            if (Array.isArray(_data["uiAppSettingNavLinks"])) {
+                this.uiAppSettingNavLinks = [] as any;
+                for (let item of _data["uiAppSettingNavLinks"])
+                    this.uiAppSettingNavLinks!.push(UiAppSettingNavLinkDto.fromJS(item));
+            }
+            if (Array.isArray(_data["uiAppSettingNavLinkSections"])) {
+                this.uiAppSettingNavLinkSections = [] as any;
+                for (let item of _data["uiAppSettingNavLinkSections"])
+                    this.uiAppSettingNavLinkSections!.push(UiAppSettingNavLinkSectionDto.fromJS(item));
+            }
         }
     }
 
@@ -4724,18 +4868,34 @@ export class LayoutData implements ILayoutData {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["footer"] = this.footer ? this.footer.toJSON() : <any>undefined;
+        data["application"] = this.application ? this.application.toJSON() : <any>undefined;
+        if (Array.isArray(this.uiAppSettingNavLinks)) {
+            data["uiAppSettingNavLinks"] = [];
+            for (let item of this.uiAppSettingNavLinks)
+                data["uiAppSettingNavLinks"].push(item.toJSON());
+        }
+        if (Array.isArray(this.uiAppSettingNavLinkSections)) {
+            data["uiAppSettingNavLinkSections"] = [];
+            for (let item of this.uiAppSettingNavLinkSections)
+                data["uiAppSettingNavLinkSections"].push(item.toJSON());
+        }
         return data; 
     }
 }
 
 export interface ILayoutData {
     footer?: UiAppSettingFooterDto | undefined;
+    application?: UiAppSettingApplicationDto | undefined;
+    uiAppSettingNavLinks?: UiAppSettingNavLinkDto[] | undefined;
+    uiAppSettingNavLinkSections?: UiAppSettingNavLinkSectionDto[] | undefined;
 }
 
 export class GetCommonDataRequest implements IGetCommonDataRequest {
     usaStates?: boolean;
     uiAppSettingReferenceTypes?: boolean;
     uiAppSettingApplications?: boolean;
+    uiAppSettingNavLinks?: boolean;
+    uiAppSettingNavLinkSections?: boolean;
     uiAppSettingFooters?: boolean;
     uiAppSettings?: boolean;
     uiLayoutData?: UiLayoutDataReq | undefined;
@@ -4754,6 +4914,8 @@ export class GetCommonDataRequest implements IGetCommonDataRequest {
             this.usaStates = _data["usaStates"];
             this.uiAppSettingReferenceTypes = _data["uiAppSettingReferenceTypes"];
             this.uiAppSettingApplications = _data["uiAppSettingApplications"];
+            this.uiAppSettingNavLinks = _data["uiAppSettingNavLinks"];
+            this.uiAppSettingNavLinkSections = _data["uiAppSettingNavLinkSections"];
             this.uiAppSettingFooters = _data["uiAppSettingFooters"];
             this.uiAppSettings = _data["uiAppSettings"];
             this.uiLayoutData = _data["uiLayoutData"] ? UiLayoutDataReq.fromJS(_data["uiLayoutData"]) : <any>undefined;
@@ -4772,6 +4934,8 @@ export class GetCommonDataRequest implements IGetCommonDataRequest {
         data["usaStates"] = this.usaStates;
         data["uiAppSettingReferenceTypes"] = this.uiAppSettingReferenceTypes;
         data["uiAppSettingApplications"] = this.uiAppSettingApplications;
+        data["uiAppSettingNavLinks"] = this.uiAppSettingNavLinks;
+        data["uiAppSettingNavLinkSections"] = this.uiAppSettingNavLinkSections;
         data["uiAppSettingFooters"] = this.uiAppSettingFooters;
         data["uiAppSettings"] = this.uiAppSettings;
         data["uiLayoutData"] = this.uiLayoutData ? this.uiLayoutData.toJSON() : <any>undefined;
@@ -4783,6 +4947,8 @@ export interface IGetCommonDataRequest {
     usaStates?: boolean;
     uiAppSettingReferenceTypes?: boolean;
     uiAppSettingApplications?: boolean;
+    uiAppSettingNavLinks?: boolean;
+    uiAppSettingNavLinkSections?: boolean;
     uiAppSettingFooters?: boolean;
     uiAppSettings?: boolean;
     uiLayoutData?: UiLayoutDataReq | undefined;
@@ -6256,63 +6422,6 @@ export interface IUpdateUiAppSettingFooterCommand {
     textRight?: string | undefined;
 }
 
-export class UiAppSettingNavLinkDto extends AuditableEntity implements IUiAppSettingNavLinkDto {
-    id?: number;
-    applicationId?: number;
-    navLinkSectionId?: number | undefined;
-    text?: string | undefined;
-    fontAwesomeCss?: string | undefined;
-    url?: string | undefined;
-    badgeText?: string | undefined;
-
-    constructor(data?: IUiAppSettingNavLinkDto) {
-        super(data);
-    }
-
-    init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.id = _data["id"];
-            this.applicationId = _data["applicationId"];
-            this.navLinkSectionId = _data["navLinkSectionId"];
-            this.text = _data["text"];
-            this.fontAwesomeCss = _data["fontAwesomeCss"];
-            this.url = _data["url"];
-            this.badgeText = _data["badgeText"];
-        }
-    }
-
-    static fromJS(data: any): UiAppSettingNavLinkDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new UiAppSettingNavLinkDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["applicationId"] = this.applicationId;
-        data["navLinkSectionId"] = this.navLinkSectionId;
-        data["text"] = this.text;
-        data["fontAwesomeCss"] = this.fontAwesomeCss;
-        data["url"] = this.url;
-        data["badgeText"] = this.badgeText;
-        super.toJSON(data);
-        return data; 
-    }
-}
-
-export interface IUiAppSettingNavLinkDto extends IAuditableEntity {
-    id?: number;
-    applicationId?: number;
-    navLinkSectionId?: number | undefined;
-    text?: string | undefined;
-    fontAwesomeCss?: string | undefined;
-    url?: string | undefined;
-    badgeText?: string | undefined;
-}
-
 export class CreateUiAppSettingNavLinkCommand implements ICreateUiAppSettingNavLinkCommand {
     applicationId?: number;
     navLinkSectionId?: number | undefined;
@@ -6426,55 +6535,6 @@ export interface IUpdateUiAppSettingNavLinkCommand {
     text?: string | undefined;
     fontAwesomeCss?: string | undefined;
     url?: string | undefined;
-    badgeText?: string | undefined;
-}
-
-export class UiAppSettingNavLinkSectionDto extends AuditableEntity implements IUiAppSettingNavLinkSectionDto {
-    id?: number;
-    applicationId?: number;
-    text?: string | undefined;
-    fontAwesomeCss?: string | undefined;
-    badgeText?: string | undefined;
-
-    constructor(data?: IUiAppSettingNavLinkSectionDto) {
-        super(data);
-    }
-
-    init(_data?: any) {
-        super.init(_data);
-        if (_data) {
-            this.id = _data["id"];
-            this.applicationId = _data["applicationId"];
-            this.text = _data["text"];
-            this.fontAwesomeCss = _data["fontAwesomeCss"];
-            this.badgeText = _data["badgeText"];
-        }
-    }
-
-    static fromJS(data: any): UiAppSettingNavLinkSectionDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new UiAppSettingNavLinkSectionDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["applicationId"] = this.applicationId;
-        data["text"] = this.text;
-        data["fontAwesomeCss"] = this.fontAwesomeCss;
-        data["badgeText"] = this.badgeText;
-        super.toJSON(data);
-        return data; 
-    }
-}
-
-export interface IUiAppSettingNavLinkSectionDto extends IAuditableEntity {
-    id?: number;
-    applicationId?: number;
-    text?: string | undefined;
-    fontAwesomeCss?: string | undefined;
     badgeText?: string | undefined;
 }
 
